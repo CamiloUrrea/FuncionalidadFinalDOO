@@ -1,4 +1,4 @@
-package co.edu.uco.backend;
+package co.edu.uco.backend.init;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
