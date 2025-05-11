@@ -50,11 +50,11 @@ public final class DepartamentoDTO {
 
 
 
-    public static DepartamentoDTO obtenerDepartamentoDefecto() {
+    public static DepartamentoDTO obtenerValorDefecto() {
         return new DepartamentoDTO();
     }
 
-    public static DepartamentoDTO obtenerDepartamentoDefecto(final DepartamentoDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerDepartamentoDefecto());
+    public static DepartamentoDTO obtenerValorDefecto(final DepartamentoDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

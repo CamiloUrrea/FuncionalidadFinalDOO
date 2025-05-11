@@ -50,11 +50,11 @@ public final class EstadoVerificacionDTO {
 
 
 
-    public static EstadoVerificacionDTO obtenerEstadoVerificacionDefecto() {
+    public static EstadoVerificacionDTO obtenerValorDefecto() {
         return new EstadoVerificacionDTO();
     }
 
-    public static EstadoVerificacionDTO obtenerEstadoVerificacionDefecto(final EstadoVerificacionDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerEstadoVerificacionDefecto());
+    public static EstadoVerificacionDTO obtenerValorDefecto(final EstadoVerificacionDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

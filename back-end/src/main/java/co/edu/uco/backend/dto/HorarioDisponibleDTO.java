@@ -16,15 +16,15 @@ public final class HorarioDisponibleDTO {
     public HorarioDisponibleDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaDTO(CanchaDTO.obtenerCanchaDefecto());
-        setDiaSemanaDTO(DiaSemanaDTO.obtenerDiaSemanaDefecto());
+        setCanchaDTO(CanchaDTO.obtenerValorDefecto());
+        setDiaSemanaDTO(DiaSemanaDTO.obtenerValorDefecto());
     }
 
     public HorarioDisponibleDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaDTO(CanchaDTO.obtenerCanchaDefecto());
-        setDiaSemanaDTO(DiaSemanaDTO.obtenerDiaSemanaDefecto());
+        setCanchaDTO(CanchaDTO.obtenerValorDefecto());
+        setDiaSemanaDTO(DiaSemanaDTO.obtenerValorDefecto());
     }
 
     public HorarioDisponibleDTO(final UUID id, final String nombre, CanchaDTO canchaDTO, DiaSemanaDTO diaSemanaDTO) {
@@ -69,11 +69,11 @@ public final class HorarioDisponibleDTO {
         return this;
     }
 
-    public static HorarioDisponibleDTO obtenerHorarioDisponibleDefecto() {
+    public static HorarioDisponibleDTO obtenerValorDefecto() {
         return new HorarioDisponibleDTO();
     }
 
-    public static HorarioDisponibleDTO obtenerHorarioDisponibleDefecto(final HorarioDisponibleDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerHorarioDisponibleDefecto());
+    public static HorarioDisponibleDTO obtenerValorDefecto(final HorarioDisponibleDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

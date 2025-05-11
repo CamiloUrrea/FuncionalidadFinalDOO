@@ -15,13 +15,13 @@ public final class EncargadoDTO {
     public EncargadoDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerOrganizacionDeportivaDefecto());
+        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerValorDefecto());
     }
 
     public EncargadoDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerOrganizacionDeportivaDefecto());
+        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerValorDefecto());
     }
 
     public EncargadoDTO(final UUID id, final String nombre, OrganizacionDeportivaDTO organizacionDeportivaDTO) {
@@ -57,11 +57,11 @@ public final class EncargadoDTO {
         return this;
     }
 
-    public static EncargadoDTO obtenerEncargadoDefecto() {
+    public static EncargadoDTO obtenerValorDefecto() {
         return new EncargadoDTO();
     }
 
-    public static EncargadoDTO obtenerEncargadoDefecto(final EncargadoDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerEncargadoDefecto());
+    public static EncargadoDTO obtenerValorDefecto(final EncargadoDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

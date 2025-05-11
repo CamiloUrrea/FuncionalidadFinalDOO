@@ -15,13 +15,13 @@ public final class UbicacionPrecisaDTO {
     public UbicacionPrecisaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setMunicipioDTO(MunicipioDTO.obtenerMunicipioDefecto());
+        setMunicipioDTO(MunicipioDTO.obtenerValorDefecto());
     }
 
     public UbicacionPrecisaDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setMunicipioDTO(MunicipioDTO.obtenerMunicipioDefecto());
+        setMunicipioDTO(MunicipioDTO.obtenerValorDefecto());
     }
 
     public UbicacionPrecisaDTO(final UUID id, final String nombre, MunicipioDTO municipioDTO) {
@@ -57,11 +57,11 @@ public final class UbicacionPrecisaDTO {
         return this;
     }
 
-    public static UbicacionPrecisaDTO obtenerUbicacionPrecisaDefecto() {
+    public static UbicacionPrecisaDTO obtenerValorDefecto() {
         return new UbicacionPrecisaDTO();
     }
 
-    public static UbicacionPrecisaDTO obtenerUbicacionPrecisaDefecto(final UbicacionPrecisaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerUbicacionPrecisaDefecto());
+    public static UbicacionPrecisaDTO obtenerValorDefecto(final UbicacionPrecisaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

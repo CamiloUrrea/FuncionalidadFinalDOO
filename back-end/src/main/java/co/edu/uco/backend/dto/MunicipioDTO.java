@@ -15,13 +15,13 @@ public final class MunicipioDTO {
     public MunicipioDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setDepartamentoDTO(DepartamentoDTO.obtenerDepartamentoDefecto());
+        setDepartamentoDTO(DepartamentoDTO.obtenerValorDefecto());
     }
 
     public MunicipioDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setDepartamentoDTO(DepartamentoDTO.obtenerDepartamentoDefecto());
+        setDepartamentoDTO(DepartamentoDTO.obtenerValorDefecto());
     }
 
     public MunicipioDTO(final UUID id, final String nombre, DepartamentoDTO departamentoDTO) {
@@ -57,11 +57,11 @@ public final class MunicipioDTO {
         return this;
     }
 
-    public static MunicipioDTO obtenerMunicipioDefecto() {
+    public static MunicipioDTO obtenerValorDefecto() {
         return new MunicipioDTO();
     }
 
-    public static MunicipioDTO obtenerMunicipioDefecto(final MunicipioDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerMunicipioDefecto());
+    public static MunicipioDTO obtenerValorDefecto(final MunicipioDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

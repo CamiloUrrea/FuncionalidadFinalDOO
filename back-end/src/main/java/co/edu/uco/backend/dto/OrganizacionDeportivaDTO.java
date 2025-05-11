@@ -15,13 +15,13 @@ public final class OrganizacionDeportivaDTO {
     public OrganizacionDeportivaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setEstadoVerificacionDTO(EstadoVerificacionDTO.obtenerEstadoVerificacionDefecto());
+        setEstadoVerificacionDTO(EstadoVerificacionDTO.obtenerValorDefecto());
     }
 
     public OrganizacionDeportivaDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setEstadoVerificacionDTO(EstadoVerificacionDTO.obtenerEstadoVerificacionDefecto());
+        setEstadoVerificacionDTO(EstadoVerificacionDTO.obtenerValorDefecto());
     }
 
     public OrganizacionDeportivaDTO(final UUID id, final String nombre, EstadoVerificacionDTO estadoVerificacionDTO) {
@@ -57,11 +57,11 @@ public final class OrganizacionDeportivaDTO {
         return this;
     }
 
-    public static OrganizacionDeportivaDTO obtenerOrganizacionDeportivaDefecto() {
+    public static OrganizacionDeportivaDTO obtenerValorDefecto() {
         return new OrganizacionDeportivaDTO();
     }
 
-    public static OrganizacionDeportivaDTO obtenerOrganizacionDeportivaDefecto(final OrganizacionDeportivaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerOrganizacionDeportivaDefecto());
+    public static OrganizacionDeportivaDTO obtenerValorDefecto(final OrganizacionDeportivaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

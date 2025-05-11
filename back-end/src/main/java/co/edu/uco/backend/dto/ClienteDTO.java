@@ -50,11 +50,11 @@ public final class ClienteDTO {
 
 
 
-    public static ClienteDTO obtenerClienteDefecto() {
+    public static ClienteDTO obtenerValorDefecto() {
         return new ClienteDTO();
     }
 
-    public static ClienteDTO obtenerClienteDefecto(final ClienteDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerClienteDefecto());
+    public static ClienteDTO obtenerValorDefecto(final ClienteDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

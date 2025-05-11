@@ -15,13 +15,13 @@ public final class FacturaDTO {
     public FacturaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaDTO(ReservaDTO.obtenerReservaDefecto());
+        setReservaDTO(ReservaDTO.obtenerValorDefecto());
     }
 
     public FacturaDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaDTO(ReservaDTO.obtenerReservaDefecto());
+        setReservaDTO(ReservaDTO.obtenerValorDefecto());
     }
 
     public FacturaDTO(final UUID id, final String nombre, ReservaDTO reservaDTO) {
@@ -57,11 +57,11 @@ public final class FacturaDTO {
         return this;
     }
 
-    public static FacturaDTO obtenerFacturaDefecto() {
+    public static FacturaDTO obtenerValorDefecto() {
         return new FacturaDTO();
     }
 
-    public static FacturaDTO obtenerFacturaDefecto(final FacturaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerFacturaDefecto());
+    public static FacturaDTO obtenerValorDefecto(final FacturaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

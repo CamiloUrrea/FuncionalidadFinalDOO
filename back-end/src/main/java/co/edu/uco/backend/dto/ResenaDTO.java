@@ -15,13 +15,13 @@ public final class ResenaDTO {
     public ResenaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaDTO(ReservaDTO.obtenerReservaDefecto());
+        setReservaDTO(ReservaDTO.obtenerValorDefecto());
     }
 
     public ResenaDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaDTO(ReservaDTO.obtenerReservaDefecto());
+        setReservaDTO(ReservaDTO.obtenerValorDefecto());
     }
 
     public ResenaDTO(final UUID id, final String nombre, ReservaDTO reservaDTO) {
@@ -57,11 +57,11 @@ public final class ResenaDTO {
         return this;
     }
 
-    public static ResenaDTO obtenerResenaDefecto() {
+    public static ResenaDTO obtenerValorDefecto() {
         return new ResenaDTO();
     }
 
-    public static ResenaDTO obtenerResenaDefecto(final ResenaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerResenaDefecto());
+    public static ResenaDTO obtenerValorDefecto(final ResenaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

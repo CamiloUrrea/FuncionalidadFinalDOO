@@ -50,11 +50,11 @@ public final class TipoCanchaDTO {
 
 
 
-    public static TipoCanchaDTO obtenerTipoCanchaDefecto() {
+    public static TipoCanchaDTO obtenerValorDefecto() {
         return new TipoCanchaDTO();
     }
 
-    public static TipoCanchaDTO obtenerTipoCanchaDefecto(final TipoCanchaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerTipoCanchaDefecto());
+    public static TipoCanchaDTO obtenerValorDefecto(final TipoCanchaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

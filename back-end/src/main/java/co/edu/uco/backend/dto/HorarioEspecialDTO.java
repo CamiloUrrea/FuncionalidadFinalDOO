@@ -15,13 +15,13 @@ public final class HorarioEspecialDTO {
     public HorarioEspecialDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaDTO(CanchaDTO.obtenerCanchaDefecto());
+        setCanchaDTO(CanchaDTO.obtenerValorDefecto());
     }
 
     public HorarioEspecialDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaDTO(CanchaDTO.obtenerCanchaDefecto());
+        setCanchaDTO(CanchaDTO.obtenerValorDefecto());
     }
 
     public HorarioEspecialDTO(final UUID id, final String nombre, CanchaDTO canchaDTO) {
@@ -57,11 +57,11 @@ public final class HorarioEspecialDTO {
         return this;
     }
 
-    public static HorarioEspecialDTO obtenerHorarioEspecialDefecto() {
+    public static HorarioEspecialDTO obtenerValorDefecto() {
         return new HorarioEspecialDTO();
     }
 
-    public static HorarioEspecialDTO obtenerHorarioEspecialDefecto(final HorarioEspecialDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerHorarioEspecialDefecto());
+    public static HorarioEspecialDTO obtenerValorDefecto(final HorarioEspecialDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

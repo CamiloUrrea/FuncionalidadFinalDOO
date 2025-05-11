@@ -17,17 +17,17 @@ public final class CanchaDTO {
     public CanchaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setUbicacionPrecisaDTO(UbicacionPrecisaDTO.obtenerUbicacionPrecisaDefecto());
-        setTipoCanchaDTO(TipoCanchaDTO.obtenerTipoCanchaDefecto());
-        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerOrganizacionDeportivaDefecto());
+        setUbicacionPrecisaDTO(UbicacionPrecisaDTO.obtenerValorDefecto());
+        setTipoCanchaDTO(TipoCanchaDTO.obtenerValorDefecto());
+        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerValorDefecto());
     }
 
     public CanchaDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setUbicacionPrecisaDTO(UbicacionPrecisaDTO.obtenerUbicacionPrecisaDefecto());
-        setTipoCanchaDTO(TipoCanchaDTO.obtenerTipoCanchaDefecto());
-        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerOrganizacionDeportivaDefecto());
+        setUbicacionPrecisaDTO(UbicacionPrecisaDTO.obtenerValorDefecto());
+        setTipoCanchaDTO(TipoCanchaDTO.obtenerValorDefecto());
+        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerValorDefecto());
     }
 
     public CanchaDTO(final UUID id, final String nombre, UbicacionPrecisaDTO ubicacionPrecisaDTO, TipoCanchaDTO tipoCanchaDTO, OrganizacionDeportivaDTO organizacionDeportivaDTO) {
@@ -81,11 +81,11 @@ public final class CanchaDTO {
         return this;
     }
 
-    public static CanchaDTO obtenerCanchaDefecto() {
+    public static CanchaDTO obtenerValorDefecto() {
         return new CanchaDTO();
     }
 
-    public static CanchaDTO obtenerCanchaDefecto(final CanchaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerCanchaDefecto());
+    public static CanchaDTO obtenerValorDefecto(final CanchaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

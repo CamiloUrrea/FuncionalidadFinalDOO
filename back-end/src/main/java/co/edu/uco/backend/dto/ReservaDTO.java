@@ -17,17 +17,17 @@ public final class ReservaDTO {
     public ReservaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaDTO(CanchaDTO.obtenerCanchaDefecto());
-        setClienteDTO(ClienteDTO.obtenerClienteDefecto());
-        setEstadoReservaDTO(EstadoReservaDTO.obtenerEstadoReservaDefecto());
+        setCanchaDTO(CanchaDTO.obtenerValorDefecto());
+        setClienteDTO(ClienteDTO.obtenerValorDefecto());
+        setEstadoReservaDTO(EstadoReservaDTO.obtenerValorDefecto());
     }
 
     public ReservaDTO(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaDTO(CanchaDTO.obtenerCanchaDefecto());
-        setClienteDTO(ClienteDTO.obtenerClienteDefecto());
-        setEstadoReservaDTO(EstadoReservaDTO.obtenerEstadoReservaDefecto());
+        setCanchaDTO(CanchaDTO.obtenerValorDefecto());
+        setClienteDTO(ClienteDTO.obtenerValorDefecto());
+        setEstadoReservaDTO(EstadoReservaDTO.obtenerValorDefecto());
     }
 
     public ReservaDTO(final UUID id, final String nombre, CanchaDTO canchaDTO, ClienteDTO clienteDTO, EstadoReservaDTO estadoReservaDTO) {
@@ -81,11 +81,11 @@ public final class ReservaDTO {
         return this;
     }
 
-    public static ReservaDTO obtenerReservaDefecto() {
+    public static ReservaDTO obtenerValorDefecto() {
         return new ReservaDTO();
     }
 
-    public static ReservaDTO obtenerReservaDefecto(final ReservaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerReservaDefecto());
+    public static ReservaDTO obtenerValorDefecto(final ReservaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

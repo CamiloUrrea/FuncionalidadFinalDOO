@@ -50,11 +50,11 @@ public final class DiaSemanaDTO {
 
 
 
-    public static DiaSemanaDTO obtenerDiaSemanaDefecto() {
+    public static DiaSemanaDTO obtenerValorDefecto() {
         return new DiaSemanaDTO();
     }
 
-    public static DiaSemanaDTO obtenerDiaSemanaDefecto(final DiaSemanaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerDiaSemanaDefecto());
+    public static DiaSemanaDTO obtenerValorDefecto(final DiaSemanaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

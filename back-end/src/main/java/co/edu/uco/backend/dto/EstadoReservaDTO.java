@@ -50,11 +50,11 @@ public final class EstadoReservaDTO {
 
 
 
-    public static EstadoReservaDTO obtenerEstadoReservaDefecto() {
+    public static EstadoReservaDTO obtenerValorDefecto() {
         return new EstadoReservaDTO();
     }
 
-    public static EstadoReservaDTO obtenerEstadoReservaDefecto(final EstadoReservaDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerEstadoReservaDefecto());
+    public static EstadoReservaDTO obtenerValorDefecto(final EstadoReservaDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }
