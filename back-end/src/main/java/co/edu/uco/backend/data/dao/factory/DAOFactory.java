@@ -1,5 +1,8 @@
 package co.edu.uco.backend.data.dao.factory;
 
+import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
+import co.edu.uco.backend.data.dao.factory.azuresql.AzureSQLDAOFactory;
 import co.edu.uco.backend.data.dao.factory.postgresql.PostgreSQLDAOFactory;
 import co.edu.uco.backend.data.dao.entity.departamento.DepartamentoDAO;
 import co.edu.uco.backend.data.dao.entity.municipio.MunicipioDAO;
@@ -20,44 +23,49 @@ import co.edu.uco.backend.data.dao.entity.factura.FacturaDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 
-public abstract class DAOFactory {
+public abstract class DAOFactory{
 
-    public static DAOFactory getFactory(Factory factory) {
+    public static DAOFactory getFactory(Factory factory) throws BackEndException{
         switch (factory) {
-            case POSTGRE_SQL:
-                return new PostgreSQLDAOFactory();
+            case AZURE_SQL:
+                return new AzureSQLDAOFactory();
             default:
-                throw new IllegalArgumentException("Unexpected value: " + factory);
+                var mensajeUsuario = "Se ha presentado un problema tratando de obtener la informacion de la fuente de datos contra la cual se llevará a cabo las operaciones";
+                var mensajeTecnico = "Se solicitó la factoría "+ factory +" Pero esta no está implementada..." ;
+                throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
         }
     }
 
-    protected abstract void abrirConexion();
+    protected abstract void abrirConexion() throws BackEndException;
 
-    public abstract void iniciarTransacion();
+    public abstract void iniciarTransacion() throws BackEndException;
 
-    public abstract void confirmarTransacion();
+    public abstract void confirmarTransacion() throws BackEndException;
 
-    public abstract void cancelarTransacion();
+    public abstract void cancelarTransacion() throws BackEndException;
 
-    public abstract void cerrarConexion();
+    public abstract void cerrarConexion() throws BackEndException;
 
-    public abstract DepartamentoDAO getDepartamentoDAO();
-    public abstract MunicipioDAO getMunicipioDAO();
-    public abstract UbicacionPrecisaDAO getUbicacionPrecisaDAO();
-    public abstract TipoCanchaDAO getTipoCanchaDAO();
-    public abstract DiaSemanaDAO getDiaSemanaDAO();
-    public abstract HorarioDisponibleDAO getHorarioDisponibleDAO();
-    public abstract HorarioEspecialDAO getHorarioEspecialDAO();
-    public abstract EstadoVerificacionDAO getEstadoVerificacionDAO();
-    public abstract OrganizacionDeportivaDAO getOrganizacionDeportivaDAO();
-    public abstract EncargadoDAO getEncargadoDAO();
-    public abstract CanchaDAO getCanchaDAO();
-    public abstract EstadoReservaDAO getEstadoReservaDAO();
-    public abstract ClienteDAO getClienteDAO();
-    public abstract ReservaDAO getReservaDAO();
-    public abstract ResenaDAO getResenaDAO();
-    public abstract FacturaDAO getFacturaDAO();
-    public abstract SuperficieDAO getSuperficieDAO();
-    public abstract DimensionDAO getDimensionDAO();
+
+
+
+    public abstract DepartamentoDAO getDepartamentoDAO() throws BackEndException;
+    public abstract MunicipioDAO getMunicipioDAO() throws BackEndException;
+    public abstract UbicacionPrecisaDAO getUbicacionPrecisaDAO() throws BackEndException;
+    public abstract TipoCanchaDAO getTipoCanchaDAO() throws BackEndException;
+    public abstract DiaSemanaDAO getDiaSemanaDAO() throws BackEndException;
+    public abstract HorarioDisponibleDAO getHorarioDisponibleDAO() throws BackEndException;
+    public abstract HorarioEspecialDAO getHorarioEspecialDAO() throws BackEndException;
+    public abstract EstadoVerificacionDAO getEstadoVerificacionDAO() throws BackEndException;
+    public abstract OrganizacionDeportivaDAO getOrganizacionDeportivaDAO() throws BackEndException;
+    public abstract EncargadoDAO getEncargadoDAO() throws BackEndException;
+    public abstract CanchaDAO getCanchaDAO() throws BackEndException;
+    public abstract EstadoReservaDAO getEstadoReservaDAO() throws BackEndException;
+    public abstract ClienteDAO getClienteDAO() throws BackEndException;
+    public abstract ReservaDAO getReservaDAO() throws BackEndException;
+    public abstract ResenaDAO getResenaDAO() throws BackEndException;
+    public abstract FacturaDAO getFacturaDAO() throws BackEndException;
+    public abstract SuperficieDAO getSuperficieDAO() throws BackEndException;
+    public abstract DimensionDAO getDimensionDAO() throws BackEndException;
 
 }

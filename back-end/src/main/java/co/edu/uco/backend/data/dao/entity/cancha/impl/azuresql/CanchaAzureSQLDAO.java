@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class CanchaAzureSQLDAO implements CanchaDAO {
 
-    private final Connection connection;
+    private Connection connection;
 
     public CanchaAzureSQLDAO(Connection connection) {
         this.connection = connection;
@@ -17,6 +17,8 @@ public class CanchaAzureSQLDAO implements CanchaDAO {
 
     @Override
     public void crear(CanchaEntity entity) {
+        StringBuilder sentenciaSQL = new StringBuilder();
+        sentenciaSQL.append("INSERT INTO" cancha)
 
     }
 

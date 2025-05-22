@@ -1,7 +1,13 @@
 package co.edu.uco.backend.data.dao.factory.azuresql;
-
+import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
+
+import java.nio.channels.ScatteringByteChannel;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import co.edu.uco.backend.data.dao.entity.departamento.DepartamentoDAO;
 import co.edu.uco.backend.data.dao.entity.departamento.impl.azuresql.DepartamentoAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.municipio.MunicipioDAO;
@@ -38,38 +44,155 @@ import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.impl.azuresql.SuperficieAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.impl.azuresql.DimensionAzureSQLDAO;
+import org.slf4j.spi.CallerBoundaryAware;
+
 
 public class AzureSQLDAOFactory extends DAOFactory {
 
-    private Connection conexion;
+    private final Connection conexion;
+    private boolean transaccionEstaInciada;
+    private boolean conexionEstaAbierta;
 
     @Override
-    public void abrirConexion() {
-        // Implementación de apertura de conexión para Azure SQL
+    public AzureSQLDAOFactory(Connection conexion) throws BackEndException {
+        this.conexion = conexion;
+        abrirConexion();
+        transaccionEstaInciada = false;
+        conexionEstaAbierta = true;
+    }
+
+    protected void abrirConexion() throws BackEndException {
+        var baseDatos = "";
+        var servidor = "";
+        try {
+            DriverManager.getConnection("");
+            conexionEstaAbierta = true;
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
+
+            throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
+
+           throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+
+
+
+    }
+
+
+    @Override
+    public void iniciarTransacion() throws BackEndException{
+        try {
+            asegurarConexionAbierta();
+            conexion.setAutoCommit(false);
+            transaccionEstaInciada = true;
+
+        }catch (BackEndException exception){
+            throw exception;
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
     }
 
     @Override
-    public void iniciarTransacion() {
-        // Inicio de transacción
+    public void confirmarTransacion() throws BackEndException{
+        try {
+            asegurarConexionAbierta();
+            conexion.commit();
+            asegurarTransaccionIniciada();
+
+        }catch (BackEndException exception){
+            throw exception;
+
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
     }
 
     @Override
-    public void confirmarTransacion() {
-        // Confirmación de transacción
+    public void cancelarTransacion() throws BackEndException {
+        try {
+            asegurarConexionAbierta();
+            asegurarTransaccionIniciada();
+            conexion.rollback();
+
+        } catch (BackEndException exception) {
+            throw exception;
+
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de cancelar la transaccion con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de cancelar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de cancelar la transaccion con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de cancelar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
     }
 
     @Override
-    public void cancelarTransacion() {
-        // Cancelación de transacción
+    public void cerrarConexion() throws BackEndException{
+        try {
+            asegurarConexionAbierta();
+            conexion.close();
+
+
+        }catch (BackEndException exception){
+            throw exception;
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de cerrar la conexión con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de cerrar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de cerrar la conexión con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de cerrar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+    }
+
+    private void asegurarTransaccionIniciada() throws BackEndException {
+        if (!transaccionEstaInciada) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de gestionar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se intentó gestionar (COMMIT/ROLLBACK) una transaccion que previamente no fué iniciada... ";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
+        }
+    }
+
+    private void asegurarConexionAbierta() throws BackEndException {
+        if (!conexionEstaAbierta) {
+            var mensajeUsuario = "Se ha presentado un problema tratando llevar a cabo la opearacion deseada con la conexion cerrada...";
+            var mensajeTecnico = "Se intentó llevar a cabo una operacion que requería una conexion abierta, pero al momento de validar, está cerrada... ";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
+        }
     }
 
     @Override
-    public void cerrarConexion() {
-        // Cierre de conexión
-    }
-
-    @Override
-    public DepartamentoDAO getDepartamentoDAO() {
+    public DepartamentoDAO getDepartamentoDAO() throws BackEndException{
+        asegurarConexionAbierta();
         return new DepartamentoAzureSQLDAO(conexion);
     }
 
