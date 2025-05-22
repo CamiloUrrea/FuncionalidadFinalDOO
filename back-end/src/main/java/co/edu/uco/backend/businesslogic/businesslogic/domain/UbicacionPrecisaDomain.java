@@ -1,40 +1,51 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
 import java.util.UUID;
 
 public final class UbicacionPrecisaDomain {
 
     private UUID id;
-    private String nombre;
+    private String direccion;
+    private double latitud;
+    private double longitud;
     private MunicipioDomain municipio;
+    private String informacionAdicional;
 
     UbicacionPrecisaDomain() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setDireccion(UtilTexto.getInstance().obtenerValorDefecto());
+        setLatitud(UtilDouble.obtenerValorDefecto(0.0));
+        setLongitud(UtilDouble.obtenerValorDefecto(0.0));
         setMunicipio(MunicipioDomain.obtenerMunicipioDefecto());
+        setInformacionAdicional(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
     public UbicacionPrecisaDomain(final UUID id) {
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setDireccion(UtilTexto.getInstance().obtenerValorDefecto());
+        setLatitud(UtilDouble.obtenerValorDefecto(0.0));
+        setLongitud(UtilDouble.obtenerValorDefecto(0.0));
         setMunicipio(MunicipioDomain.obtenerMunicipioDefecto());
+        setInformacionAdicional(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
-    public UbicacionPrecisaDomain(final UUID id, final String nombre, MunicipioDomain municipio) {
+    public UbicacionPrecisaDomain(final UUID id, final String direccion, final double latitud, final double longitud,
+                                  final MunicipioDomain municipio, final String informacionAdicional) {
         setId(id);
-        setNombre(nombre);
+        setDireccion(direccion);
+        setLatitud(latitud);
+        setLongitud(longitud);
         setMunicipio(municipio);
+        setInformacionAdicional(informacionAdicional);
     }
 
     static UbicacionPrecisaDomain obtenerUbicacionPrecisaDefecto() {
         return new UbicacionPrecisaDomain();
     }
 
-    static UbicacionPrecisaDomain obtenerValorDefecto(UbicacionPrecisaDomain domain) {
+    static UbicacionPrecisaDomain obtenerValorDefecto(final UbicacionPrecisaDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerUbicacionPrecisaDefecto());
     }
 
@@ -46,12 +57,28 @@ public final class UbicacionPrecisaDomain {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDireccion() {
+        return direccion;
     }
 
-    private void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
+    private void setDireccion(final String direccion) {
+        this.direccion = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(direccion);
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    private void setLatitud(final double latitud) {
+        this.latitud = UtilDouble.obtenerValorDefecto(latitud);
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    private void setLongitud(final double longitud) {
+        this.longitud = UtilDouble.obtenerValorDefecto(longitud);
     }
 
     public MunicipioDomain getMunicipio() {
@@ -60,5 +87,13 @@ public final class UbicacionPrecisaDomain {
 
     private void setMunicipio(final MunicipioDomain municipio) {
         this.municipio = MunicipioDomain.obtenerValorDefecto(municipio);
+    }
+
+    public String getInformacionAdicional() {
+        return informacionAdicional;
+    }
+
+    private void setInformacionAdicional(final String informacionAdicional) {
+        this.informacionAdicional = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(informacionAdicional);
     }
 }

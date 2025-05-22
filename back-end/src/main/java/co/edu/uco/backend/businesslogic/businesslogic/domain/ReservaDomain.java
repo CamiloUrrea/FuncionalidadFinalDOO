@@ -1,48 +1,57 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public final class ReservaDomain {
 
     private UUID id;
-    private String nombre;
-    private CanchaDomain cancha;
     private ClienteDomain cliente;
-    private EstadoReservaDomain estadoReserva;
+    private CanchaDomain cancha;
+    private LocalDate fechaReserva;
+    private LocalDate fechaUsoCancha;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
+    private EstadoReservaDomain estado;
 
     ReservaDomain() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCancha(CanchaDomain.obtenerCanchaDefecto());
         setCliente(ClienteDomain.obtenerClienteDefecto());
-        setEstadoReserva(EstadoReservaDomain.obtenerEstadoReservaDefecto());
+        setCancha(CanchaDomain.obtenerCanchaDefecto());
+        setFechaReserva(UtilFecha.obtenerValorDefecto((LocalDate) null));
+        setFechaUsoCancha(UtilFecha.obtenerValorDefecto((LocalDate) null));
+        setHoraInicio(LocalTime.MIDNIGHT);
+        setHoraFin(LocalTime.MIDNIGHT);
+        setEstado(EstadoReservaDomain.obtenerEstadoReservaDefecto());
     }
 
     public ReservaDomain(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCancha(CanchaDomain.obtenerCanchaDefecto());
-        setCliente(ClienteDomain.obtenerClienteDefecto());
-        setEstadoReserva(EstadoReservaDomain.obtenerEstadoReservaDefecto());
     }
 
-    public ReservaDomain(final UUID id, final String nombre, CanchaDomain cancha, ClienteDomain cliente, EstadoReservaDomain estadoReserva) {
+    public ReservaDomain(final UUID id, final ClienteDomain cliente, final CanchaDomain cancha,
+                         final LocalDate fechaReserva, final LocalDate fechaUsoCancha,
+                         final LocalTime horaInicio, final LocalTime horaFin,
+                         final EstadoReservaDomain estado) {
         setId(id);
-        setNombre(nombre);
-        setCancha(cancha);
         setCliente(cliente);
-        setEstadoReserva(estadoReserva);
+        setCancha(cancha);
+        setFechaReserva(fechaReserva);
+        setFechaUsoCancha(fechaUsoCancha);
+        setHoraInicio(horaInicio);
+        setHoraFin(horaFin);
+        setEstado(estado);
     }
 
     static ReservaDomain obtenerReservaDefecto() {
         return new ReservaDomain();
     }
 
-    static ReservaDomain obtenerValorDefecto(ReservaDomain domain) {
+    static ReservaDomain obtenerValorDefecto(final ReservaDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerReservaDefecto());
     }
 
@@ -54,12 +63,12 @@ public final class ReservaDomain {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public ClienteDomain getCliente() {
+        return cliente;
     }
 
-    private void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
+    private void setCliente(final ClienteDomain cliente) {
+        this.cliente = ClienteDomain.obtenerValorDefecto(cliente);
     }
 
     public CanchaDomain getCancha() {
@@ -70,19 +79,43 @@ public final class ReservaDomain {
         this.cancha = CanchaDomain.obtenerValorDefecto(cancha);
     }
 
-    public ClienteDomain getCliente() {
-        return cliente;
+    public LocalDate getFechaReserva() {
+        return fechaReserva;
     }
 
-    private void setCliente(final ClienteDomain cliente) {
-        this.cliente = ClienteDomain.obtenerValorDefecto(cliente);
+    private void setFechaReserva(final LocalDate fechaReserva) {
+        this.fechaReserva = UtilFecha.obtenerValorDefecto(fechaReserva);
     }
 
-    public EstadoReservaDomain getEstadoReserva() {
-        return estadoReserva;
+    public LocalDate getFechaUsoCancha() {
+        return fechaUsoCancha;
     }
 
-    private void setEstadoReserva(final EstadoReservaDomain estadoReserva) {
-        this.estadoReserva = EstadoReservaDomain.obtenerValorDefecto(estadoReserva);
+    private void setFechaUsoCancha(final LocalDate fechaUsoCancha) {
+        this.fechaUsoCancha = UtilFecha.obtenerValorDefecto(fechaUsoCancha);
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    private void setHoraInicio(final LocalTime horaInicio) {
+        this.horaInicio = UtilObjeto.getInstance().obtenerValorDefecto(horaInicio, LocalTime.MIDNIGHT);
+    }
+
+    public LocalTime getHoraFin() {
+        return horaFin;
+    }
+
+    private void setHoraFin(final LocalTime horaFin) {
+        this.horaFin = UtilObjeto.getInstance().obtenerValorDefecto(horaFin, LocalTime.MIDNIGHT);
+    }
+
+    public EstadoReservaDomain getEstado() {
+        return estado;
+    }
+
+    private void setEstado(final EstadoReservaDomain estado) {
+        this.estado = EstadoReservaDomain.obtenerValorDefecto(estado);
     }
 }

@@ -1,44 +1,47 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
+import java.time.LocalTime;
 import java.util.UUID;
 
 public final class HorarioDisponibleDomain {
 
     private UUID id;
-    private String nombre;
     private CanchaDomain cancha;
-    private DiaSemanaDomain diaSemana;
+    private DiaSemanaDomain dia;
+    private LocalTime horaApertura;
+    private LocalTime horaCierre;
 
     HorarioDisponibleDomain() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
         setCancha(CanchaDomain.obtenerCanchaDefecto());
-        setDiaSemana(DiaSemanaDomain.obtenerDiaSemanaDefecto());
+        setDia(DiaSemanaDomain.obtenerDiaSemanaDefecto());
+        setHoraApertura(LocalTime.MIDNIGHT);
+        setHoraCierre(LocalTime.MIDNIGHT);
     }
 
-    public HorarioDisponibleDomain(final UUID id) {
+    public HorarioDisponibleDomain(UUID id) {
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
         setCancha(CanchaDomain.obtenerCanchaDefecto());
-        setDiaSemana(DiaSemanaDomain.obtenerDiaSemanaDefecto());
+        setDia(DiaSemanaDomain.obtenerDiaSemanaDefecto());
+        setHoraApertura(LocalTime.MIDNIGHT);
+        setHoraCierre(LocalTime.MIDNIGHT);
     }
 
-    public HorarioDisponibleDomain(final UUID id, final String nombre, CanchaDomain cancha, DiaSemanaDomain diaSemana) {
+    public HorarioDisponibleDomain(final UUID id,final CanchaDomain cancha, final DiaSemanaDomain dia, final LocalTime horaApertura, final LocalTime horaCierre) {
         setId(id);
-        setNombre(nombre);
         setCancha(cancha);
-        setDiaSemana(diaSemana);
+        setDia(dia);
+        setHoraApertura(horaApertura);
+        setHoraCierre(horaCierre);
     }
 
     static HorarioDisponibleDomain obtenerHorarioDisponibleDefecto() {
         return new HorarioDisponibleDomain();
     }
 
-    static HorarioDisponibleDomain obtenerValorDefecto(HorarioDisponibleDomain domain) {
+    static HorarioDisponibleDomain obtenerValorDefecto(final HorarioDisponibleDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerHorarioDisponibleDefecto());
     }
 
@@ -50,14 +53,6 @@ public final class HorarioDisponibleDomain {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    private void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
-    }
-
     public CanchaDomain getCancha() {
         return cancha;
     }
@@ -66,11 +61,27 @@ public final class HorarioDisponibleDomain {
         this.cancha = CanchaDomain.obtenerValorDefecto(cancha);
     }
 
-    public DiaSemanaDomain getDiaSemana() {
-        return diaSemana;
+    public DiaSemanaDomain getDia() {
+        return dia;
     }
 
-    private void setDiaSemana(final DiaSemanaDomain diaSemana) {
-        this.diaSemana = DiaSemanaDomain.obtenerValorDefecto(diaSemana);
+    private void setDia(final DiaSemanaDomain dia) {
+        this.dia = DiaSemanaDomain.obtenerValorDefecto(dia);
+    }
+
+    public LocalTime getHoraApertura() {
+        return horaApertura;
+    }
+
+    private void setHoraApertura(final LocalTime horaApertura) {
+        this.horaApertura = UtilObjeto.getInstance().obtenerValorDefecto(horaApertura, LocalTime.MIDNIGHT);
+    }
+
+    public LocalTime getHoraCierre() {
+        return horaCierre;
+    }
+
+    private void setHoraCierre(final LocalTime horaCierre) {
+        this.horaCierre = UtilObjeto.getInstance().obtenerValorDefecto(horaCierre, LocalTime.MIDNIGHT);
     }
 }

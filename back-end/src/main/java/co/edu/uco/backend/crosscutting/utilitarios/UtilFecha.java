@@ -19,4 +19,8 @@ public final class UtilFecha {
     public static LocalDateTime obtenerValorDefecto(final LocalDateTime fechaHora) {
         return UtilObjeto.getInstance().obtenerValorDefecto(fechaHora, FECHA_HORA_DEFECTO);
     }
+
+    public static LocalDate obtenerValorDefecto() {
+        return FECHA_DEFECTO;
+    }
 }

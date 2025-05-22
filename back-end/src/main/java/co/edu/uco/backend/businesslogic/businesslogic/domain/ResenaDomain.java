@@ -1,40 +1,45 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public final class ResenaDomain {
 
     private UUID id;
-    private String nombre;
     private ReservaDomain reserva;
+    private int calificacion;
+    private String comentario;
+    private LocalDate fecha;
 
     ResenaDomain() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
         setReserva(ReservaDomain.obtenerReservaDefecto());
+        setCalificacion(UtilEntero.obtenerValorDefecto(null));
+        setComentario(UtilTexto.getInstance().obtenerValorDefecto());
+        setFecha(UtilFecha.obtenerValorDefecto((LocalDate) null));
     }
 
     public ResenaDomain(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReserva(ReservaDomain.obtenerReservaDefecto());
     }
 
-    public ResenaDomain(final UUID id, final String nombre, ReservaDomain reserva) {
+    public ResenaDomain(final UUID id, final ReservaDomain reserva, final int calificacion,
+                        final String comentario, final LocalDate fecha) {
         setId(id);
-        setNombre(nombre);
         setReserva(reserva);
+        setCalificacion(calificacion);
+        setComentario(comentario);
+        setFecha(fecha);
     }
 
     static ResenaDomain obtenerResenaDefecto() {
         return new ResenaDomain();
     }
 
-    static ResenaDomain obtenerValorDefecto(ResenaDomain domain) {
+    static ResenaDomain obtenerValorDefecto(final ResenaDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerResenaDefecto());
     }
 
@@ -46,19 +51,35 @@ public final class ResenaDomain {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    private void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
-    }
-
     public ReservaDomain getReserva() {
         return reserva;
     }
 
     private void setReserva(final ReservaDomain reserva) {
         this.reserva = ReservaDomain.obtenerValorDefecto(reserva);
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    private void setCalificacion(final int calificacion) {
+        this.calificacion = UtilEntero.obtenerValorDefecto(calificacion);
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    private void setComentario(final String comentario) {
+        this.comentario = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(comentario);
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    private void setFecha(final LocalDate fecha) {
+        this.fecha = UtilFecha.obtenerValorDefecto(fecha);
     }
 }
