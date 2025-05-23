@@ -32,11 +32,9 @@ public abstract class DAOFactory{
     }
 
 
+    public DAOFactory(Connection conexion) throws BackEndException {
 
-    public DAOFactory(Connection conexion) throws BackEndException;
-
-
-    public DAOFactory(Connection conexion) throws BackEndException;
+    }
 
     protected abstract void abrirConexion() throws BackEndException;
 
