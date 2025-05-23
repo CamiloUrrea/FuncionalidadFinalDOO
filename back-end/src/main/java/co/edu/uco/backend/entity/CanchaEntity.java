@@ -11,11 +11,6 @@ public final class CanchaEntity {
 
     private UUID id;
     private String nombre;
-    private String dimensiones;
-    private String superficie;
-    private boolean iluminacion;
-    private boolean cubierta;
-    private int costoporhora;
     private UbicacionPrecisaEntity ubicacionPrecisaEntity;
     private TipoCanchaEntity tipoCanchaEntity;
     private OrganizacionDeportivaEntity organizacionDeportivaEntity;
@@ -89,31 +84,6 @@ public final class CanchaEntity {
     public void setOrganizacionDeportivaEntity(final OrganizacionDeportivaEntity organizacionDeportivaEntity) {
         this.organizacionDeportivaEntity = OrganizacionDeportivaEntity.obtenerValorDefecto(organizacionDeportivaEntity);
     }
-
-    public Object   getCodigoCancha() {
-        // TODO document why this method is empty
-    }
-
-    public String getDimensiones() {
-        // TODO document why this method is empty
-    }
-
-    public String getSuperficie() {
-    }
-
-    public boolean isIluminacion() {
-    }
-
-    public boolean isCubierta() {
-    }
-
-    public BigDecimal getCostoPorHora() {
-    }
-
-    public Object getCodigoTipoCancha() {
-    }
-
-    public Object getCodigoOrganizacion() {
-        return null;
-    }
 }
+
+
