@@ -21,10 +21,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
 
         sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombre, dimensiones, superficie, iluminacion, cubierta, costoporhora, codigotipocancha, codigoorganizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        try(var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-        }catch (SQLException e){
-
-        }
     }
 
 
