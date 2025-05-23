@@ -1,7 +1,7 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.impl.HorarioDisponibleBusinessLogicImpl;
-import co.edu.uco.backend.businesslogic.businesslogic.HorarioDisponibleBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.impl.CanchaHorarioDisponibleBusinessLogicImpl;
+import co.edu.uco.backend.businesslogic.businesslogic.CanchaHorarioDisponibleBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.HorarioDisponibleFacade;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
@@ -13,11 +13,11 @@ import java.util.UUID;
 public class HorarioDisponibleFacadeImpl implements HorarioDisponibleFacade {
 
     private DAOFactory daoFactory;
-    private HorarioDisponibleBusinessLogic businessLogic;
+    private CanchaHorarioDisponibleBusinessLogic businessLogic;
 
     public HorarioDisponibleFacadeImpl() {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new HorarioDisponibleBusinessLogicImpl(daoFactory);
+        businessLogic = new CanchaHorarioDisponibleBusinessLogicImpl(daoFactory);
     }
 
     @Override

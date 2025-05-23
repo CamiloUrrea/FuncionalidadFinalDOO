@@ -1,5 +1,6 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
+import co.edu.uco.backend.crosscutting.utilitarios.UtilDouble;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
@@ -9,21 +10,25 @@ import java.util.UUID;
 public final class DimensionDomain {
 
     private UUID id;
-    private String nombre;
+    private double largo;
+    private double ancho;
 
     DimensionDomain() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setLargo(UtilDouble.obtenerValorDefecto(0.0));
+        setAncho(UtilDouble.obtenerValorDefecto(0.0));
     }
 
     public DimensionDomain(final UUID id) {
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setLargo(UtilDouble.obtenerValorDefecto(0.0));
+        setAncho(UtilDouble.obtenerValorDefecto(0.0));
     }
 
-    public DimensionDomain(final UUID id, final String nombre) {
+    public DimensionDomain(final UUID id, final double largo, final double ancho) {
         setId(id);
-        setNombre(nombre);
+        setLargo(largo);
+        setAncho(ancho);
     }
 
     static DimensionDomain obtenerDimensionDefecto() {
@@ -42,11 +47,12 @@ public final class DimensionDomain {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public double getLargo() {return largo;}
+    private void setLargo(final double largo) {
+        this.largo = UtilDouble.obtenerValorDefecto(largo);
     }
-
-    private void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
+    public double getAncho() {return ancho;}
+    private void setAncho(final double ancho) {
+        this.ancho = UtilDouble.obtenerValorDefecto(ancho);
     }
 }

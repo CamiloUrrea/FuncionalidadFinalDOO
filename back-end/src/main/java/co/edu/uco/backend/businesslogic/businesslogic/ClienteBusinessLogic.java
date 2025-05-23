@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public interface ClienteBusinessLogic {
 
-    void registrarNuevoCliente(ClienteDomain domain);
+    void registrarNuevoCliente(ClienteDomain cliente);
 
-    void modificarClienteExistente(UUID id, ClienteDomain domain);
+    void modificarClienteExistente(UUID clienteId, ClienteDomain cliente);
 
-    void darBajaDefinitivamenteClienteExistente(UUID id);
+    void darBajaDefinitivamenteClienteExistente(UUID clienteId);
 
-    ClienteDomain consultarClientePorId(UUID id);
+    ClienteDomain consultarClientePorId(UUID clienteId);
 
     List<ClienteDomain> consultarClientes(ClienteDomain filtro);
 

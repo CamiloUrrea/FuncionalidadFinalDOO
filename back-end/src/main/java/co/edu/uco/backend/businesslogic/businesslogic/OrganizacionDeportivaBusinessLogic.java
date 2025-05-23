@@ -9,12 +9,13 @@ public interface OrganizacionDeportivaBusinessLogic {
 
     void registrarNuevoOrganizacionDeportiva(OrganizacionDeportivaDomain domain);
 
-    void modificarOrganizacionDeportivaExistente(UUID id, OrganizacionDeportivaDomain domain);
+    void modificarOrganizacionDeportivaExistente(UUID orgId, OrganizacionDeportivaDomain domain);
 
-    void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID id);
+    void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID orgId);
 
-    OrganizacionDeportivaDomain consultarOrganizacionDeportivaPorId(UUID id);
+    OrganizacionDeportivaDomain consultarOrganizacionDeportivaPorId(UUID orgId);
 
-    List<OrganizacionDeportivaDomain> consultarOrganizacionDeportivas(OrganizacionDeportivaDomain filtro);
+    List<OrganizacionDeportivaDomain> consultarOrganizacionesDeportivas(OrganizacionDeportivaDomain filtro);
+
 
 }

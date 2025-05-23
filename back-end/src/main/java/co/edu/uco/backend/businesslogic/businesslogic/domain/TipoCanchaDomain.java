@@ -10,20 +10,24 @@ public final class TipoCanchaDomain {
 
     private UUID id;
     private String nombre;
+    private String jugadoresRecomendados;
 
     TipoCanchaDomain() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setJugadoresRecomendados(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
     public TipoCanchaDomain(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setJugadoresRecomendados(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
     public TipoCanchaDomain(final UUID id, final String nombre) {
         setId(id);
         setNombre(nombre);
+        setJugadoresRecomendados(jugadoresRecomendados);
     }
 
     static TipoCanchaDomain obtenerTipoCanchaDefecto() {
@@ -48,5 +52,9 @@ public final class TipoCanchaDomain {
 
     private void setNombre(String nombre) {
         this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
+    }
+    public String getJugadoresRecomendados() { return jugadoresRecomendados; }
+    private void setJugadoresRecomendados(String jugadoresRecomendados) {
+        this.jugadoresRecomendados = UtilTexto.getInstance().obtenerValorDefecto(jugadoresRecomendados);
     }
 }

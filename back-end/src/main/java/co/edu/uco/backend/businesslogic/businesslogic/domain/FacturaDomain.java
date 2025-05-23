@@ -1,40 +1,44 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public final class FacturaDomain {
 
     private UUID id;
-    private String nombre;
+    private String identificador;
     private ReservaDomain reserva;
+    private LocalDate fechaGeneracion;
+    private double total;
 
     FacturaDomain() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setIdentificador(UtilTexto.getInstance().obtenerValorDefecto());
         setReserva(ReservaDomain.obtenerReservaDefecto());
+        setFechaGeneracion(UtilFecha.obtenerValorDefecto((LocalDate) null));
+        setTotal(UtilDouble.obtenerValorDefecto(0.0));
     }
 
     public FacturaDomain(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReserva(ReservaDomain.obtenerReservaDefecto());
     }
 
-    public FacturaDomain(final UUID id, final String nombre, ReservaDomain reserva) {
+    public FacturaDomain(final UUID id, final String identificador, final ReservaDomain reserva, final LocalDate fechaGeneracion, final double total) {
         setId(id);
-        setNombre(nombre);
+        setIdentificador(identificador);
         setReserva(reserva);
+        setFechaGeneracion(fechaGeneracion);
+        setTotal(total);
     }
 
     static FacturaDomain obtenerFacturaDefecto() {
         return new FacturaDomain();
     }
 
-    static FacturaDomain obtenerValorDefecto(FacturaDomain domain) {
+    static FacturaDomain obtenerValorDefecto(final FacturaDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerFacturaDefecto());
     }
 
@@ -46,12 +50,12 @@ public final class FacturaDomain {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getIdentificador() {
+        return identificador;
     }
 
-    private void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
+    private void setIdentificador(final String identificador) {
+        this.identificador = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(identificador);
     }
 
     public ReservaDomain getReserva() {
@@ -60,5 +64,21 @@ public final class FacturaDomain {
 
     private void setReserva(final ReservaDomain reserva) {
         this.reserva = ReservaDomain.obtenerValorDefecto(reserva);
+    }
+
+    public LocalDate getFechaGeneracion() {
+        return fechaGeneracion;
+    }
+
+    private void setFechaGeneracion(final LocalDate fechaGeneracion) {
+        this.fechaGeneracion = UtilFecha.obtenerValorDefecto(fechaGeneracion);
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    private void setTotal(final double total) {
+        this.total = UtilDouble.obtenerValorDefecto(total);
     }
 }

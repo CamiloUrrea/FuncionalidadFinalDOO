@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public interface ResenaBusinessLogic {
 
-    void registrarNuevoResena(ResenaDomain domain);
+    void registrarNuevoResena(ResenaDomain resena);
 
-    void modificarResenaExistente(UUID id, ResenaDomain domain);
+    void modificarResenaExistente(UUID resenaId, ResenaDomain resena);
 
-    void darBajaDefinitivamenteResenaExistente(UUID id);
+    void darBajaDefinitivamenteResenaExistente(UUID resenaId);
 
-    ResenaDomain consultarResenaPorId(UUID id);
+    ResenaDomain consultarResenaPorId(UUID resenaId);
 
     List<ResenaDomain> consultarResenas(ResenaDomain filtro);
 
