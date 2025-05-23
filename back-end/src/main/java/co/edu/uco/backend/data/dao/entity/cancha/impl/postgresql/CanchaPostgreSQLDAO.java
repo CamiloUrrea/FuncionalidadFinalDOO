@@ -17,7 +17,8 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
 
     @Override
     public void crear(CanchaEntity entity) {
-
+        StringBuilder sentenciaSQL = new StringBuilder();
+        sentenciaSQL.append("INSERT INTO Cancha")
     }
 
     @Override

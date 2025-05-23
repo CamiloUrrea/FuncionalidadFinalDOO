@@ -18,7 +18,6 @@ public class CanchaAzureSQLDAO implements CanchaDAO {
     @Override
     public void crear(CanchaEntity entity) {
         StringBuilder sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("INSERT INTO" cancha)
 
     }
 
