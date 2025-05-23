@@ -3,7 +3,6 @@ import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
-import java.nio.channels.ScatteringByteChannel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -44,22 +43,40 @@ import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.impl.azuresql.SuperficieAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.impl.azuresql.DimensionAzureSQLDAO;
-import org.slf4j.spi.CallerBoundaryAware;
 
 
-public class AzureSQLDAOFactory extends DAOFactory {
+
+public abstract class AzureSQLDAOFactory extends DAOFactory {
 
     private final Connection conexion;
     private boolean transaccionEstaInciada;
     private boolean conexionEstaAbierta;
 
-    @Override
-    public AzureSQLDAOFactory(Connection conexion) throws BackEndException {
+
+    /*
+    protected AzureSQLDAOFactory() throws BackEndException {
+
         this.conexion = conexion;
         abrirConexion();
         transaccionEstaInciada = false;
         conexionEstaAbierta = true;
+    }*/
+
+    protected AzureSQLDAOFactory() throws BackEndException {
+        try {
+            this.conexion = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=DOODB;user=postgres;password=321325;");
+            abrirConexion();
+            transaccionEstaInciada = false;
+            conexionEstaAbierta = true;
+        } catch (SQLException excepcion) {
+            throw DataBackEndException.reportar(
+                    "Ocurrió un problema tratando de abrir la conexión con la base de datos.",
+                    "Error al obtener conexión con Azure SQL en AzureSQLDAOFactory.",
+                    excepcion
+            );
+        }
     }
+
 
     protected void abrirConexion() throws BackEndException {
         var baseDatos = "";

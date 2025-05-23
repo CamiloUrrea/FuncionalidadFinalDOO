@@ -23,18 +23,20 @@ import co.edu.uco.backend.data.dao.entity.factura.FacturaDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 
+import java.sql.Connection;
+
 public abstract class DAOFactory{
 
-    public static DAOFactory getFactory(Factory factory) throws BackEndException{
-        switch (factory) {
-            case AZURE_SQL:
-                return new AzureSQLDAOFactory();
-            default:
-                var mensajeUsuario = "Se ha presentado un problema tratando de obtener la informacion de la fuente de datos contra la cual se llevará a cabo las operaciones";
-                var mensajeTecnico = "Se solicitó la factoría "+ factory +" Pero esta no está implementada..." ;
-                throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
-        }
+    public DAOFactory() {
+
     }
+
+
+
+    public DAOFactory(Connection conexion) throws BackEndException;
+
+
+    public DAOFactory(Connection conexion) throws BackEndException;
 
     protected abstract void abrirConexion() throws BackEndException;
 

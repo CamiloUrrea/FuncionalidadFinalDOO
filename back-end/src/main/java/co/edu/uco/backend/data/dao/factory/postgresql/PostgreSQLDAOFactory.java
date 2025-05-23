@@ -1,7 +1,29 @@
 package co.edu.uco.backend.data.dao.factory.postgresql;
 
+import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
+import co.edu.uco.backend.data.dao.entity.cancha.impl.azuresql.CanchaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.cliente.impl.azuresql.ClienteAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.departamento.impl.azuresql.DepartamentoAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.diasemana.impl.azuresql.DiaSemanaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.dimension.impl.azuresql.DimensionAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.encargado.impl.azuresql.EncargadoAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.estadoreserva.impl.azuresql.EstadoReservaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.estadoverificacion.impl.azuresql.EstadoVerificacionAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.factura.impl.azuresql.FacturaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.horariodisponible.impl.azuresql.HorarioDisponibleAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.horarioespecial.impl.azuresql.HorarioEspecialAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.municipio.impl.azuresql.MunicipioAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.organizaciondeportiva.impl.azuresql.OrganizacionDeportivaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.resena.impl.azuresql.ResenaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.reserva.impl.azuresql.ReservaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.superficie.impl.azuresql.SuperficieAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.tipocancha.impl.azuresql.TipoCanchaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.impl.azuresql.UbicacionPrecisaAzureSQLDAO;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import co.edu.uco.backend.data.dao.entity.departamento.DepartamentoDAO;
 import co.edu.uco.backend.data.dao.entity.departamento.impl.postgresql.DepartamentoPostgreSQLDAO;
@@ -40,119 +62,241 @@ import co.edu.uco.backend.data.dao.entity.superficie.impl.postgresql.SuperficieP
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.impl.postgresql.DimensionPostgreSQLDAO;
 
-public class PostgreSQLDAOFactory extends DAOFactory {
+public abstract class PostgreSQLDAOFactory extends DAOFactory {
 
-    private Connection conexion;
+    private final Connection conexion;
+    private boolean transaccionEstaInciada;
+    private boolean conexionEstaAbierta;
 
-    public PostgreSQLDAOFactory() {
+    @Override
+    public PostgreSQLDAOFactory() throws BackEndException {
+        this.conexion = conexion;
         abrirConexion();
+        transaccionEstaInciada = false;
+        conexionEstaAbierta = true;
+    }
+
+    public PostgreSQLDAOFactory(Connection conexion) {
+        this.conexion = conexion;
+    }
+
+    protected void abrirConexion() throws BackEndException {
+        var baseDatos = "";
+        var servidor = "";
+        try {
+            DriverManager.getConnection("");
+            conexionEstaAbierta = true;
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
+
+            throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
+
+            throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+
+
+
+    }
+
+
+    @Override
+    public void iniciarTransacion() throws BackEndException{
+        try {
+            asegurarConexionAbierta();
+            conexion.setAutoCommit(false);
+            transaccionEstaInciada = true;
+
+        }catch (BackEndException exception){
+            throw exception;
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
     }
 
     @Override
-    protected void abrirConexion() {
-        conexion = null; // Aquí deberías abrir la conexión real a PostgreSQL
+    public void confirmarTransacion() throws BackEndException{
+        try {
+            asegurarConexionAbierta();
+            conexion.commit();
+            asegurarTransaccionIniciada();
+
+        }catch (BackEndException exception){
+            throw exception;
+
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
     }
 
     @Override
-    public void iniciarTransacion() {}
+    public void cancelarTransacion() throws BackEndException {
+        try {
+            asegurarConexionAbierta();
+            asegurarTransaccionIniciada();
+            conexion.rollback();
+
+        } catch (BackEndException exception) {
+            throw exception;
+
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de cancelar la transaccion con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de cancelar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de cancelar la transaccion con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de cancelar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+    }
 
     @Override
-    public void confirmarTransacion() {}
+    public void cerrarConexion() throws BackEndException{
+        try {
+            asegurarConexionAbierta();
+            conexion.close();
+
+
+        }catch (BackEndException exception){
+            throw exception;
+        }catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de cerrar la conexión con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de cerrar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de cerrar la conexión con la fuente de datos";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de cerrar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+    }
+
+    private void asegurarTransaccionIniciada() throws BackEndException {
+        if (!transaccionEstaInciada) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de gestionar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
+            var mensajeTecnico = "Se intentó gestionar (COMMIT/ROLLBACK) una transaccion que previamente no fué iniciada... ";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
+        }
+    }
+
+    private void asegurarConexionAbierta() throws BackEndException {
+        if (!conexionEstaAbierta) {
+            var mensajeUsuario = "Se ha presentado un problema tratando llevar a cabo la opearacion deseada con la conexion cerrada...";
+            var mensajeTecnico = "Se intentó llevar a cabo una operacion que requería una conexion abierta, pero al momento de validar, está cerrada... ";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
+        }
+    }
 
     @Override
-    public void cancelarTransacion() {}
-
-    @Override
-    public void cerrarConexion() {}
-
-    @Override
-    public DepartamentoDAO getDepartamentoDAO() {
-        return new DepartamentoPostgreSQLDAO(conexion);
+    public DepartamentoDAO getDepartamentoDAO() throws BackEndException{
+        asegurarConexionAbierta();
+        return new DepartamentoAzureSQLDAO(conexion);
     }
 
     @Override
     public MunicipioDAO getMunicipioDAO() {
-        return new MunicipioPostgreSQLDAO(conexion);
+        return new MunicipioAzureSQLDAO(conexion);
     }
 
     @Override
     public UbicacionPrecisaDAO getUbicacionPrecisaDAO() {
-        return new UbicacionPrecisaPostgreSQLDAO(conexion);
+        return new UbicacionPrecisaAzureSQLDAO(conexion);
     }
 
     @Override
     public TipoCanchaDAO getTipoCanchaDAO() {
-        return new TipoCanchaPostgreSQLDAO(conexion);
+        return new TipoCanchaAzureSQLDAO(conexion);
     }
 
     @Override
     public DiaSemanaDAO getDiaSemanaDAO() {
-        return new DiaSemanaPostgreSQLDAO(conexion);
+        return new DiaSemanaAzureSQLDAO(conexion);
     }
 
     @Override
     public HorarioDisponibleDAO getHorarioDisponibleDAO() {
-        return new HorarioDisponiblePostgreSQLDAO(conexion);
+        return new HorarioDisponibleAzureSQLDAO(conexion);
     }
 
     @Override
     public HorarioEspecialDAO getHorarioEspecialDAO() {
-        return new HorarioEspecialPostgreSQLDAO(conexion);
+        return new HorarioEspecialAzureSQLDAO(conexion);
     }
 
     @Override
     public EstadoVerificacionDAO getEstadoVerificacionDAO() {
-        return new EstadoVerificacionPostgreSQLDAO(conexion);
+        return new EstadoVerificacionAzureSQLDAO(conexion);
     }
 
     @Override
     public OrganizacionDeportivaDAO getOrganizacionDeportivaDAO() {
-        return new OrganizacionDeportivaPostgreSQLDAO(conexion);
+        return new OrganizacionDeportivaAzureSQLDAO(conexion);
     }
 
     @Override
     public EncargadoDAO getEncargadoDAO() {
-        return new EncargadoPostgreSQLDAO(conexion);
+        return new EncargadoAzureSQLDAO(conexion);
     }
 
     @Override
     public CanchaDAO getCanchaDAO() {
-        return new CanchaPostgreSQLDAO(conexion);
+        return new CanchaAzureSQLDAO(conexion);
     }
 
     @Override
     public EstadoReservaDAO getEstadoReservaDAO() {
-        return new EstadoReservaPostgreSQLDAO(conexion);
+        return new EstadoReservaAzureSQLDAO(conexion);
     }
 
     @Override
     public ClienteDAO getClienteDAO() {
-        return new ClientePostgreSQLDAO(conexion);
+        return new ClienteAzureSQLDAO(conexion);
     }
 
     @Override
     public ReservaDAO getReservaDAO() {
-        return new ReservaPostgreSQLDAO(conexion);
+        return new ReservaAzureSQLDAO(conexion);
     }
 
     @Override
     public ResenaDAO getResenaDAO() {
-        return new ResenaPostgreSQLDAO(conexion);
+        return new ResenaAzureSQLDAO(conexion);
     }
 
     @Override
     public FacturaDAO getFacturaDAO() {
-        return new FacturaPostgreSQLDAO(conexion);
+        return new FacturaAzureSQLDAO(conexion);
     }
 
     @Override
     public SuperficieDAO getSuperficieDAO() {
-        return new SuperficiePostgreSQLDAO(conexion);
+        return new SuperficieAzureSQLDAO(conexion);
     }
 
     @Override
     public DimensionDAO getDimensionDAO() {
-        return new DimensionPostgreSQLDAO(conexion);
+        return new DimensionAzureSQLDAO(conexion);
     }
-
 }
