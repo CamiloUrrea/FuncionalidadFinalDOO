@@ -1,10 +1,8 @@
 package co.edu.uco.backend.data.dao.entity.cancha.impl.postgresql;
 import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
-import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.entity.cancha.CanchaDAO;
 import co.edu.uco.backend.entity.CanchaEntity;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
@@ -18,11 +16,20 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
     }
 
     @Override
-    public void create (CanchaEntity entity){
-        StringBuilder sentenciaSQL = new StringBuilder();
+    public void create(CanchaEntity entity){
+        var sentenciaSQL = new StringBuilder();
 
         sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombre, dimensiones, superficie, iluminacion, cubierta, costoporhora, codigotipocancha, codigoorganizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
+        try(var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
+
+            sentenciaPreparada.setObject(1, entity.getCodigoCancha  ());
+            sentenciaPreparada.setObject(2, entity.getNombre        ());
+            sentenciaPreparada.setObject(3, entity.getDimensiones   ());
+            sentenciaPreparada.setObject(4, entity.getSuperficie    ());
+        }catch (SQLException e){
+
+        }
     }
 
 

@@ -15,5 +15,7 @@ public interface CanchaDAO extends
         UpdateDAO<CanchaEntity, UUID>,
         DeleteDAO<UUID> {
 
+    void create(CanchaEntity entity);
+
     void crear(CanchaEntity entity) throws BackEndException;
 }

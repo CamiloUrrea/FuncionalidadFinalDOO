@@ -90,7 +90,7 @@ public final class CanchaEntity {
         this.organizacionDeportivaEntity = OrganizacionDeportivaEntity.obtenerValorDefecto(organizacionDeportivaEntity);
     }
 
-    public Object getCodigoCancha() {
+    public Object   getCodigoCancha() {
         // TODO document why this method is empty
     }
 
