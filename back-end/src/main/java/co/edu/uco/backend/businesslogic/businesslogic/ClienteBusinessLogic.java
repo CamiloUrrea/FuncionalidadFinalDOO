@@ -9,7 +9,7 @@ public interface ClienteBusinessLogic extends UsuarioBusinessLogic {
 
     void registrarNuevoCliente(ClienteDomain cliente);
 
-    void modificarClienteExistente(UUID clienteId, ClienteDomain datosActualizados);
+    void modificarClienteExistente(UUID clienteId, ClienteDomain cliente);
 
     void darBajaDefinitivamenteClienteExistente(UUID clienteId);
 

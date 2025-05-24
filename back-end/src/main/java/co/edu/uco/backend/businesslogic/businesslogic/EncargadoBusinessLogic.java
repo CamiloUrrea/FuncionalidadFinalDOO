@@ -13,7 +13,9 @@ public interface EncargadoBusinessLogic extends UsuarioBusinessLogic {
 
     void darBajaDefinitivamenteEncargadoExistente(UUID orgId, UUID encargadoId);
 
-    List<EncargadoDomain> consultarMisEncargados(UUID orgId, EncargadoDomain filtro);
+    EncargadoDomain consultarEncargadoPorId(UUID orgId, UUID encargadoId);
+
+    List<EncargadoDomain> consultarEncargadosPorOrganizacion(UUID orgId, EncargadoDomain filtro);
 
     String activarCuentaEncargado(String tokenDeActivacion, String rawPasswordNueva);
 

@@ -22,20 +22,26 @@ public class EncargadoBusinessLogicImpl implements EncargadoBusinessLogic {
     }
 
     @Override
-    public void modificarEncargadoExistente(UUID orgid, EncargadoDomain domain) {
+    public void modificarEncargadoExistente(UUID orgId, UUID encargadoID, EncargadoDomain domain) {
 
     }
+
 
     @Override
     public void darBajaDefinitivamenteEncargadoExistente(UUID orgId, UUID encargadoId) {
 
     }
 
+    @Override
+    public EncargadoDomain consultarEncargadoPorId(UUID orgId, UUID encargadoId) {
+        return null;
+    }
 
     @Override
-    public List<EncargadoDomain> consultarMisEncargados(UUID orgId, EncargadoDomain filtro) {
+    public List<EncargadoDomain> consultarEncargadosPorOrganizacion(UUID orgId, EncargadoDomain filtro) {
         return List.of();
     }
+
 
     @Override
     public String activarCuentaEncargado(String tokenDeActivacion, String rawPasswordNueva) {

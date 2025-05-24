@@ -9,11 +9,11 @@ public interface DepartamentoBusinessLogic {
 
     void registrarNuevoDepartamento(DepartamentoDomain domain);
 
-    void modificarDepartamentoExistente(UUID id, DepartamentoDomain domain);
+    void modificarDepartamentoExistente(UUID departamentoId, DepartamentoDomain domain);
 
-    void darBajaDefinitivamenteDepartamentoExistente(UUID id);
+    void darBajaDefinitivamenteDepartamentoExistente(UUID departamentoId);
 
-    DepartamentoDomain consultarDepartamentoPorId(UUID id);
+    DepartamentoDomain consultarDepartamentoPorId(UUID departamentoId);
 
     List<DepartamentoDomain> consultarDepartamentos(DepartamentoDomain filtro);
 
