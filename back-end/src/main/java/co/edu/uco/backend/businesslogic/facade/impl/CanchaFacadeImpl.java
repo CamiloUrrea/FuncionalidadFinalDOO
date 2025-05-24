@@ -1,7 +1,7 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.impl.OrganizacionGestionCanchaBusinessLogicImpl;
-import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionGestionCanchaBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.impl.CanchaBusinessLogicImpl;
+import co.edu.uco.backend.businesslogic.businesslogic.CanchaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.CanchaFacade;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
@@ -13,11 +13,11 @@ import java.util.UUID;
 public class CanchaFacadeImpl implements CanchaFacade {
 
     private DAOFactory daoFactory;
-    private OrganizacionGestionCanchaBusinessLogic businessLogic;
+    private CanchaBusinessLogic businessLogic;
 
     public CanchaFacadeImpl() {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new OrganizacionGestionCanchaBusinessLogicImpl(daoFactory);
+        businessLogic = new CanchaBusinessLogicImpl(daoFactory);
     }
 
     @Override

@@ -9,11 +9,11 @@ public interface EstadoReservaBusinessLogic {
 
     void registrarNuevoEstadoReserva(EstadoReservaDomain domain);
 
-    void modificarEstadoReservaExistente(UUID id, EstadoReservaDomain domain);
+    void modificarEstadoReservaExistente(UUID estadoReservaId, EstadoReservaDomain domain);
 
-    void darBajaDefinitivamenteEstadoReservaExistente(UUID id);
+    void darBajaDefinitivamenteEstadoReservaExistente(UUID estadoReservaId);
 
-    EstadoReservaDomain consultarEstadoReservaPorId(UUID id);
+    EstadoReservaDomain consultarEstadoReservaPorId(UUID estadoReservaId);
 
     List<EstadoReservaDomain> consultarEstadoReservas(EstadoReservaDomain filtro);
 

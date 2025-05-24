@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface MunicipioBusinessLogic {
 
-    void registrarNuevoMunicipio(MunicipioDomain domain);
+    void registrarNuevoMunicipio(UUID departamentoId, MunicipioDomain domain);
 
-    void modificarMunicipioExistente(UUID id, MunicipioDomain domain);
+    void modificarMunicipioExistente(UUID departamentoId, UUID municipioId, MunicipioDomain domain);
 
-    void darBajaDefinitivamenteMunicipioExistente(UUID id);
+    void darBajaDefinitivamenteMunicipioExistente(UUID departamentoId, UUID municipioId);
 
-    MunicipioDomain consultarMunicipioPorId(UUID id);
+    MunicipioDomain consultarMunicipioPorId(UUID departamentoId, UUID municipioId);
 
-    List<MunicipioDomain> consultarMunicipios(MunicipioDomain filtro);
+    List<MunicipioDomain> consultarMunicipios(UUID departamentoID, MunicipioDomain filtro);
 
 }

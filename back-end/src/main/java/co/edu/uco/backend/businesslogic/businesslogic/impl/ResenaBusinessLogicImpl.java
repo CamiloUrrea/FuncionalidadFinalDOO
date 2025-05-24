@@ -2,11 +2,15 @@ package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.ResenaBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ResenaDomain;
+import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
 import java.util.UUID;
 
 public class ResenaBusinessLogicImpl implements ResenaBusinessLogic {
+
+    public ResenaBusinessLogicImpl(DAOFactory daoFactory) {
+    }
 
     @Override
     public void registrarNuevoResena(UUID reserva, ResenaDomain resena) {
@@ -24,12 +28,12 @@ public class ResenaBusinessLogicImpl implements ResenaBusinessLogic {
     }
 
     @Override
-    public ResenaDomain consultarResenaPorReserva(UUID reservaId) {
+    public ResenaDomain consultarResenaPorReserva(UUID reservaId, UUID resenaId) {
         return null;
     }
 
     @Override
-    public List<ResenaDomain> consultarResenas(ResenaDomain filtro) {
+    public List<ResenaDomain> consultarResenas(UUID reservaId, ResenaDomain filtro) {
         return List.of();
     }
 }

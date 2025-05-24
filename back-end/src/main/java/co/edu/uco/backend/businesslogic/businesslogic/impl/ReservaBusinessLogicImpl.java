@@ -4,7 +4,6 @@ import co.edu.uco.backend.businesslogic.businesslogic.ReservaBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ReservaDomain;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,9 +19,10 @@ public class ReservaBusinessLogicImpl implements ReservaBusinessLogic {
     }
 
     @Override
-    public void confirmarReserva(UUID clienteId, ReservaDomain domain) {
+    public void confirmarReserva(UUID clienteId, UUID idReserva) {
 
     }
+
 
     @Override
     public void cancelarReservaPorCliente(UUID clienteId, UUID reservaId) {
@@ -39,12 +39,11 @@ public class ReservaBusinessLogicImpl implements ReservaBusinessLogic {
         return List.of();
     }
 
-
-
     @Override
-    public void finalizarReserva(UUID clienteId, UUID reservaId, LocalDateTime hora) {
+    public void finalizarReserva(UUID clienteId, UUID reservaId) {
 
     }
+
 
     @Override
     public void cancelarReservaPorOrganizacion(UUID orgId, UUID reservaId) {

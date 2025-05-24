@@ -34,9 +34,11 @@ public class FacturaBusinessLogicImpl implements FacturaBusinessLogic {
     }
 
     @Override
-    public List<FacturaDomain> consultarFacturasPorReserva(UUID reservaId) {
+    public List<FacturaDomain> consultarFacturasPorReserva(UUID reservaId, FacturaDomain filtro) {
         return List.of();
     }
+
+
 
     @Override
     public byte[] generarPdfFactura(UUID reservaId, UUID facturaId) {

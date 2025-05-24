@@ -15,6 +15,6 @@ public interface HorarioDisponibleBusinessLogic {
 
     HorarioDisponibleDomain consultarHorarioDisponiblePorId(UUID canchaId, UUID horarioDisponibleId);
 
-    List<HorarioDisponibleDomain> consultarHorariosDisponiblesPorCancha(UUID canchaId);
+    List<HorarioDisponibleDomain> consultarHorariosDisponiblesPorCancha(UUID canchaId, HorarioDisponibleDomain filtro);
 
 }

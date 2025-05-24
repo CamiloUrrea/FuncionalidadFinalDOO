@@ -34,9 +34,8 @@ public class HorarioEspecialBusinessLogicImpl implements HorarioEspecialBusiness
     }
 
     @Override
-    public List<HorarioEspecialDomain> consultarHorariosEspecialesPorCancha(UUID canchaId) {
+    public List<HorarioEspecialDomain> consultarHorariosEspecialesPorCancha(UUID canchaId, HorarioEspecialDomain horarioEspecial) {
         return List.of();
     }
-
 
 }

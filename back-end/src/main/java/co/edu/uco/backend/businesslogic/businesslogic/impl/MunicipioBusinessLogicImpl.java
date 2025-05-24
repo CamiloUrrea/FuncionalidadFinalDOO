@@ -13,27 +13,27 @@ public class MunicipioBusinessLogicImpl implements MunicipioBusinessLogic {
     }
 
     @Override
-    public void registrarNuevoMunicipio(MunicipioDomain domain) {
+    public void registrarNuevoMunicipio(UUID departamentoId, MunicipioDomain domain) {
 
     }
 
     @Override
-    public void modificarMunicipioExistente(UUID id, MunicipioDomain domain) {
+    public void modificarMunicipioExistente(UUID departamentoId, UUID municipioId, MunicipioDomain domain) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteMunicipioExistente(UUID id) {
+    public void darBajaDefinitivamenteMunicipioExistente(UUID departamentoId, UUID municipioId) {
 
     }
 
     @Override
-    public MunicipioDomain consultarMunicipioPorId(UUID id) {
+    public MunicipioDomain consultarMunicipioPorId(UUID departamentoId, UUID municipioId) {
         return null;
     }
 
     @Override
-    public List<MunicipioDomain> consultarMunicipios(MunicipioDomain filtro) {
+    public List<MunicipioDomain> consultarMunicipios(UUID departamentoID, MunicipioDomain filtro) {
         return List.of();
     }
 }

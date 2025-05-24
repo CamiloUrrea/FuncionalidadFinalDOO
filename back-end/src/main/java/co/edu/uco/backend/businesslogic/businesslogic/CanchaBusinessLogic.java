@@ -5,11 +5,11 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import java.util.List;
 import java.util.UUID;
 
-public interface OrganizacionGestionCanchaBusinessLogic {
+public interface CanchaBusinessLogic {
 
-    UUID registrarNuevaCancha(UUID orgId, CanchaDomain cancha);
+    void registrarNuevaCancha(UUID orgId, CanchaDomain cancha);
 
-    void modificarCanchaExistente(UUID orgId, CanchaDomain cancha);
+    void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDomain cancha);
 
     void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId);
 

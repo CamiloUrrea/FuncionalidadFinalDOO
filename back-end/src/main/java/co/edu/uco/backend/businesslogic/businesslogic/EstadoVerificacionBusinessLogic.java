@@ -9,11 +9,11 @@ public interface EstadoVerificacionBusinessLogic {
 
     void registrarNuevoEstadoVerificacion(EstadoVerificacionDomain domain);
 
-    void modificarEstadoVerificacionExistente(UUID id, EstadoVerificacionDomain domain);
+    void modificarEstadoVerificacionExistente(UUID estadoVerificacionId, EstadoVerificacionDomain domain);
 
-    void darBajaDefinitivamenteEstadoVerificacionExistente(UUID id);
+    void darBajaDefinitivamenteEstadoVerificacionExistente(UUID estadoVerificacionId);
 
-    EstadoVerificacionDomain consultarEstadoVerificacionPorId(UUID id);
+    EstadoVerificacionDomain consultarEstadoVerificacionPorId(UUID estadoVerificacionId);
 
     List<EstadoVerificacionDomain> consultarEstadoVerificacions(EstadoVerificacionDomain filtro);
 

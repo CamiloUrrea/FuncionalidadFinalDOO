@@ -15,6 +15,6 @@ public interface HorarioEspecialBusinessLogic {
 
     HorarioEspecialDomain consultarHorarioEspecialPorId(UUID canchaId, UUID horarioEspecialId);
 
-    List<HorarioEspecialDomain> consultarHorariosEspecialesPorCancha(UUID canchaId);
+    List<HorarioEspecialDomain> consultarHorariosEspecialesPorCancha(UUID canchaId, HorarioEspecialDomain horarioEspecial);
 
 }

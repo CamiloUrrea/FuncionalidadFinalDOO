@@ -13,8 +13,8 @@ public interface ResenaBusinessLogic {
 
     void darBajaDefinitivamenteResenaExistente(UUID reservaId, UUID resenaId);
 
-    ResenaDomain consultarResenaPorReserva(UUID reservaId);
+    ResenaDomain consultarResenaPorReserva(UUID reservaId, UUID resenaId);
 
-    List<ResenaDomain> consultarResenas(ResenaDomain filtro);
+    List<ResenaDomain> consultarResenas(UUID reservaId, ResenaDomain filtro);
 
 }

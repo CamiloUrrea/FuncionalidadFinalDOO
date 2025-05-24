@@ -1,27 +1,26 @@
 package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionGestionCanchaBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.CanchaBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
 import java.util.UUID;
 
-public class OrganizacionGestionCanchaBusinessLogicImpl implements OrganizacionGestionCanchaBusinessLogic {
+public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
 
 
-    public OrganizacionGestionCanchaBusinessLogicImpl(DAOFactory daoFactory) {
+    public CanchaBusinessLogicImpl(DAOFactory daoFactory) {
 
     }
 
     @Override
-    public UUID registrarNuevaCancha(UUID orgId, CanchaDomain cancha) {
+    public void registrarNuevaCancha(UUID orgId, CanchaDomain cancha) {
 
-        return null;
     }
 
     @Override
-    public void modificarCanchaExistente(UUID orgId, CanchaDomain domain) {
+    public void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDomain cancha) {
 
     }
 

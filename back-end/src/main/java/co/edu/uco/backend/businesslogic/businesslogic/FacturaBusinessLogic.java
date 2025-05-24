@@ -15,7 +15,7 @@ public interface FacturaBusinessLogic {
 
     FacturaDomain consultarFacturaPorId(UUID reservaId,UUID facturaid);
 
-    List<FacturaDomain> consultarFacturasPorReserva(UUID reservaId);
+    List<FacturaDomain> consultarFacturasPorReserva(UUID reservaId, FacturaDomain filtro);
 
     byte[] generarPdfFactura(UUID reservaId, UUID facturaId);
 

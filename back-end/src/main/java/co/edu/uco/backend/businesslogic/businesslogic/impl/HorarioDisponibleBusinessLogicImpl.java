@@ -35,11 +35,9 @@ public class HorarioDisponibleBusinessLogicImpl implements HorarioDisponibleBusi
     }
 
     @Override
-    public List<HorarioDisponibleDomain> consultarHorariosDisponiblesPorCancha(UUID canchaId) {
+    public List<HorarioDisponibleDomain> consultarHorariosDisponiblesPorCancha(UUID canchaId, HorarioDisponibleDomain filtro) {
         return List.of();
     }
-
-
 
 
 }
