@@ -69,7 +69,7 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
     private boolean conexionEstaAbierta;
 
     @Override
-    public PostgreSQLDAOFactory() throws BackEndException {
+    public PostgreSQLDAOFactory(Connection conexion) throws BackEndException {
         this.conexion = conexion;
         abrirConexion();
         transaccionEstaInciada = false;

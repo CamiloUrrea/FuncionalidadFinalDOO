@@ -1,7 +1,10 @@
 package co.edu.uco.backend.crosscutting.Exceptions;
 
+import java.io.Serial;
+
 public class DataBackEndException extends BackEndException {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
 
