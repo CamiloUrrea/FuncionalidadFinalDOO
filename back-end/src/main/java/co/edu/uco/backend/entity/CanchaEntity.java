@@ -4,6 +4,7 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public final class CanchaEntity {
@@ -84,3 +85,5 @@ public final class CanchaEntity {
         this.organizacionDeportivaEntity = OrganizacionDeportivaEntity.obtenerValorDefecto(organizacionDeportivaEntity);
     }
 }
+
+

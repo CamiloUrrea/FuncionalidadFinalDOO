@@ -1,8 +1,12 @@
 package co.edu.uco.backend.crosscutting.Exceptions;
 
+import java.io.Serial;
+
 public class BusinessLogicBackEndException extends BackEndException {
 
-    private static final long serialVersionUID = 6950855047355313810L;
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private BusinessLogicBackEndException(String mensajeUsuario, String mensajeTecnico, Exception excepcionRaiz) {
         super(mensajeUsuario, mensajeTecnico, excepcionRaiz, LayerException.BUSINESS_LOGIC);
     }
@@ -14,8 +18,8 @@ public class BusinessLogicBackEndException extends BackEndException {
         return new BusinessLogicBackEndException(mensajeUsuario, mensajeTecnico,new Exception());
     }
 
-    public static BackEndException reportar(String mensajeUsuario, String mensajeTecnico, Exception excepcionRaiz) {
-        return new BusinessLogicBackEndException(mensajeUsuario, mensajeTecnico,new excepcionRaiz());
+    public static BackEndException reportar(String mensajeUsuario, String mensajeTecnico, Exception ExcepcionRaiz) {
+        return new BusinessLogicBackEndException(mensajeUsuario, mensajeTecnico, ExcepcionRaiz);
     }
 
 

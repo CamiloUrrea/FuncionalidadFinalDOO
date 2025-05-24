@@ -3,10 +3,6 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 
 public class BackEndException extends Exception{
-    /**
-     *
-     */
-    private static final long serialversionUID = 3761526893427066183L;
 
 
     private String mensajeUsuario;
@@ -33,6 +29,7 @@ public class BackEndException extends Exception{
     public Throwable getExcepcionRaiz() {
         return UtilObjeto.getInstance().obtenerValorDefecto(getCause(), new Exception(getMensajeUsuario()));
     }
+
 
     public LayerException getCapa() {
         return capa;
