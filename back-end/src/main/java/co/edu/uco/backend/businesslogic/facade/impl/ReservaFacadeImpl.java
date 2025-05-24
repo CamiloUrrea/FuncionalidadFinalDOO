@@ -1,7 +1,7 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.impl.ClienteReservaBusinessLogicImpl;
-import co.edu.uco.backend.businesslogic.businesslogic.ClienteReservaBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.impl.ReservaBusinessLogicImpl;
+import co.edu.uco.backend.businesslogic.businesslogic.ReservaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.ReservaFacade;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
@@ -13,11 +13,11 @@ import java.util.UUID;
 public class ReservaFacadeImpl implements ReservaFacade {
 
     private DAOFactory daoFactory;
-    private ClienteReservaBusinessLogic businessLogic;
+    private ReservaBusinessLogic businessLogic;
 
     public ReservaFacadeImpl() {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new ClienteReservaBusinessLogicImpl(daoFactory);
+        businessLogic = new ReservaBusinessLogicImpl(daoFactory);
     }
 
     @Override

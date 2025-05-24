@@ -1,8 +1,5 @@
 package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.DiaSemanaBusinessLogic;
-import co.edu.uco.backend.businesslogic.businesslogic.domain.DiaSemanaDomain;
-
 import java.util.List;
 import java.util.UUID;
 

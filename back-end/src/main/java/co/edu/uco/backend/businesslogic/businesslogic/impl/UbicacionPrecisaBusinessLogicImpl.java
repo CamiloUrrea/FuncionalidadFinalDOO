@@ -9,27 +9,17 @@ import java.util.UUID;
 public class UbicacionPrecisaBusinessLogicImpl implements UbicacionPrecisaBusinessLogic {
 
     @Override
-    public void registrarNuevoUbicacionPrecisa(UbicacionPrecisaDomain domain) {
+    public void establecerUbicacion(UUID canchaId, UbicacionPrecisaDomain ubicacion) {
 
     }
 
     @Override
-    public void modificarUbicacionPrecisaExistente(UUID id, UbicacionPrecisaDomain domain) {
+    public void eliminarUbicacion(UUID canchaId) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteUbicacionPrecisaExistente(UUID id) {
-
-    }
-
-    @Override
-    public UbicacionPrecisaDomain consultarUbicacionPrecisaPorId(UUID id) {
+    public UbicacionPrecisaDomain consultarUbicacionPorCancha(UUID canchaId) {
         return null;
-    }
-
-    @Override
-    public List<UbicacionPrecisaDomain> consultarUbicacionPrecisas(UbicacionPrecisaDomain filtro) {
-        return List.of();
     }
 }

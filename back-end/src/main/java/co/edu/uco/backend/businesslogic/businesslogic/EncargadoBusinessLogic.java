@@ -5,14 +5,16 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.EncargadoDomain;
 import java.util.List;
 import java.util.UUID;
 
-public interface OrganizacionGestionEncargadoBusinessLogic {
+public interface EncargadoBusinessLogic extends UsuarioBusinessLogic {
 
-    void registrarNuevoEncargado(UUID orgId, EncargadoDomain domain);
+    UUID registrarNuevoEncargado(UUID orgId, EncargadoDomain domain);
 
-    void modificarEncargadoExistente(UUID orgId, EncargadoDomain domain);
+    void modificarEncargadoExistente(UUID orgId, UUID encargadoID, EncargadoDomain domain);
 
     void darBajaDefinitivamenteEncargadoExistente(UUID orgId, UUID encargadoId);
 
     List<EncargadoDomain> consultarMisEncargados(UUID orgId, EncargadoDomain filtro);
+
+    String activarCuentaEncargado(String tokenDeActivacion, String rawPasswordNueva);
 
 }

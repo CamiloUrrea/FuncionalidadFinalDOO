@@ -1,7 +1,7 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.impl.OrganizacionGestionEncargadoBusinessLogicImpl;
-import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionGestionEncargadoBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.impl.EncargadoBusinessLogicImpl;
+import co.edu.uco.backend.businesslogic.businesslogic.EncargadoBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.EncargadoFacade;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
@@ -13,11 +13,11 @@ import java.util.UUID;
 public class EncargadoFacadeImpl implements EncargadoFacade {
 
     private DAOFactory daoFactory;
-    private OrganizacionGestionEncargadoBusinessLogic businessLogic;
+    private EncargadoBusinessLogic businessLogic;
 
     public EncargadoFacadeImpl() {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new OrganizacionGestionEncargadoBusinessLogicImpl(daoFactory);
+        businessLogic = new EncargadoBusinessLogicImpl(daoFactory);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class BackEndException extends Exception{
     }
 
     public Throwable getExcepcionRaiz() {
-        return UtilObjeto.getInstance().obtenerValorDefecto(getCause(), new Exception(getMensajeUsuario()))
+        return UtilObjeto.getInstance().obtenerValorDefecto(getCause(), new Exception(getMensajeUsuario()));
     }
 
     public LayerException getCapa() {

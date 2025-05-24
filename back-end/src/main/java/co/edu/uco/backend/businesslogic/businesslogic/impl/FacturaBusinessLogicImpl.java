@@ -12,28 +12,34 @@ public class FacturaBusinessLogicImpl implements FacturaBusinessLogic {
     public FacturaBusinessLogicImpl(DAOFactory daoFactory) {
     }
 
+
     @Override
-    public void registrarNuevoFactura(FacturaDomain domain) {
+    public void registrarNuevaFactura(UUID reservaId, FacturaDomain domain) {
 
     }
 
     @Override
-    public void modificarFacturaExistente(UUID id, FacturaDomain domain) {
+    public void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDomain domain) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteFacturaExistente(UUID id) {
+    public void darBajaDefinitivamenteFacturaExistente(UUID reservaId, UUID facturaId) {
 
     }
 
     @Override
-    public FacturaDomain consultarFacturaPorId(UUID id) {
+    public FacturaDomain consultarFacturaPorId(UUID reservaId, UUID facturaid) {
         return null;
     }
 
     @Override
-    public List<FacturaDomain> consultarFacturas(FacturaDomain filtro) {
+    public List<FacturaDomain> consultarFacturasPorReserva(UUID reservaId) {
         return List.of();
+    }
+
+    @Override
+    public byte[] generarPdfFactura(UUID reservaId, UUID facturaId) {
+        return new byte[0];
     }
 }

@@ -7,14 +7,16 @@ import java.util.UUID;
 
 public interface FacturaBusinessLogic {
 
-    void registrarNuevoFactura(FacturaDomain domain);
+    void registrarNuevaFactura(UUID reservaId, FacturaDomain domain);
 
-    void modificarFacturaExistente(UUID id, FacturaDomain domain);
+    void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDomain domain);
 
-    void darBajaDefinitivamenteFacturaExistente(UUID id);
+    void darBajaDefinitivamenteFacturaExistente(UUID reservaId,UUID facturaId);
 
-    FacturaDomain consultarFacturaPorId(UUID id);
+    FacturaDomain consultarFacturaPorId(UUID reservaId,UUID facturaid);
 
-    List<FacturaDomain> consultarFacturas(FacturaDomain filtro);
+    List<FacturaDomain> consultarFacturasPorReserva(UUID reservaId);
+
+    byte[] generarPdfFactura(UUID reservaId, UUID facturaId);
 
 }

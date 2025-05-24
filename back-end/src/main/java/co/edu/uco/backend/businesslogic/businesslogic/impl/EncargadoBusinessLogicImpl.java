@@ -1,53 +1,47 @@
 package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionDeportivaBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.EncargadoBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
-import co.edu.uco.backend.businesslogic.businesslogic.domain.OrganizacionDeportivaDomain;
+import co.edu.uco.backend.businesslogic.businesslogic.domain.EncargadoDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
 import java.util.UUID;
 
-public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDeportivaBusinessLogic {
+public class EncargadoBusinessLogicImpl implements EncargadoBusinessLogic {
 
-    public OrganizacionDeportivaBusinessLogicImpl(DAOFactory daoFactory) {
+
+    public EncargadoBusinessLogicImpl(DAOFactory daoFactory) {
     }
 
     @Override
-    public void registrarNuevoOrganizacionDeportiva(OrganizacionDeportivaDomain domain) {
+    public UUID registrarNuevoEncargado(UUID orgId, EncargadoDomain domain) {
 
-    }
-
-    @Override
-    public void modificarOrganizacionDeportivaExistente(UUID id, OrganizacionDeportivaDomain domain) {
-
-    }
-
-    @Override
-    public void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID id) {
-
-    }
-
-    @Override
-    public OrganizacionDeportivaDomain consultarOrganizacionDeportivaPorId(UUID id) {
         return null;
     }
 
     @Override
-    public List<OrganizacionDeportivaDomain> consultarOrganizacionesDeportivas(OrganizacionDeportivaDomain filtro) {
+    public void modificarEncargadoExistente(UUID orgid, EncargadoDomain domain) {
+
+    }
+
+    @Override
+    public void darBajaDefinitivamenteEncargadoExistente(UUID orgId, UUID encargadoId) {
+
+    }
+
+
+    @Override
+    public List<EncargadoDomain> consultarMisEncargados(UUID orgId, EncargadoDomain filtro) {
         return List.of();
     }
 
     @Override
-    public void aceptarOrganizacion(UUID orgId) {
-
+    public String activarCuentaEncargado(String tokenDeActivacion, String rawPasswordNueva) {
+        return "";
     }
 
-    @Override
-    public void rechazarOrganizacion(UUID orgId) {
-
-    }
 
     @Override
     public UsuarioDomain iniciarSesion(String username, String rawPassword) {

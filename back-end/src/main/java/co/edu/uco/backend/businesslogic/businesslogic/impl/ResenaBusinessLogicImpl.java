@@ -9,22 +9,22 @@ import java.util.UUID;
 public class ResenaBusinessLogicImpl implements ResenaBusinessLogic {
 
     @Override
-    public void registrarNuevoResena(ResenaDomain domain) {
+    public void registrarNuevoResena(UUID reserva, ResenaDomain resena) {
 
     }
 
     @Override
-    public void modificarResenaExistente(UUID id, ResenaDomain domain) {
+    public void modificarResenaExistente(UUID reservaId, UUID resenaId, ResenaDomain resena) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteResenaExistente(UUID id) {
+    public void darBajaDefinitivamenteResenaExistente(UUID reservaId, UUID resenaId) {
 
     }
 
     @Override
-    public ResenaDomain consultarResenaPorId(UUID id) {
+    public ResenaDomain consultarResenaPorReserva(UUID reservaId) {
         return null;
     }
 

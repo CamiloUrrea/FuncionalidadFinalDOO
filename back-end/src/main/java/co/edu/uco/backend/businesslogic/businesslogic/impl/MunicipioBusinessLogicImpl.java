@@ -2,11 +2,15 @@ package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.MunicipioBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.MunicipioDomain;
+import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
 import java.util.UUID;
 
 public class MunicipioBusinessLogicImpl implements MunicipioBusinessLogic {
+
+    public MunicipioBusinessLogicImpl(DAOFactory daoFactory) {
+    }
 
     @Override
     public void registrarNuevoMunicipio(MunicipioDomain domain) {

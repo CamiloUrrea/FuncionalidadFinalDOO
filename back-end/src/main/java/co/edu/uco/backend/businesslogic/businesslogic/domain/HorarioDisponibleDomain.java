@@ -1,35 +1,41 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.*;
-
+import co.edu.uco.backend.crosscutting.constants.DiaSemana;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import java.time.LocalTime;
 import java.util.UUID;
 
-public final class HorarioDisponibleDomain {
 
+public final class HorarioDisponibleDomain {
     private UUID id;
     private CanchaDomain cancha;
-    private DiaSemanaDomain dia;
+    private DiaSemana dia;
     private LocalTime horaApertura;
     private LocalTime horaCierre;
 
     HorarioDisponibleDomain() {
         setId(UtilUUID.obtenerValorDefecto());
         setCancha(CanchaDomain.obtenerCanchaDefecto());
-        setDia(DiaSemanaDomain.obtenerDiaSemanaDefecto());
-        setHoraApertura(LocalTime.MIDNIGHT);
-        setHoraCierre(LocalTime.MIDNIGHT);
+        setDia(UtilObjeto.getInstance().obtenerValorDefecto(null, DiaSemana.obtenerValorPorDefecto()));
+        setHoraApertura(UtilObjeto.getInstance().obtenerValorDefecto(null, LocalTime.MIDNIGHT));
+        setHoraCierre(UtilObjeto.getInstance().obtenerValorDefecto(null, LocalTime.MIDNIGHT));
     }
 
-    public HorarioDisponibleDomain(UUID id) {
+    public HorarioDisponibleDomain(final UUID id) {
         setId(id);
         setCancha(CanchaDomain.obtenerCanchaDefecto());
-        setDia(DiaSemanaDomain.obtenerDiaSemanaDefecto());
-        setHoraApertura(LocalTime.MIDNIGHT);
-        setHoraCierre(LocalTime.MIDNIGHT);
+        setDia(UtilObjeto.getInstance().obtenerValorDefecto(null, DiaSemana.obtenerValorPorDefecto()));
+        setHoraApertura(UtilObjeto.getInstance().obtenerValorDefecto(null, LocalTime.MIDNIGHT));
+        setHoraCierre(UtilObjeto.getInstance().obtenerValorDefecto(null, LocalTime.MIDNIGHT));
     }
 
-    public HorarioDisponibleDomain(final UUID id,final CanchaDomain cancha, final DiaSemanaDomain dia, final LocalTime horaApertura, final LocalTime horaCierre) {
+    public HorarioDisponibleDomain(
+            final UUID id,
+            final CanchaDomain cancha,
+            final DiaSemana dia,
+            final LocalTime horaApertura,
+            final LocalTime horaCierre) {
         setId(id);
         setCancha(cancha);
         setDia(dia);
@@ -49,36 +55,37 @@ public final class HorarioDisponibleDomain {
         return id;
     }
 
-    private void setId(final UUID id) {
-        this.id = UtilUUID.obtenerValorDefecto(id);
-    }
-
     public CanchaDomain getCancha() {
         return cancha;
     }
 
-    private void setCancha(final CanchaDomain cancha) {
-        this.cancha = CanchaDomain.obtenerValorDefecto(cancha);
-    }
-
-    public DiaSemanaDomain getDia() {
+    public DiaSemana getDia() {
         return dia;
-    }
-
-    private void setDia(final DiaSemanaDomain dia) {
-        this.dia = DiaSemanaDomain.obtenerValorDefecto(dia);
     }
 
     public LocalTime getHoraApertura() {
         return horaApertura;
     }
 
-    private void setHoraApertura(final LocalTime horaApertura) {
-        this.horaApertura = UtilObjeto.getInstance().obtenerValorDefecto(horaApertura, LocalTime.MIDNIGHT);
-    }
-
     public LocalTime getHoraCierre() {
         return horaCierre;
+    }
+
+
+    private void setId(final UUID id) {
+        this.id = UtilUUID.obtenerValorDefecto(id);
+    }
+
+    private void setCancha(final CanchaDomain cancha) {
+        this.cancha = CanchaDomain.obtenerValorDefecto(cancha);
+    }
+
+    private void setDia(final DiaSemana dia) {
+        this.dia = UtilObjeto.getInstance().obtenerValorDefecto(dia, DiaSemana.obtenerValorPorDefecto());
+    }
+
+    private void setHoraApertura(final LocalTime horaApertura) {
+        this.horaApertura = UtilObjeto.getInstance().obtenerValorDefecto(horaApertura, LocalTime.MIDNIGHT);
     }
 
     private void setHoraCierre(final LocalTime horaCierre) {

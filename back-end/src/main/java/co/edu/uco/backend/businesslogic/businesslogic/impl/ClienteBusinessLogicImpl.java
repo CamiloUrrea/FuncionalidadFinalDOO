@@ -1,7 +1,9 @@
 package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.ClienteBusinessLogic;
+import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ClienteDomain;
+import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
@@ -13,22 +15,22 @@ public class ClienteBusinessLogicImpl implements ClienteBusinessLogic {
     }
 
     @Override
-    public void registrarNuevoCliente(ClienteDomain domain) {
+    public void registrarNuevoCliente(ClienteDomain cliente) {
 
     }
 
     @Override
-    public void modificarClienteExistente(UUID id, ClienteDomain domain) {
+    public void modificarClienteExistente(UUID id, ClienteDomain datosActualizados) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteClienteExistente(UUID id) {
+    public void darBajaDefinitivamenteClienteExistente(UUID clienteId) {
 
     }
 
     @Override
-    public ClienteDomain consultarClientePorId(UUID id) {
+    public ClienteDomain consultarClientePorId(UUID clienteId) {
         return null;
     }
 
@@ -36,4 +38,35 @@ public class ClienteBusinessLogicImpl implements ClienteBusinessLogic {
     public List<ClienteDomain> consultarClientes(ClienteDomain filtro) {
         return List.of();
     }
+
+    @Override
+    public UsuarioDomain iniciarSesion(String username, String rawPassword) {
+        return null;
+    }
+
+    @Override
+    public void cerrarSesion(UUID usuarioId) {
+
+    }
+
+    @Override
+    public void recuperarContrasena(String username) {
+
+    }
+
+    @Override
+    public void cambiarContrasena(UUID usuarioId, String rawPasswordActual, String rawPasswordNueva) {
+
+    }
+
+    @Override
+    public UsuarioDomain consultarUsuarioPorId(UUID usuarioId) {
+        return null;
+    }
+
+    @Override
+    public List<CanchaDomain> consultarcualquierCancha(CanchaDomain filtro) {
+        return List.of();
+    }
+
 }

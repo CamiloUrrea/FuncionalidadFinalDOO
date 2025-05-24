@@ -1,7 +1,6 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.impl.DiaSemanaBusinessLogicImpl;
-import co.edu.uco.backend.businesslogic.businesslogic.DiaSemanaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.DiaSemanaFacade;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;

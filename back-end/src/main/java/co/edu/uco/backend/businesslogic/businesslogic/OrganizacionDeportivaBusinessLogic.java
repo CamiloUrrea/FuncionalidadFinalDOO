@@ -5,7 +5,7 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.OrganizacionDeporti
 import java.util.List;
 import java.util.UUID;
 
-public interface OrganizacionDeportivaBusinessLogic {
+public interface OrganizacionDeportivaBusinessLogic extends UsuarioBusinessLogic {
 
     void registrarNuevoOrganizacionDeportiva(OrganizacionDeportivaDomain domain);
 
@@ -16,6 +16,10 @@ public interface OrganizacionDeportivaBusinessLogic {
     OrganizacionDeportivaDomain consultarOrganizacionDeportivaPorId(UUID orgId);
 
     List<OrganizacionDeportivaDomain> consultarOrganizacionesDeportivas(OrganizacionDeportivaDomain filtro);
+
+    void aceptarOrganizacion(UUID orgId);
+
+    void rechazarOrganizacion(UUID orgId);
 
 
 }

@@ -5,14 +5,16 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.HorarioEspecialDoma
 import java.util.List;
 import java.util.UUID;
 
-public interface CanchaHorarioEspecialBusinessLogic {
+public interface HorarioEspecialBusinessLogic {
 
     void registrarNuevoHorarioEspecial(UUID canchaId, HorarioEspecialDomain horarioEspecial);
 
-    void modificarHorarioEspecialExistente(UUID canchaId, HorarioEspecialDomain horarioEspecial);
+    void modificarHorarioEspecialExistente(UUID canchaId,UUID horarioEspecialId, HorarioEspecialDomain horarioEspecial);
 
     void darBajaDefinitivamenteHorarioEspecialExistente(UUID canchaId, UUID horarioEspecialId);
 
-    List<HorarioEspecialDomain> consultarHorariosEspeciales(UUID canchaId);
+    HorarioEspecialDomain consultarHorarioEspecialPorId(UUID canchaId, UUID horarioEspecialId);
+
+    List<HorarioEspecialDomain> consultarHorariosEspecialesPorCancha(UUID canchaId);
 
 }

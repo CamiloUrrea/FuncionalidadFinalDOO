@@ -24,7 +24,7 @@ public final class TipoCanchaDomain {
         setJugadoresRecomendados(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
-    public TipoCanchaDomain(final UUID id, final String nombre) {
+    public TipoCanchaDomain(final UUID id, final String nombre, final String jugadoresRecomendados) {
         setId(id);
         setNombre(nombre);
         setJugadoresRecomendados(jugadoresRecomendados);

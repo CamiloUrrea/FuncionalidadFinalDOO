@@ -8,28 +8,19 @@ import java.util.UUID;
 
 public class DimensionBusinessLogicImpl implements DimensionBusinessLogic {
 
+
     @Override
-    public void registrarNuevoDimension(DimensionDomain domain) {
+    public void establecerDimension(UUID canchaId, DimensionDomain dimension) {
 
     }
 
     @Override
-    public void modificarDimensionExistente(UUID id, DimensionDomain domain) {
+    public void eliminarDimension(UUID canchaId) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteDimensionExistente(UUID id) {
-
-    }
-
-    @Override
-    public DimensionDomain consultarDimensionPorId(UUID id) {
+    public DimensionDomain consultarDimensionPorCancha(UUID canchaId) {
         return null;
-    }
-
-    @Override
-    public List<DimensionDomain> consultarDimensions(DimensionDomain filtro) {
-        return List.of();
     }
 }

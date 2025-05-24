@@ -1,12 +1,15 @@
 package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
-import co.edu.uco.backend.crosscutting.utilitarios.*;
-
+import co.edu.uco.backend.crosscutting.utilitarios.UtilBooleano;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilDouble;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import java.util.List;
 import java.util.UUID;
 
-public final class CanchaDomain {
 
+public final class CanchaDomain {
     private UUID id;
     private String nombreCancha;
     private TipoCanchaDomain tipo;
@@ -35,7 +38,8 @@ public final class CanchaDomain {
         setHorariosEspeciales(List.of());
     }
 
-    public CanchaDomain(UUID id) {
+
+    public CanchaDomain(final UUID id) {
         setId(id);
         setNombreCancha(UtilTexto.getInstance().obtenerValorDefecto());
         setTipo(TipoCanchaDomain.obtenerTipoCanchaDefecto());
@@ -50,11 +54,20 @@ public final class CanchaDomain {
         setHorariosEspeciales(List.of());
     }
 
-    public CanchaDomain(UUID id, String nombreCancha, TipoCanchaDomain tipo, DimensionDomain dimensiones,
-                        SuperficieDomain superficie, double costoHora, UbicacionPrecisaDomain ubicacion,
-                        OrganizacionDeportivaDomain organizacion, boolean iluminacion, boolean cubierta,
-                        List<HorarioDisponibleDomain> horariosDisponibles,
-                        List<HorarioEspecialDomain> horariosEspeciales) {
+    public CanchaDomain(
+            final UUID id,
+            final String nombreCancha,
+            final TipoCanchaDomain tipo,
+            final DimensionDomain dimensiones,
+            final SuperficieDomain superficie,
+            final double costoHora,
+            final UbicacionPrecisaDomain ubicacion,
+            final OrganizacionDeportivaDomain organizacion,
+            final boolean iluminacion,
+            final boolean cubierta,
+            final List<HorarioDisponibleDomain> horariosDisponibles,
+            final List<HorarioEspecialDomain> horariosEspeciales
+    ) {
         setId(id);
         setNombreCancha(nombreCancha);
         setTipo(tipo);
@@ -69,11 +82,12 @@ public final class CanchaDomain {
         setHorariosEspeciales(horariosEspeciales);
     }
 
+
     static CanchaDomain obtenerCanchaDefecto() {
         return new CanchaDomain();
     }
 
-    static CanchaDomain obtenerValorDefecto(CanchaDomain domain) {
+    static CanchaDomain obtenerValorDefecto(final CanchaDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerCanchaDefecto());
     }
 
@@ -81,95 +95,95 @@ public final class CanchaDomain {
         return id;
     }
 
-    private void setId(UUID id) {
-        this.id = UtilUUID.obtenerValorDefecto(id);
-    }
-
     public String getNombreCancha() {
         return nombreCancha;
-    }
-
-    private void setNombreCancha(String nombreCancha) {
-        this.nombreCancha = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombreCancha);
     }
 
     public TipoCanchaDomain getTipo() {
         return tipo;
     }
 
-    private void setTipo(TipoCanchaDomain tipo) {
-        this.tipo = TipoCanchaDomain.obtenerValorDefecto(tipo);
-    }
-
     public DimensionDomain getDimensiones() {
         return dimensiones;
-    }
-
-    private void setDimensiones(DimensionDomain dimensiones) {
-        this.dimensiones = DimensionDomain.obtenerValorDefecto(dimensiones);
     }
 
     public SuperficieDomain getSuperficie() {
         return superficie;
     }
 
-    private void setSuperficie(SuperficieDomain superficie) {
-        this.superficie = SuperficieDomain.obtenerValorDefecto(superficie);
-    }
-
     public double getCostoHora() {
         return costoHora;
-    }
-
-    private void setCostoHora(double costoHora) {
-        this.costoHora = UtilDouble.obtenerValorDefecto(costoHora);
     }
 
     public UbicacionPrecisaDomain getUbicacion() {
         return ubicacion;
     }
 
-    private void setUbicacion(UbicacionPrecisaDomain ubicacion) {
-        this.ubicacion = UbicacionPrecisaDomain.obtenerValorDefecto(ubicacion);
-    }
-
     public OrganizacionDeportivaDomain getOrganizacion() {
         return organizacion;
-    }
-
-    private void setOrganizacion(OrganizacionDeportivaDomain organizacion) {
-        this.organizacion = OrganizacionDeportivaDomain.obtenerValorDefecto(organizacion);
     }
 
     public boolean isIluminacion() {
         return iluminacion;
     }
 
-    private void setIluminacion(boolean iluminacion) {
-        this.iluminacion = UtilBooleano.obtenerValorDefecto(iluminacion);
-    }
-
     public boolean isCubierta() {
         return cubierta;
-    }
-
-    private void setCubierta(boolean cubierta) {
-        this.cubierta = UtilBooleano.obtenerValorDefecto(cubierta);
     }
 
     public List<HorarioDisponibleDomain> getHorariosDisponibles() {
         return horariosDisponibles;
     }
 
-    private void setHorariosDisponibles(List<HorarioDisponibleDomain> horarios) {
-        this.horariosDisponibles = UtilObjeto.getInstance().obtenerValorDefecto(horarios, List.of());
-    }
-
     public List<HorarioEspecialDomain> getHorariosEspeciales() {
         return horariosEspeciales;
     }
 
-    private void setHorariosEspeciales(List<HorarioEspecialDomain> horarios) {
-        this.horariosEspeciales = UtilObjeto.getInstance().obtenerValorDefecto(horarios, List.of());
+    private void setId(final UUID id) {
+        this.id = UtilUUID.obtenerValorDefecto(id);
+    }
+
+    private void setNombreCancha(final String nombreCancha) {
+        this.nombreCancha = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombreCancha);
+    }
+
+    private void setTipo(final TipoCanchaDomain tipo) {
+        this.tipo = TipoCanchaDomain.obtenerValorDefecto(tipo);
+    }
+
+    private void setDimensiones(final DimensionDomain dimensiones) {
+        this.dimensiones = DimensionDomain.obtenerValorDefecto(dimensiones);
+    }
+
+    private void setSuperficie(final SuperficieDomain superficie) {
+        this.superficie = SuperficieDomain.obtenerValorDefecto(superficie);
+    }
+
+    private void setCostoHora(final double costoHora) {
+        this.costoHora = UtilDouble.obtenerValorDefecto(costoHora);
+    }
+
+    private void setUbicacion(final UbicacionPrecisaDomain ubicacion) {
+        this.ubicacion = UbicacionPrecisaDomain.obtenerValorDefecto(ubicacion);
+    }
+
+    private void setOrganizacion(final OrganizacionDeportivaDomain organizacion) {
+        this.organizacion = OrganizacionDeportivaDomain.obtenerValorDefecto(organizacion);
+    }
+
+    private void setIluminacion(final boolean iluminacion) {
+        this.iluminacion = UtilBooleano.obtenerValorDefecto(iluminacion);
+    }
+
+    private void setCubierta(final boolean cubierta) {
+        this.cubierta = UtilBooleano.obtenerValorDefecto(cubierta);
+    }
+
+    private void setHorariosDisponibles(final List<HorarioDisponibleDomain> horariosDisponibles) {
+        this.horariosDisponibles = UtilObjeto.getInstance().obtenerValorDefecto(horariosDisponibles, List.of());
+    }
+
+    private void setHorariosEspeciales(final List<HorarioEspecialDomain> horariosEspeciales) {
+        this.horariosEspeciales = UtilObjeto.getInstance().obtenerValorDefecto(horariosEspeciales, List.of());
     }
 }
