@@ -1,6 +1,7 @@
 package co.edu.uco.backend.data.dao.factory;
 
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.entity.departamento.DepartamentoDAO;
 import co.edu.uco.backend.data.dao.entity.municipio.MunicipioDAO;
 import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.UbicacionPrecisaDAO;
@@ -18,37 +19,31 @@ import co.edu.uco.backend.data.dao.entity.resena.ResenaDAO;
 import co.edu.uco.backend.data.dao.entity.factura.FacturaDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
+import co.edu.uco.backend.data.dao.factory.postgresql.PostgreSQLDAOFactory;
 
-import java.sql.Connection;
 
 public abstract class DAOFactory{
 
-    public DAOFactory() {
 
-    }
-
-
-    public DAOFactory(Connection conexion) throws BackEndException {
-
-    }
-
-    public static DAOFactory getFactory(Factory factory) {
-        return null;
+    public static DAOFactory getFactory(Factory factory) throws BackEndException {
+        switch (factory) {
+            case POSTGRE_SQL: {
+                return new PostgreSQLDAOFactory();
+            }
+            default:
+                var mensajeUsuario = "Se ha presentado un problema tratando de obtener la informacion de la fuente de datos contra la cual se llevaran a cabo las operaciones";
+                var mensajeTecnico = "Se solicitó la factoría " + factory + " pero no está implementada...";
+                throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
+        }
     }
 
     protected abstract void abrirConexion() throws BackEndException;
 
-    public abstract void iniciarTransacion() throws BackEndException;
+    public abstract void iniciarTransaccion() throws BackEndException;
 
-    public abstract void confirmarTransacion() throws BackEndException;
+    public abstract void confirmarTransaccion() throws BackEndException;
 
-    public abstract void cancelarTransacion() throws BackEndException;
-
-    public abstract void iniciartransaccion() throws BackEndException;
-
-    public abstract void confirmartransaccion() throws BackEndException;
-
-    public abstract void cancelartransaccion() throws BackEndException;
+    public abstract void cancelarTransaccion() throws BackEndException;
 
     public abstract void cerrarConexion() throws BackEndException;
 

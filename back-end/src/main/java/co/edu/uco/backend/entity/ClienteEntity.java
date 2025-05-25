@@ -1,58 +1,30 @@
 package co.edu.uco.backend.entity;
 
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
 import java.util.UUID;
 
-public final class ClienteEntity {
+public final class ClienteEntity extends UsuarioEntity {
 
-    private UUID id;
-    private String nombre;
-
-
-    public ClienteEntity() {
-        setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-
+    ClienteEntity() {
+        super();
     }
 
-    public ClienteEntity(final UUID id) {
-        setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-
+    ClienteEntity(final UUID id) {
+        super(id);
     }
 
-    public ClienteEntity(final UUID id, String nombre) {
-        setId(id);
-        setNombre(nombre);
-
+    public ClienteEntity(final UUID id, final String nombre, final String username,
+                         final String contrasena, final String prefijoTelefono, final String telefono) {
+        super(id, nombre, username, contrasena, prefijoTelefono, telefono);
     }
 
     public static ClienteEntity obtenerClienteDefecto() {
         return new ClienteEntity();
     }
 
-    public static ClienteEntity obtenerValorDefecto(ClienteEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerClienteDefecto());
+    public static ClienteEntity obtenerValorDefecto(final ClienteEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerClienteDefecto());
     }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(final UUID id) {
-        this.id = UtilUUID.obtenerValorDefecto(id);
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
-    }
-
-
 }
+

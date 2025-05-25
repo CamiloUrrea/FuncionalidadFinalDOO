@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.FacturaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.FacturaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.FacturaFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.FacturaDTO;
@@ -15,7 +16,7 @@ public class FacturaFacadeImpl implements FacturaFacade {
     private DAOFactory daoFactory;
     private FacturaBusinessLogic businessLogic;
 
-    public FacturaFacadeImpl() {
+    public FacturaFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new FacturaBusinessLogicImpl(daoFactory);
     }

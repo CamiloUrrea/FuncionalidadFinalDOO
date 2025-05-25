@@ -35,8 +35,9 @@ public class EstadoReservaPostgreSQLDAO implements EstadoReservaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(EstadoReservaEntity entity) {
+    public void modificar(UUID uuid, EstadoReservaEntity entity) {
 
     }
 }

@@ -35,8 +35,9 @@ public class DepartamentoPostgreSQLDAO implements DepartamentoDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(DepartamentoEntity entity) {
+    public void modificar(UUID uuid, DepartamentoEntity entity) {
 
     }
 }

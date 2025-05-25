@@ -35,8 +35,9 @@ public class UbicacionPrecisaPostgreSQLDAO implements UbicacionPrecisaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(UbicacionPrecisaEntity entity) {
+    public void modificar(UUID uuid, UbicacionPrecisaEntity entity) {
 
     }
 }

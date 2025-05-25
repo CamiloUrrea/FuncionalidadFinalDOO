@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.SuperficieBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.SuperficieBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.SuperficieFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.SuperficieDTO;
@@ -15,7 +16,7 @@ public class SuperficieFacadeImpl implements SuperficieFacade {
     private DAOFactory daoFactory;
     private SuperficieBusinessLogic businessLogic;
 
-    public SuperficieFacadeImpl() {
+    public SuperficieFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new SuperficieBusinessLogicImpl(daoFactory);
     }

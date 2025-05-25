@@ -1,41 +1,45 @@
 package co.edu.uco.backend.entity;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
 import java.util.UUID;
+import java.time.LocalDate;
 
 public final class FacturaEntity {
 
     private UUID id;
-    private String nombre;
-    private ReservaEntity reservaEntity;
+    private String identificador;
+    private ReservaEntity reserva;
+    private LocalDate fechaGeneracion;
+    private double total;
 
-    public FacturaEntity() {
+    FacturaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaEntity(ReservaEntity.obtenerReservaDefecto());
+        setIdentificador(UtilTexto.getInstance().obtenerValorDefecto());
+        setReserva(ReservaEntity.obtenerReservaDefecto());
+        setFechaGeneracion(UtilFecha.obtenerValorDefecto((LocalDate) null));
+        setTotal(UtilDouble.obtenerValorDefecto(0.0));
     }
 
     public FacturaEntity(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaEntity(ReservaEntity.obtenerReservaDefecto());
     }
 
-    public FacturaEntity(final UUID id, String nombre, ReservaEntity reservaEntity) {
+    public FacturaEntity(final UUID id, final String identificador, final ReservaEntity reserva, final LocalDate fechaGeneracion, final double total) {
         setId(id);
-        setNombre(nombre);
-        setReservaEntity(reservaEntity);
+        setIdentificador(identificador);
+        setReserva(reserva);
+        setFechaGeneracion(fechaGeneracion);
+        setTotal(total);
     }
 
     public static FacturaEntity obtenerFacturaDefecto() {
         return new FacturaEntity();
     }
 
-    public static FacturaEntity obtenerValorDefecto(FacturaEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerFacturaDefecto());
+    public static FacturaEntity obtenerValorDefecto(final FacturaEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerFacturaDefecto());
     }
 
     public UUID getId() {
@@ -46,19 +50,36 @@ public final class FacturaEntity {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getIdentificador() {
+        return identificador;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setIdentificador(final String identificador) {
+        this.identificador = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(identificador);
     }
 
-    public ReservaEntity getReservaEntity() {
-        return reservaEntity;
+    public ReservaEntity getReserva() {
+        return reserva;
     }
 
-    public void setReservaEntity(final ReservaEntity reservaEntity) {
-        this.reservaEntity = ReservaEntity.obtenerValorDefecto(reservaEntity);
+    public void setReserva(final ReservaEntity reserva) {
+        this.reserva = ReservaEntity.obtenerValorDefecto(reserva);
+    }
+
+    public LocalDate getFechaGeneracion() {
+        return fechaGeneracion;
+    }
+
+    public void setFechaGeneracion(final LocalDate fechaGeneracion) {
+        this.fechaGeneracion = UtilFecha.obtenerValorDefecto(fechaGeneracion);
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(final double total) {
+        this.total = UtilDouble.obtenerValorDefecto(total);
     }
 }
+

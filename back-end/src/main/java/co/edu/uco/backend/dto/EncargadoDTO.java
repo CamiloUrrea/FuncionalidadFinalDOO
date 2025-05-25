@@ -6,55 +6,46 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
 import java.util.UUID;
 
-public final class EncargadoDTO {
+public final class EncargadoDTO extends UsuarioDTO {
 
-    private UUID id;
-    private String nombre;
-    private OrganizacionDeportivaDTO organizacionDeportivaDTO;
+    private String correo;
+    private String tipoDocumento;
+    private String documento;
+    private OrganizacionDeportivaDTO organizacion;
 
     public EncargadoDTO() {
-        setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerValorDefecto());
+        super();
+        setCorreo(UtilTexto.getInstance().obtenerValorDefecto());
+        setTipoDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setOrganizacion(OrganizacionDeportivaDTO.obtenerValorDefecto());
     }
 
     public EncargadoDTO(final UUID id) {
-        setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setOrganizacionDeportivaDTO(OrganizacionDeportivaDTO.obtenerValorDefecto());
+        super(id);
+        setCorreo(UtilTexto.getInstance().obtenerValorDefecto());
+        setTipoDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setOrganizacion(OrganizacionDeportivaDTO.obtenerValorDefecto());
     }
 
-    public EncargadoDTO(final UUID id, final String nombre, OrganizacionDeportivaDTO organizacionDeportivaDTO) {
-        setId(id);
-        setNombre(nombre);
-        setOrganizacionDeportivaDTO(organizacionDeportivaDTO);
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public EncargadoDTO setId(final UUID id) {
-        this.id = UtilUUID.obtenerValorDefecto(id);
-        return this;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public EncargadoDTO setNombre(final String nombre) {
-        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
-        return this;
-    }
-
-    public OrganizacionDeportivaDTO getOrganizacionDeportivaDTO() {
-        return organizacionDeportivaDTO;
-    }
-
-    public EncargadoDTO setOrganizacionDeportivaDTO(final OrganizacionDeportivaDTO organizacionDeportivaDTO) {
-        this.organizacionDeportivaDTO = OrganizacionDeportivaDTO.obtenerValorDefecto(organizacionDeportivaDTO);
-        return this;
+    public EncargadoDTO(
+            final UUID id,
+            final String nombre,
+            final String username,
+            final String contrasena,
+            final String prefijoTelefono,
+            final String telefono,
+            final String correo,
+            final String tipoDocumento,
+            final String documento,
+            final OrganizacionDeportivaDTO organizacion
+    ) {
+        super(id, nombre, username, contrasena, prefijoTelefono, telefono);
+        setCorreo(correo);
+        setTipoDocumento(tipoDocumento);
+        setDocumento(documento);
+        setOrganizacion(organizacion);
     }
 
     public static EncargadoDTO obtenerValorDefecto() {
@@ -63,5 +54,41 @@ public final class EncargadoDTO {
 
     public static EncargadoDTO obtenerValorDefecto(final EncargadoDTO dto) {
         return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public EncargadoDTO setCorreo(final String correo) {
+        this.correo = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(correo);
+        return this;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public EncargadoDTO setTipoDocumento(final String tipoDocumento) {
+        this.tipoDocumento = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(tipoDocumento);
+        return this;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public EncargadoDTO setDocumento(final String documento) {
+        this.documento = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(documento);
+        return this;
+    }
+
+    public OrganizacionDeportivaDTO getOrganizacion() {
+        return organizacion;
+    }
+
+    public EncargadoDTO setOrganizacion(final OrganizacionDeportivaDTO organizacion) {
+        this.organizacion = OrganizacionDeportivaDTO.obtenerValorDefecto(organizacion);
+        return this;
     }
 }

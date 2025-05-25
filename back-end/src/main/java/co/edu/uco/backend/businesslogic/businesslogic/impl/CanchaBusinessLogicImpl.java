@@ -25,13 +25,13 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
         CanchaEntity canchaEntity = null;
         OrganizacionDeportivaEntity organizacionDeportivaEntity = factory.getOrganizacionDeportivaDAO().consultarPorId(orgId);
         canchaEntity.setOrganizacionDeportivaEntity(organizacionDeportivaEntity);
-        factory.getCanchaDAO().create(canchaEntity);
+        factory.getCanchaDAO().crear(canchaEntity);
     }
 
     @Override
     public void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDomain cancha) throws BackEndException {
         CanchaEntity canchaEntity = factory.getCanchaDAO().consultarPorId(canchaId);
-        factory.getCanchaDAO().modificar(canchaEntity);
+        factory.getCanchaDAO().modificar(canchaId,canchaEntity);
 
     }
 
@@ -42,9 +42,12 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
     }
 
     @Override
-    public CanchaDomain consultarCanchaPorId(UUID orgId, UUID canchaId) {
+    public CanchaDomain consultarCanchaPorId(UUID orgId, UUID canchaId) throws BackEndException {
+        CanchaEntity canchaEntity = null;
+        factory.getCanchaDAO().consultarPorId(canchaId);
         return null;
     }
+
 
     @Override
     public List<CanchaDomain> consultarMisCanchas(UUID orgId, CanchaDomain filtro) throws BackEndException {

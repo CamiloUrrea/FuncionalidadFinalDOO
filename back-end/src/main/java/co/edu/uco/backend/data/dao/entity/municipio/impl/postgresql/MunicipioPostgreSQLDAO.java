@@ -36,7 +36,7 @@ public class MunicipioPostgreSQLDAO implements MunicipioDAO {
     }
 
     @Override
-    public void modificar(MunicipioEntity entity) {
+    public void modificar(UUID uuid, MunicipioEntity entity) {
 
     }
 }

@@ -35,8 +35,9 @@ public class SuperficiePostgreSQLDAO implements SuperficieDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(SuperficieEntity entity) {
+    public void modificar(UUID uuid, SuperficieEntity entity) {
 
     }
 }

@@ -1,49 +1,61 @@
 package co.edu.uco.backend.entity;
 
+import co.edu.uco.backend.crosscutting.utilitarios.UtilFecha;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public final class ReservaEntity {
 
     private UUID id;
-    private String nombre;
-    private CanchaEntity canchaEntity;
-    private ClienteEntity clienteEntity;
-    private EstadoReservaEntity estadoReservaEntity;
+    private ClienteEntity cliente;
+    private CanchaEntity cancha;
+    private LocalDate fechaReserva;
+    private LocalDate fechaUsoCancha;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
+    private EstadoReservaEntity estado;
 
     public ReservaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaEntity(CanchaEntity.obtenerCanchaDefecto());
-        setClienteEntity(ClienteEntity.obtenerClienteDefecto());
-        setEstadoReservaEntity(EstadoReservaEntity.obtenerEstadoReservaDefecto());
+        setCliente(ClienteEntity.obtenerClienteDefecto());
+        setCancha(CanchaEntity.obtenerCanchaDefecto());
+        setFechaReserva(UtilFecha.obtenerValorDefecto((LocalDate) null));
+        setFechaUsoCancha(UtilFecha.obtenerValorDefecto((LocalDate) null));
+        setHoraInicio(LocalTime.MIDNIGHT);
+        setHoraFin(LocalTime.MIDNIGHT);
+        setEstado(EstadoReservaEntity.obtenerEstadoReservaDefecto());
     }
 
     public ReservaEntity(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaEntity(CanchaEntity.obtenerCanchaDefecto());
-        setClienteEntity(ClienteEntity.obtenerClienteDefecto());
-        setEstadoReservaEntity(EstadoReservaEntity.obtenerEstadoReservaDefecto());
     }
 
-    public ReservaEntity(final UUID id, String nombre, CanchaEntity canchaEntity, ClienteEntity clienteEntity, EstadoReservaEntity estadoReservaEntity) {
+    public ReservaEntity(final UUID id, final ClienteEntity cliente, final CanchaEntity cancha,
+                         final LocalDate fechaReserva, final LocalDate fechaUsoCancha,
+                         final LocalTime horaInicio, final LocalTime horaFin,
+                         final EstadoReservaEntity estado) {
         setId(id);
-        setNombre(nombre);
-        setCanchaEntity(canchaEntity);
-        setClienteEntity(clienteEntity);
-        setEstadoReservaEntity(estadoReservaEntity);
+        setCliente(cliente);
+        setCancha(cancha);
+        setFechaReserva(fechaReserva);
+        setFechaUsoCancha(fechaUsoCancha);
+        setHoraInicio(horaInicio);
+        setHoraFin(horaFin);
+        setEstado(estado);
     }
 
     public static ReservaEntity obtenerReservaDefecto() {
         return new ReservaEntity();
     }
 
-    public static ReservaEntity obtenerValorDefecto(ReservaEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerReservaDefecto());
+    public static ReservaEntity obtenerValorDefecto(final ReservaEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerReservaDefecto());
     }
 
     public UUID getId() {
@@ -54,33 +66,60 @@ public final class ReservaEntity {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public ClienteEntity getCliente() {
+        return cliente;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setCliente(final ClienteEntity cliente) {
+        this.cliente = ClienteEntity.obtenerValorDefecto(cliente);
     }
 
-    public CanchaEntity getCanchaEntity() {
-        return canchaEntity;
+    public CanchaEntity getCancha() {
+        return cancha;
     }
 
-    public void setCanchaEntity(final CanchaEntity canchaEntity) {
-        this.canchaEntity = CanchaEntity.obtenerValorDefecto(canchaEntity);
-    }
-    public ClienteEntity getClienteEntity() {
-        return clienteEntity;
+    public void setCancha(final CanchaEntity cancha) {
+        this.cancha = CanchaEntity.obtenerValorDefecto(cancha);
     }
 
-    public void setClienteEntity(final ClienteEntity clienteEntity) {
-        this.clienteEntity = ClienteEntity.obtenerValorDefecto(clienteEntity);
-    }
-    public EstadoReservaEntity getEstadoReservaEntity() {
-        return estadoReservaEntity;
+    public LocalDate getFechaReserva() {
+        return fechaReserva;
     }
 
-    public void setEstadoReservaEntity(final EstadoReservaEntity estadoReservaEntity) {
-        this.estadoReservaEntity = EstadoReservaEntity.obtenerValorDefecto(estadoReservaEntity);
+    public void setFechaReserva(final LocalDate fechaReserva) {
+        this.fechaReserva = UtilFecha.obtenerValorDefecto(fechaReserva);
+    }
+
+    public LocalDate getFechaUsoCancha() {
+        return fechaUsoCancha;
+    }
+
+    public void setFechaUsoCancha(final LocalDate fechaUsoCancha) {
+        this.fechaUsoCancha = UtilFecha.obtenerValorDefecto(fechaUsoCancha);
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(final LocalTime horaInicio) {
+        this.horaInicio = UtilObjeto.getInstance().obtenerValorDefecto(horaInicio, LocalTime.MIDNIGHT);
+    }
+
+    public LocalTime getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(final LocalTime horaFin) {
+        this.horaFin = UtilObjeto.getInstance().obtenerValorDefecto(horaFin, LocalTime.MIDNIGHT);
+    }
+
+    public EstadoReservaEntity getEstado() {
+        return estado;
+    }
+
+    public void setEstado(final EstadoReservaEntity estado) {
+        this.estado = EstadoReservaEntity.obtenerValorDefecto(estado);
     }
 }
+

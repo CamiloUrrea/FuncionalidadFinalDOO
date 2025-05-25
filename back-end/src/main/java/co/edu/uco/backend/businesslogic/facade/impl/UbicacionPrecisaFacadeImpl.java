@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.UbicacionPrecisaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.UbicacionPrecisaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.UbicacionPrecisaFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.UbicacionPrecisaDTO;
@@ -15,7 +16,7 @@ public class UbicacionPrecisaFacadeImpl implements UbicacionPrecisaFacade {
     private DAOFactory daoFactory;
     private UbicacionPrecisaBusinessLogic businessLogic;
 
-    public UbicacionPrecisaFacadeImpl() {
+    public UbicacionPrecisaFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new UbicacionPrecisaBusinessLogicImpl(daoFactory);
     }

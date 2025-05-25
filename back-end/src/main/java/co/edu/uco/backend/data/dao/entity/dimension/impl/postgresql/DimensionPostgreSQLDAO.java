@@ -35,8 +35,9 @@ public class DimensionPostgreSQLDAO implements DimensionDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(DimensionEntity entity) {
+    public void modificar(UUID uuid, DimensionEntity entity) {
 
     }
 }

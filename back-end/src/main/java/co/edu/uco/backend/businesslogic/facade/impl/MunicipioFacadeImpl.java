@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.MunicipioBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.MunicipioBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.MunicipioFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.MunicipioDTO;
@@ -15,7 +16,7 @@ public class MunicipioFacadeImpl implements MunicipioFacade {
     private DAOFactory daoFactory;
     private MunicipioBusinessLogic businessLogic;
 
-    public MunicipioFacadeImpl() {
+    public MunicipioFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new MunicipioBusinessLogicImpl(daoFactory);
     }

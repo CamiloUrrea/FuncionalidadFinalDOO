@@ -6,59 +6,78 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
 import java.util.UUID;
 
-public final class EncargadoEntity {
+public final class EncargadoEntity extends UsuarioEntity {
 
-    private UUID id;
-    private String nombre;
-    private OrganizacionDeportivaEntity organizacionDeportivaEntity;
+    private String correo;
+    private String tipoDocumento;
+    private String documento;
+    private OrganizacionDeportivaEntity organizacion;
 
-    public EncargadoEntity() {
-        setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setOrganizacionDeportivaEntity(OrganizacionDeportivaEntity.obtenerOrganizacionDeportivaDefecto());
+    EncargadoEntity() {
+        super();
+        setCorreo(UtilTexto.getInstance().obtenerValorDefecto());
+        setTipoDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setOrganizacion(OrganizacionDeportivaEntity.obtenerOrganizacionDeportivaDefecto());
     }
 
     public EncargadoEntity(final UUID id) {
-        setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setOrganizacionDeportivaEntity(OrganizacionDeportivaEntity.obtenerOrganizacionDeportivaDefecto());
+        super(id);
+        setCorreo(UtilTexto.getInstance().obtenerValorDefecto());
+        setTipoDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setDocumento(UtilTexto.getInstance().obtenerValorDefecto());
+        setOrganizacion(OrganizacionDeportivaEntity.obtenerOrganizacionDeportivaDefecto());
     }
 
-    public EncargadoEntity(final UUID id, String nombre, OrganizacionDeportivaEntity organizacionDeportivaEntity) {
-        setId(id);
-        setNombre(nombre);
-        setOrganizacionDeportivaEntity(organizacionDeportivaEntity);
+    public EncargadoEntity(final UUID id, final String nombre, final String username,
+                           final String contrasena, final String prefijoTelefono, final String telefono,
+                           final String correo, final String tipoDocumento, final String documento,
+                           final OrganizacionDeportivaEntity organizacion) {
+        super(id, nombre, username, contrasena, prefijoTelefono, telefono);
+        setCorreo(correo);
+        setTipoDocumento(tipoDocumento);
+        setDocumento(documento);
+        setOrganizacion(organizacion);
     }
 
     public static EncargadoEntity obtenerEncargadoDefecto() {
         return new EncargadoEntity();
     }
 
-    public static EncargadoEntity obtenerValorDefecto(EncargadoEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerEncargadoDefecto());
+    public static EncargadoEntity obtenerValorDefecto(final EncargadoEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerEncargadoDefecto());
     }
 
-    public UUID getId() {
-        return id;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setId(final UUID id) {
-        this.id = UtilUUID.obtenerValorDefecto(id);
+    public void setCorreo(final String correo) {
+        this.correo = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(correo);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setTipoDocumento(final String tipoDocumento) {
+        this.tipoDocumento = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(tipoDocumento);
     }
 
-    public OrganizacionDeportivaEntity getOrganizacionDeportivaEntity() {
-        return organizacionDeportivaEntity;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setOrganizacionDeportivaEntity(final OrganizacionDeportivaEntity organizacionDeportivaEntity) {
-        this.organizacionDeportivaEntity = OrganizacionDeportivaEntity.obtenerValorDefecto(organizacionDeportivaEntity);
+    public void setDocumento(final String documento) {
+        this.documento = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(documento);
+    }
+
+    public OrganizacionDeportivaEntity getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(final OrganizacionDeportivaEntity organizacion) {
+        this.organizacion = OrganizacionDeportivaEntity.obtenerValorDefecto(organizacion);
     }
 }
+

@@ -1,29 +1,35 @@
 package co.edu.uco.backend.entity;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
+
+import co.edu.uco.backend.crosscutting.utilitarios.UtilDouble;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
+
 
 import java.util.UUID;
 
 public final class DimensionEntity {
 
     private UUID id;
-    private String nombre;
+    private double largo;
+    private double ancho;
 
-    public DimensionEntity() {
+    DimensionEntity() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setLargo(UtilDouble.obtenerValorDefecto(0.0));
+        setAncho(UtilDouble.obtenerValorDefecto(0.0));
     }
 
     public DimensionEntity(final UUID id) {
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setLargo(UtilDouble.obtenerValorDefecto(0.0));
+        setAncho(UtilDouble.obtenerValorDefecto(0.0));
     }
 
-    public DimensionEntity(final UUID id, final String nombre) {
+    public DimensionEntity(final UUID id, final double largo, final double ancho) {
         setId(id);
-        setNombre(nombre);
+        setLargo(largo);
+        setAncho(ancho);
     }
 
     public static DimensionEntity obtenerDimensionDefecto() {
@@ -42,11 +48,20 @@ public final class DimensionEntity {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public double getLargo() {
+        return largo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setLargo(final double largo) {
+        this.largo = UtilDouble.obtenerValorDefecto(largo);
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(final double ancho) {
+        this.ancho = UtilDouble.obtenerValorDefecto(ancho);
     }
 }
+
