@@ -3,24 +3,47 @@ import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.entity.cancha.CanchaDAO;
 import co.edu.uco.backend.entity.CanchaEntity;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
 public class CanchaPostgreSQLDAO implements CanchaDAO {
 
-    private final Connection connection;
+    private final Connection conexion;
 
     public CanchaPostgreSQLDAO(Connection connection) {
-        this.connection = connection;
+        this.conexion = connection;
     }
+
+
+
 
     @Override
     public void create(CanchaEntity entity){
         var sentenciaSQL = new StringBuilder();
 
-        sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombre, dimensiones, superficie, iluminacion, cubierta, costoporhora, codigotipocancha, codigoorganizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombre, dimensiones, superficie, iluminacion, " +
+                "cubierta, costoporhora, codigotipocancha, codigoorganizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        try(var sentenciaPreparada = conexion.prepareStatement(sentenciaSQL.toString())){
+            sentenciaPreparada.setObject(1,entity.getId());
+            sentenciaPreparada.setString(2,entity.getNombre());
+            sentenciaPreparada.setString(3,entity.getNombre());
+            sentenciaPreparada.setBoolean(4,entity.getNombre());
+            sentenciaPreparada.setBoolean(5,entity.getNombre());
+
+        }
+        catch (SQLException e){
+
+        }
 
     }
+
+
+
+
+
+
 
 
     @Override
