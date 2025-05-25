@@ -1,6 +1,6 @@
 package co.edu.uco.backend.data.dao.factory.azuresql;
-import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
-import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.sql.Connection;
@@ -15,8 +15,6 @@ import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.UbicacionPrecisaDAO;
 import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.impl.azuresql.UbicacionPrecisaAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.tipocancha.TipoCanchaDAO;
 import co.edu.uco.backend.data.dao.entity.tipocancha.impl.azuresql.TipoCanchaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.diasemana.DiaSemanaDAO;
-import co.edu.uco.backend.data.dao.entity.diasemana.impl.azuresql.DiaSemanaAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.horariodisponible.HorarioDisponibleDAO;
 import co.edu.uco.backend.data.dao.entity.horariodisponible.impl.azuresql.HorarioDisponibleAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.horarioespecial.HorarioEspecialDAO;
@@ -228,10 +226,6 @@ public abstract class AzureSQLDAOFactory extends DAOFactory {
         return new TipoCanchaAzureSQLDAO(conexion);
     }
 
-    @Override
-    public DiaSemanaDAO getDiaSemanaDAO() {
-        return new DiaSemanaAzureSQLDAO(conexion);
-    }
 
     @Override
     public HorarioDisponibleDAO getHorarioDisponibleDAO() {

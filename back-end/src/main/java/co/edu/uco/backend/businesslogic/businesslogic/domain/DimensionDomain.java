@@ -2,7 +2,6 @@ package co.edu.uco.backend.businesslogic.businesslogic.domain;
 
 import co.edu.uco.backend.crosscutting.utilitarios.UtilDouble;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
 import java.util.UUID;

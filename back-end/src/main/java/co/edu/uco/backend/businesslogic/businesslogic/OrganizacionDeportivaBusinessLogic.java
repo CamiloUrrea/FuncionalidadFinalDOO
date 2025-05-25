@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface OrganizacionDeportivaBusinessLogic extends UsuarioBusinessLogic {
 
-    void registrarNuevoOrganizacionDeportiva(OrganizacionDeportivaDomain domain);
+    void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDomain organizacionDeportiva);
 
-    void modificarOrganizacionDeportivaExistente(UUID orgId, OrganizacionDeportivaDomain domain);
+    void modificarOrganizacionDeportivaExistente(UUID orgId, OrganizacionDeportivaDomain organizacionDeportiva);
 
     void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID orgId);
 

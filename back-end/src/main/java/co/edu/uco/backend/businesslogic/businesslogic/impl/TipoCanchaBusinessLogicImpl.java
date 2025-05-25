@@ -9,22 +9,22 @@ import java.util.UUID;
 public class TipoCanchaBusinessLogicImpl implements TipoCanchaBusinessLogic {
 
     @Override
-    public void registrarNuevoTipoCancha(TipoCanchaDomain domain) {
+    public void registrarNuevoTipoCancha(TipoCanchaDomain tipoCancha) {
 
     }
 
     @Override
-    public void modificarTipoCanchaExistente(UUID id, TipoCanchaDomain domain) {
+    public void modificarTipoCanchaExistente(UUID id, TipoCanchaDomain tipoCancha) {
 
     }
 
     @Override
-    public void darBajaDefinitivamenteTipoCanchaExistente(UUID id) {
+    public void darBajaDefinitivamenteTipoCanchaExistente(UUID tipoCanchaId) {
 
     }
 
     @Override
-    public TipoCanchaDomain consultarTipoCanchaPorId(UUID id) {
+    public TipoCanchaDomain consultarTipoCanchaPorId(UUID tipoCanchaId) {
         return null;
     }
 

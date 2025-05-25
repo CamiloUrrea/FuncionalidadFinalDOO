@@ -5,11 +5,11 @@ import java.util.UUID;
 
 public interface ReservaBusinessLogic {
 
-    void registrarNuevaReserva(UUID clienteID, ReservaDomain domain);
+    void registrarNuevaReserva(UUID clienteID, ReservaDomain reserva);
 
-    void confirmarReserva(UUID clienteId, UUID idReserva);
+    void confirmarReserva(UUID clienteId, UUID idReserva, ReservaDomain reserva);
 
-    void cancelarReservaPorCliente(UUID clienteId, UUID reservaId);
+    void cancelarReservaPorCliente(UUID clienteId, UUID reservaId, ReservaDomain reserva);
 
     ReservaDomain consultarReservaPorCliente(UUID clienteId, UUID reservaId);
 

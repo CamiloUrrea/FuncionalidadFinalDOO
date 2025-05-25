@@ -20,28 +20,29 @@ public class ResenaFacadeImpl implements ResenaFacade {
         businessLogic = new ResenaBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoResena(ResenaDTO dto) {
+    public void registrarNuevaResena(UUID reserva, ResenaDTO resena) {
 
     }
 
     @Override
-    public void modificarResena(UUID id, ResenaDTO dto) {
+    public void modificarResenaExistente(UUID reservaId, UUID resenaId, ResenaDTO resena) {
 
     }
 
     @Override
-    public void darBajaDefinitivaResenaExistente(UUID id) {
+    public void darBajaDefinitivamenteResenaExistente(UUID reservaId, UUID resenaId) {
 
     }
 
     @Override
-    public ResenaDTO consultarResenaPorId(UUID id) {
+    public ResenaDTO consultarResenaPorReserva(UUID reservaId, UUID resenaId) {
         return null;
     }
 
     @Override
-    public List<ResenaDTO> consultarResenasPorFiltro(ResenaDTO filtro) {
+    public List<ResenaDTO> consultarResenas(UUID reservaId, ResenaDTO filtro) {
         return List.of();
     }
 }

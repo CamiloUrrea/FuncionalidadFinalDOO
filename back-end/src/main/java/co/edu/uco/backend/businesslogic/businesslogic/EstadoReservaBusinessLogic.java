@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface EstadoReservaBusinessLogic {
 
-    void registrarNuevoEstadoReserva(EstadoReservaDomain domain);
+    void registrarNuevoEstadoReserva(EstadoReservaDomain estadoReserva);
 
-    void modificarEstadoReservaExistente(UUID estadoReservaId, EstadoReservaDomain domain);
+    void modificarEstadoReservaExistente(UUID estadoReservaId, EstadoReservaDomain estadoReserva);
 
     void darBajaDefinitivamenteEstadoReservaExistente(UUID estadoReservaId);
 

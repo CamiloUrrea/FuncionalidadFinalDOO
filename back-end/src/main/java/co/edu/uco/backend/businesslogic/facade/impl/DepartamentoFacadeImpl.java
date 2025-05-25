@@ -21,22 +21,22 @@ public class DepartamentoFacadeImpl implements DepartamentoFacade {
     }
 
     @Override
-    public void registrarNuevoDepartamento(DepartamentoDTO dto) {
+    public void registrarNuevoDepartamento(DepartamentoDTO departamento) {
 
     }
 
     @Override
-    public void modificarDepartamento(UUID id, DepartamentoDTO dto) {
+    public void modificarDepartamentoExistente(UUID departamentoId, DepartamentoDTO departamento) {
 
     }
 
     @Override
-    public void darBajaDefinitivaDepartamentoExistente(UUID id) {
+    public void darBajaDefinitivamenteDepartamentoExistente(UUID departamentoId) {
 
     }
 
     @Override
-    public DepartamentoDTO consultarDepartamentoPorId(UUID id) {
+    public DepartamentoDTO consultarDepartamentoPorId(UUID departamentoId) {
         return null;
     }
 

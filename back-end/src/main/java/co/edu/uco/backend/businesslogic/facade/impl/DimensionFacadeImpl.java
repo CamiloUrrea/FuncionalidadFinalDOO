@@ -7,7 +7,7 @@ import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.DimensionDTO;
 
-import java.util.List;
+
 import java.util.UUID;
 
 public class DimensionFacadeImpl implements DimensionFacade {
@@ -20,28 +20,21 @@ public class DimensionFacadeImpl implements DimensionFacade {
         businessLogic = new DimensionBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoDimension(DimensionDTO dto) {
+    public void establecerDimension(UUID canchaId, UUID dimensionId, DimensionDTO dimension) {
 
     }
 
     @Override
-    public void modificarDimension(UUID id, DimensionDTO dto) {
+    public void eliminarDimension(UUID canchaId, UUID dimensionId) {
 
     }
 
     @Override
-    public void darBajaDefinitivaDimensionExistente(UUID id) {
-
-    }
-
-    @Override
-    public DimensionDTO consultarDimensionPorId(UUID id) {
+    public DimensionDTO consultarDimensionPorId(UUID canchaId, UUID dimensionId) {
         return null;
     }
 
-    @Override
-    public List<DimensionDTO> consultarDimensionsPorFiltro(DimensionDTO filtro) {
-        return List.of();
-    }
+
 }

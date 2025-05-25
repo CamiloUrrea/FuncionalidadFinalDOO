@@ -21,17 +21,17 @@ public class SuperficieFacadeImpl implements SuperficieFacade {
     }
 
     @Override
-    public void registrarNuevoSuperficie(SuperficieDTO dto) {
+    public void registrarNuevoSuperficie(SuperficieDTO superficie) {
 
     }
 
     @Override
-    public void modificarSuperficie(UUID id, SuperficieDTO dto) {
+    public void modificarSuperficieExistente(UUID id, SuperficieDTO superficie) {
 
     }
 
     @Override
-    public void darBajaDefinitivaSuperficieExistente(UUID id) {
+    public void darBajaDefinitivamenteSuperficieExistente(UUID id) {
 
     }
 
@@ -41,7 +41,7 @@ public class SuperficieFacadeImpl implements SuperficieFacade {
     }
 
     @Override
-    public List<SuperficieDTO> consultarSuperficiesPorFiltro(SuperficieDTO filtro) {
+    public List<SuperficieDTO> consultarSuperficies(SuperficieDTO filtro) {
         return List.of();
     }
 }

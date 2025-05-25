@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface MunicipioFacade {
 
-    void registrarNuevoMunicipio(MunicipioDTO dto);
+    void registrarNuevoMunicipio(UUID departamentoId, MunicipioDTO municipio);
 
-    void modificarMunicipio(UUID id, MunicipioDTO dto);
+    void modificarMunicipioExistente(UUID departamentoId, UUID municipioId, MunicipioDTO municipio);
 
-    void darBajaDefinitivaMunicipioExistente(UUID id);
+    void darBajaDefinitivamenteMunicipioExistente(UUID departamentoId, UUID municipioId);
 
-    MunicipioDTO consultarMunicipioPorId(UUID id);
+    MunicipioDTO consultarMunicipioPorId(UUID departamentoId, UUID municipioId);
 
-    List<MunicipioDTO> consultarMunicipiosPorFiltro(MunicipioDTO filtro);
+    List<MunicipioDTO> consultarMunicipios(UUID departamentoID, MunicipioDTO filtro);
 
 }

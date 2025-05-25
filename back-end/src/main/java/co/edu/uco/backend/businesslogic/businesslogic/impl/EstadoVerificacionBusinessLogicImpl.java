@@ -9,12 +9,12 @@ import java.util.UUID;
 public class EstadoVerificacionBusinessLogicImpl implements EstadoVerificacionBusinessLogic {
 
     @Override
-    public void registrarNuevoEstadoVerificacion(EstadoVerificacionDomain domain) {
+    public void registrarNuevoEstadoVerificacion(EstadoVerificacionDomain estadoVerificacion) {
 
     }
 
     @Override
-    public void modificarEstadoVerificacionExistente(UUID id, EstadoVerificacionDomain domain) {
+    public void modificarEstadoVerificacionExistente(UUID id, EstadoVerificacionDomain estadoVerificacion) {
 
     }
 

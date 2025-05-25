@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public interface DepartamentoFacade {
 
-    void registrarNuevoDepartamento(DepartamentoDTO dto);
+    void registrarNuevoDepartamento(DepartamentoDTO departamento);
 
-    void modificarDepartamento(UUID id, DepartamentoDTO dto);
+    void modificarDepartamentoExistente(UUID departamentoId, DepartamentoDTO departamento);
 
-    void darBajaDefinitivaDepartamentoExistente(UUID id);
+    void darBajaDefinitivamenteDepartamentoExistente(UUID departamentoId);
 
-    DepartamentoDTO consultarDepartamentoPorId(UUID id);
+    DepartamentoDTO consultarDepartamentoPorId(UUID departamentoId);
 
     List<DepartamentoDTO> consultarDepartamentosPorFiltro(DepartamentoDTO filtro);
 

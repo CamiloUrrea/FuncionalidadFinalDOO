@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface EstadoVerificacionBusinessLogic {
 
-    void registrarNuevoEstadoVerificacion(EstadoVerificacionDomain domain);
+    void registrarNuevoEstadoVerificacion(EstadoVerificacionDomain estadoVerificacion);
 
-    void modificarEstadoVerificacionExistente(UUID estadoVerificacionId, EstadoVerificacionDomain domain);
+    void modificarEstadoVerificacionExistente(UUID estadoVerificacionId, EstadoVerificacionDomain estadoVerificacion);
 
     void darBajaDefinitivamenteEstadoVerificacionExistente(UUID estadoVerificacionId);
 

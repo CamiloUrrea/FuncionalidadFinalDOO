@@ -7,14 +7,16 @@ import java.util.UUID;
 
 public interface FacturaFacade {
 
-    void registrarNuevoFactura(FacturaDTO dto);
+    void registrarNuevaFactura(UUID reservaId, FacturaDTO factura);
 
-    void modificarFactura(UUID id, FacturaDTO dto);
+    void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDTO factura);
 
-    void darBajaDefinitivaFacturaExistente(UUID id);
+    void darBajaDefinitivamenteFacturaExistente(UUID reservaId,UUID facturaId);
 
-    FacturaDTO consultarFacturaPorId(UUID id);
+    FacturaDTO consultarFacturaPorId(UUID reservaId,UUID facturaid);
 
-    List<FacturaDTO> consultarFacturasPorFiltro(FacturaDTO filtro);
+    List<FacturaDTO> consultarFacturasPorReserva(UUID reservaId, FacturaDTO filtro);
+
+    byte[] generarPdfFactura(UUID reservaId, UUID facturaId);
 
 }

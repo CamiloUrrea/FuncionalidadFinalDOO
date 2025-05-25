@@ -9,12 +9,12 @@ import java.util.UUID;
 public class SuperficieBusinessLogicImpl implements SuperficieBusinessLogic {
 
     @Override
-    public void registrarNuevoSuperficie(SuperficieDomain domain) {
+    public void registrarNuevoSuperficie(SuperficieDomain superficie) {
 
     }
 
     @Override
-    public void modificarSuperficieExistente(UUID id, SuperficieDomain domain) {
+    public void modificarSuperficieExistente(UUID id, SuperficieDomain superficie) {
 
     }
 

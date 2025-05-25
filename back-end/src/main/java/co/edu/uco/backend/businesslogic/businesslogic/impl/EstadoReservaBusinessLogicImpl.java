@@ -9,12 +9,12 @@ import java.util.UUID;
 public class EstadoReservaBusinessLogicImpl implements EstadoReservaBusinessLogic {
 
     @Override
-    public void registrarNuevoEstadoReserva(EstadoReservaDomain domain) {
+    public void registrarNuevoEstadoReserva(EstadoReservaDomain estadoReserva) {
 
     }
 
     @Override
-    public void modificarEstadoReservaExistente(UUID id, EstadoReservaDomain domain) {
+    public void modificarEstadoReservaExistente(UUID id, EstadoReservaDomain estadoReserva) {
 
     }
 

@@ -15,12 +15,12 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
     }
 
     @Override
-    public void registrarNuevoOrganizacionDeportiva(OrganizacionDeportivaDomain domain) {
+    public void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDomain organizacionDeportiva) {
 
     }
 
     @Override
-    public void modificarOrganizacionDeportivaExistente(UUID id, OrganizacionDeportivaDomain domain) {
+    public void modificarOrganizacionDeportivaExistente(UUID id, OrganizacionDeportivaDomain organizacionDeportiva) {
 
     }
 

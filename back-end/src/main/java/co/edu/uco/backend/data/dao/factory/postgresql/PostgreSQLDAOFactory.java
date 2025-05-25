@@ -1,11 +1,10 @@
 package co.edu.uco.backend.data.dao.factory.postgresql;
 
-import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
-import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.entity.cancha.impl.azuresql.CanchaAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.cliente.impl.azuresql.ClienteAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.departamento.impl.azuresql.DepartamentoAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.diasemana.impl.azuresql.DiaSemanaAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.impl.azuresql.DimensionAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.encargado.impl.azuresql.EncargadoAzureSQLDAO;
 import co.edu.uco.backend.data.dao.entity.estadoreserva.impl.azuresql.EstadoReservaAzureSQLDAO;
@@ -26,41 +25,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import co.edu.uco.backend.data.dao.entity.departamento.DepartamentoDAO;
-import co.edu.uco.backend.data.dao.entity.departamento.impl.postgresql.DepartamentoPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.municipio.MunicipioDAO;
-import co.edu.uco.backend.data.dao.entity.municipio.impl.postgresql.MunicipioPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.UbicacionPrecisaDAO;
-import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.impl.postgresql.UbicacionPrecisaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.tipocancha.TipoCanchaDAO;
-import co.edu.uco.backend.data.dao.entity.tipocancha.impl.postgresql.TipoCanchaPostgreSQLDAO;
-import co.edu.uco.backend.data.dao.entity.diasemana.DiaSemanaDAO;
-import co.edu.uco.backend.data.dao.entity.diasemana.impl.postgresql.DiaSemanaPostgreSQLDAO;
+
 import co.edu.uco.backend.data.dao.entity.horariodisponible.HorarioDisponibleDAO;
-import co.edu.uco.backend.data.dao.entity.horariodisponible.impl.postgresql.HorarioDisponiblePostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.horarioespecial.HorarioEspecialDAO;
-import co.edu.uco.backend.data.dao.entity.horarioespecial.impl.postgresql.HorarioEspecialPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.estadoverificacion.EstadoVerificacionDAO;
-import co.edu.uco.backend.data.dao.entity.estadoverificacion.impl.postgresql.EstadoVerificacionPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.organizaciondeportiva.OrganizacionDeportivaDAO;
-import co.edu.uco.backend.data.dao.entity.organizaciondeportiva.impl.postgresql.OrganizacionDeportivaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.encargado.EncargadoDAO;
-import co.edu.uco.backend.data.dao.entity.encargado.impl.postgresql.EncargadoPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.cancha.CanchaDAO;
-import co.edu.uco.backend.data.dao.entity.cancha.impl.postgresql.CanchaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.estadoreserva.EstadoReservaDAO;
-import co.edu.uco.backend.data.dao.entity.estadoreserva.impl.postgresql.EstadoReservaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.cliente.ClienteDAO;
-import co.edu.uco.backend.data.dao.entity.cliente.impl.postgresql.ClientePostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.reserva.ReservaDAO;
-import co.edu.uco.backend.data.dao.entity.reserva.impl.postgresql.ReservaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.resena.ResenaDAO;
-import co.edu.uco.backend.data.dao.entity.resena.impl.postgresql.ResenaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.factura.FacturaDAO;
-import co.edu.uco.backend.data.dao.entity.factura.impl.postgresql.FacturaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
-import co.edu.uco.backend.data.dao.entity.superficie.impl.postgresql.SuperficiePostgreSQLDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
-import co.edu.uco.backend.data.dao.entity.dimension.impl.postgresql.DimensionPostgreSQLDAO;
 
 public abstract class PostgreSQLDAOFactory extends DAOFactory {
 
@@ -68,17 +49,15 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
     private boolean transaccionEstaInciada;
     private boolean conexionEstaAbierta;
 
-    @Override
-    public PostgreSQLDAOFactory(Connection conexion) throws BackEndException {
+
+    protected PostgreSQLDAOFactory(Connection conexion) throws BackEndException {
         this.conexion = conexion;
         abrirConexion();
         transaccionEstaInciada = false;
         conexionEstaAbierta = true;
     }
 
-    public PostgreSQLDAOFactory(Connection conexion) {
-        this.conexion = conexion;
-    }
+
 
     protected void abrirConexion() throws BackEndException {
         var baseDatos = "";
@@ -93,7 +72,7 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
             throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }catch (Exception exception) {
             var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
+            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo Exception tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
 
             throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
@@ -230,10 +209,6 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
         return new TipoCanchaAzureSQLDAO(conexion);
     }
 
-    @Override
-    public DiaSemanaDAO getDiaSemanaDAO() {
-        return new DiaSemanaAzureSQLDAO(conexion);
-    }
 
     @Override
     public HorarioDisponibleDAO getHorarioDisponibleDAO() {

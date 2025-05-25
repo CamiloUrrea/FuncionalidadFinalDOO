@@ -13,12 +13,12 @@ public class MunicipioBusinessLogicImpl implements MunicipioBusinessLogic {
     }
 
     @Override
-    public void registrarNuevoMunicipio(UUID departamentoId, MunicipioDomain domain) {
+    public void registrarNuevoMunicipio(UUID departamentoId, MunicipioDomain municipio) {
 
     }
 
     @Override
-    public void modificarMunicipioExistente(UUID departamentoId, UUID municipioId, MunicipioDomain domain) {
+    public void modificarMunicipioExistente(UUID departamentoId, UUID municipioId, MunicipioDomain municipio) {
 
     }
 

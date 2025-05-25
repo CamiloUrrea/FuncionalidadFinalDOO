@@ -7,14 +7,20 @@ import java.util.UUID;
 
 public interface ReservaFacade {
 
-    void registrarNuevoReserva(ReservaDTO dto);
+    void registrarNuevaReserva(UUID clienteID, ReservaDTO reserva);
 
-    void modificarReserva(UUID id, ReservaDTO dto);
+    void confirmarReserva(UUID clienteId, UUID idReserva, ReservaDTO reserva);
 
-    void darBajaDefinitivaReservaExistente(UUID id);
+    void cancelarReservaPorCliente(UUID clienteId, UUID reservaId, ReservaDTO reserva);
 
-    ReservaDTO consultarReservaPorId(UUID id);
+    ReservaDTO consultarReservaPorCliente(UUID clienteId, UUID reservaId);
 
-    List<ReservaDTO> consultarReservasPorFiltro(ReservaDTO filtro);
+    List<ReservaDTO> listarReservasPorCliente(UUID clienteId, ReservaDTO filtro);
+
+    void finalizarReserva(UUID clienteId, UUID reservaId);
+
+    void cancelarReservaPorOrganizacion(UUID orgId, UUID reservaId);
+
+    List<ReservaDTO> listarReservasPorCancha(UUID orgId, UUID canchaId);
 
 }

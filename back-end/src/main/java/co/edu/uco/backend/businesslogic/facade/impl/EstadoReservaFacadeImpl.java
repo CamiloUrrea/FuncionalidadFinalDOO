@@ -21,27 +21,30 @@ public class EstadoReservaFacadeImpl implements EstadoReservaFacade {
     }
 
     @Override
-    public void registrarNuevoEstadoReserva(EstadoReservaDTO dto) {
+    public void registrarNuevoEstadoReserva(EstadoReservaDTO estadoReserva) {
 
     }
 
     @Override
-    public void modificarEstadoReserva(UUID id, EstadoReservaDTO dto) {
+    public void modificarEstadoReservaExistente(UUID estadoReservaId, EstadoReservaDTO estadoReserva) {
 
     }
 
     @Override
-    public void darBajaDefinitivaEstadoReservaExistente(UUID id) {
+    public void darBajaDefinitivamenteEstadoReservaExistente(UUID estadoReservaId) {
 
     }
 
+
     @Override
-    public EstadoReservaDTO consultarEstadoReservaPorId(UUID id) {
+    public EstadoReservaDTO consultarEstadoReservaPorId(UUID estadoReservaId) {
         return null;
     }
 
     @Override
-    public List<EstadoReservaDTO> consultarEstadoReservasPorFiltro(EstadoReservaDTO filtro) {
+    public List<EstadoReservaDTO> consultarEstadoReservas(EstadoReservaDTO filtro) {
         return List.of();
     }
+
+
 }

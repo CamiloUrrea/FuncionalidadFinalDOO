@@ -5,15 +5,15 @@ import co.edu.uco.backend.dto.ClienteDTO;
 import java.util.List;
 import java.util.UUID;
 
-public interface ClienteFacade {
+public interface ClienteFacade extends UsuarioFacade {
 
-    void registrarNuevoCliente(ClienteDTO dto);
+    void registrarNuevoCliente(ClienteDTO cliente);
 
-    void modificarCliente(UUID id, ClienteDTO dto);
+    void modificarClienteExistente(UUID clienteId, ClienteDTO cliente);
 
-    void darBajaDefinitivaClienteExistente(UUID id);
+    void darBajaDefinitivamenteClienteExistente(UUID clienteId);
 
-    ClienteDTO consultarClientePorId(UUID id);
+    ClienteDTO consultarClientePorId(UUID clienteId);
 
     List<ClienteDTO> consultarClientesPorFiltro(ClienteDTO filtro);
 

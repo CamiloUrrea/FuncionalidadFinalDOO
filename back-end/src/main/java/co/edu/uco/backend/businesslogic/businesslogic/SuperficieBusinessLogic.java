@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface SuperficieBusinessLogic {
 
-    void registrarNuevoSuperficie(SuperficieDomain domain);
+    void registrarNuevoSuperficie(SuperficieDomain superficie);
 
-    void modificarSuperficieExistente(UUID id, SuperficieDomain domain);
+    void modificarSuperficieExistente(UUID id, SuperficieDomain superficie);
 
     void darBajaDefinitivamenteSuperficieExistente(UUID id);
 

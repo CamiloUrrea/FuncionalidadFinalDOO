@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface ResenaBusinessLogic {
 
-    void registrarNuevoResena(UUID reserva, ResenaDomain resena);
+    void registrarNuevaResena(UUID reserva, ResenaDomain resena);
 
     void modificarResenaExistente(UUID reservaId, UUID resenaId, ResenaDomain resena);
 

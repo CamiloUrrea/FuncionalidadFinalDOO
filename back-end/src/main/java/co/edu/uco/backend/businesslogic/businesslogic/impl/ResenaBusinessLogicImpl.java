@@ -13,7 +13,7 @@ public class ResenaBusinessLogicImpl implements ResenaBusinessLogic {
     }
 
     @Override
-    public void registrarNuevoResena(UUID reserva, ResenaDomain resena) {
+    public void registrarNuevaResena(UUID reserva, ResenaDomain resena) {
 
     }
 

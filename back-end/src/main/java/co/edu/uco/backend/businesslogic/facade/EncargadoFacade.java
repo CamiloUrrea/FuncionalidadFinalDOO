@@ -5,16 +5,18 @@ import co.edu.uco.backend.dto.EncargadoDTO;
 import java.util.List;
 import java.util.UUID;
 
-public interface EncargadoFacade {
+public interface EncargadoFacade extends UsuarioFacade {
 
-    void registrarNuevoEncargado(EncargadoDTO dto);
+    UUID registrarNuevoEncargado(UUID orgId, EncargadoDTO domain);
 
-    void modificarEncargado(UUID id, EncargadoDTO dto);
+    void modificarEncargadoExistente(UUID orgId, UUID encargadoID, EncargadoDTO domain);
 
-    void darBajaDefinitivaEncargadoExistente(UUID id);
+    void darBajaDefinitivamenteEncargadoExistente(UUID orgId, UUID encargadoId);
 
-    EncargadoDTO consultarEncargadoPorId(UUID id);
+    EncargadoDTO consultarEncargadoPorId(UUID orgId, UUID encargadoId);
 
-    List<EncargadoDTO> consultarEncargadosPorFiltro(EncargadoDTO filtro);
+    List<EncargadoDTO> consultarEncargadosPorOrganizacion(UUID orgId, EncargadoDTO filtro);
+
+    String activarCuentaEncargado(String tokenDeActivacion, String rawPasswordNueva);
 
 }

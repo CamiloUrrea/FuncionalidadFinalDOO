@@ -20,28 +20,44 @@ public class ReservaFacadeImpl implements ReservaFacade {
         businessLogic = new ReservaBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoReserva(ReservaDTO dto) {
+    public void registrarNuevaReserva(UUID clienteID, ReservaDTO reserva) {
 
     }
 
     @Override
-    public void modificarReserva(UUID id, ReservaDTO dto) {
+    public void confirmarReserva(UUID clienteId, UUID idReserva, ReservaDTO reserva) {
 
     }
 
     @Override
-    public void darBajaDefinitivaReservaExistente(UUID id) {
+    public void cancelarReservaPorCliente(UUID clienteId, UUID reservaId, ReservaDTO reserva) {
 
     }
 
     @Override
-    public ReservaDTO consultarReservaPorId(UUID id) {
+    public ReservaDTO consultarReservaPorCliente(UUID clienteId, UUID reservaId) {
         return null;
     }
 
     @Override
-    public List<ReservaDTO> consultarReservasPorFiltro(ReservaDTO filtro) {
+    public List<ReservaDTO> listarReservasPorCliente(UUID clienteId, ReservaDTO filtro) {
+        return List.of();
+    }
+
+    @Override
+    public void finalizarReserva(UUID clienteId, UUID reservaId) {
+
+    }
+
+    @Override
+    public void cancelarReservaPorOrganizacion(UUID orgId, UUID reservaId) {
+
+    }
+
+    @Override
+    public List<ReservaDTO> listarReservasPorCancha(UUID orgId, UUID canchaId) {
         return List.of();
     }
 }

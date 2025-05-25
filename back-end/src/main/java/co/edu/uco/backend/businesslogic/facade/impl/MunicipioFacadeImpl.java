@@ -20,28 +20,29 @@ public class MunicipioFacadeImpl implements MunicipioFacade {
         businessLogic = new MunicipioBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoMunicipio(MunicipioDTO dto) {
+    public void registrarNuevoMunicipio(UUID departamentoId, MunicipioDTO municipio) {
 
     }
 
     @Override
-    public void modificarMunicipio(UUID id, MunicipioDTO dto) {
+    public void modificarMunicipioExistente(UUID departamentoId, UUID municipioId, MunicipioDTO municipio) {
 
     }
 
     @Override
-    public void darBajaDefinitivaMunicipioExistente(UUID id) {
+    public void darBajaDefinitivamenteMunicipioExistente(UUID departamentoId, UUID municipioId) {
 
     }
 
     @Override
-    public MunicipioDTO consultarMunicipioPorId(UUID id) {
+    public MunicipioDTO consultarMunicipioPorId(UUID departamentoId, UUID municipioId) {
         return null;
     }
 
     @Override
-    public List<MunicipioDTO> consultarMunicipiosPorFiltro(MunicipioDTO filtro) {
+    public List<MunicipioDTO> consultarMunicipios(UUID departamentoID, MunicipioDTO filtro) {
         return List.of();
     }
 }

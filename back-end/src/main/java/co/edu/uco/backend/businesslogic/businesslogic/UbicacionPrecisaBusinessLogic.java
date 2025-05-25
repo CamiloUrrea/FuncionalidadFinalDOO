@@ -8,5 +8,5 @@ public interface UbicacionPrecisaBusinessLogic {
     void establecerUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDomain ubicacionPrecisa);
     void eliminarUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId);
     UbicacionPrecisaDomain consultarUbicacionPrecisaPorId(UUID canchaId, UUID ubicacionPrecisaId);
-    UbicacionPrecisaDomain consultarUbicacionPrecisaPorCancha(UUID canchaId, UbicacionPrecisaDomain filtro);
+
 }

@@ -1,4 +1,4 @@
-package co.edu.uco.backend.crosscutting.Exceptions;
+package co.edu.uco.backend.crosscutting.exceptions;
 
 public enum LayerException {
 

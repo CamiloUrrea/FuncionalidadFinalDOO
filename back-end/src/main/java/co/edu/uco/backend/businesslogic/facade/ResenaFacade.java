@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface ResenaFacade {
 
-    void registrarNuevoResena(ResenaDTO dto);
+    void registrarNuevaResena(UUID reserva, ResenaDTO resena);
 
-    void modificarResena(UUID id, ResenaDTO dto);
+    void modificarResenaExistente(UUID reservaId, UUID resenaId, ResenaDTO resena);
 
-    void darBajaDefinitivaResenaExistente(UUID id);
+    void darBajaDefinitivamenteResenaExistente(UUID reservaId, UUID resenaId);
 
-    ResenaDTO consultarResenaPorId(UUID id);
+    ResenaDTO consultarResenaPorReserva(UUID reservaId, UUID resenaId);
 
-    List<ResenaDTO> consultarResenasPorFiltro(ResenaDTO filtro);
+    List<ResenaDTO> consultarResenas(UUID reservaId, ResenaDTO filtro);
 
 }

@@ -5,16 +5,20 @@ import co.edu.uco.backend.dto.OrganizacionDeportivaDTO;
 import java.util.List;
 import java.util.UUID;
 
-public interface OrganizacionDeportivaFacade {
+public interface OrganizacionDeportivaFacade extends UsuarioFacade {
 
-    void registrarNuevoOrganizacionDeportiva(OrganizacionDeportivaDTO dto);
+    void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDTO organizacionDeportiva);
 
-    void modificarOrganizacionDeportiva(UUID id, OrganizacionDeportivaDTO dto);
+    void modificarOrganizacionDeportivaExistente(UUID orgId, OrganizacionDeportivaDTO organizacionDeportiva);
 
-    void darBajaDefinitivaOrganizacionDeportivaExistente(UUID id);
+    void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID orgId);
 
-    OrganizacionDeportivaDTO consultarOrganizacionDeportivaPorId(UUID id);
+    OrganizacionDeportivaDTO consultarOrganizacionDeportivaPorId(UUID orgId);
 
-    List<OrganizacionDeportivaDTO> consultarOrganizacionDeportivasPorFiltro(OrganizacionDeportivaDTO filtro);
+    List<OrganizacionDeportivaDTO> consultarOrganizacionesDeportivas(OrganizacionDeportivaDTO filtro);
+
+    void aceptarOrganizacion(UUID orgId);
+
+    void rechazarOrganizacion(UUID orgId);
 
 }

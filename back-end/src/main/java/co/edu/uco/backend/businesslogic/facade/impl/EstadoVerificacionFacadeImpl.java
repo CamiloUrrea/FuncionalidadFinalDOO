@@ -26,14 +26,15 @@ public class EstadoVerificacionFacadeImpl implements EstadoVerificacionFacade {
     }
 
     @Override
-    public void modificarEstadoVerificacion(UUID id, EstadoVerificacionDTO dto) {
+    public void modificarEstadoVerificacionExistente(UUID estadoVerificacionId, EstadoVerificacionDTO estadoVerificacion) {
 
     }
 
     @Override
-    public void darBajaDefinitivaEstadoVerificacionExistente(UUID id) {
+    public void darBajaDefinitivamenteEstadoVerificacionExistente(UUID estadoVerificacionId) {
 
     }
+
 
     @Override
     public EstadoVerificacionDTO consultarEstadoVerificacionPorId(UUID id) {
@@ -41,7 +42,9 @@ public class EstadoVerificacionFacadeImpl implements EstadoVerificacionFacade {
     }
 
     @Override
-    public List<EstadoVerificacionDTO> consultarEstadoVerificacionsPorFiltro(EstadoVerificacionDTO filtro) {
+    public List<EstadoVerificacionDTO> consultarEstadoVerificacions(EstadoVerificacionDTO filtro) {
         return List.of();
     }
+
+
 }

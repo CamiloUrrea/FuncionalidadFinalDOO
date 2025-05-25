@@ -1,6 +1,6 @@
 package co.edu.uco.backend.data.dao.entity.cancha;
 
-import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.entity.CreateDAO;
 import co.edu.uco.backend.data.dao.entity.DeleteDAO;
 import co.edu.uco.backend.data.dao.entity.RetrieveDAO;

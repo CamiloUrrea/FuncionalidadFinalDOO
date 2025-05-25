@@ -20,28 +20,29 @@ public class HorarioEspecialFacadeImpl implements HorarioEspecialFacade {
         businessLogic = new HorarioEspecialBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoHorarioEspecial(HorarioEspecialDTO dto) {
+    public void registrarNuevoHorarioEspecial(UUID canchaId, HorarioEspecialDTO horarioEspecial) {
 
     }
 
     @Override
-    public void modificarHorarioEspecial(UUID id, HorarioEspecialDTO dto) {
+    public void modificarHorarioEspecialExistente(UUID canchaId, UUID horarioEspecialId, HorarioEspecialDTO horarioEspecial) {
 
     }
 
     @Override
-    public void darBajaDefinitivaHorarioEspecialExistente(UUID id) {
+    public void darBajaDefinitivamenteHorarioEspecialExistente(UUID canchaId, UUID horarioEspecialId) {
 
     }
 
     @Override
-    public HorarioEspecialDTO consultarHorarioEspecialPorId(UUID id) {
+    public HorarioEspecialDTO consultarHorarioEspecialPorId(UUID canchaId, UUID horarioEspecialId) {
         return null;
     }
 
     @Override
-    public List<HorarioEspecialDTO> consultarHorarioEspecialsPorFiltro(HorarioEspecialDTO filtro) {
+    public List<HorarioEspecialDTO> consultarHorariosEspecialesPorCancha(UUID canchaId, HorarioEspecialDTO horarioEspecial) {
         return List.of();
     }
 }

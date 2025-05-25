@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface SuperficieFacade {
 
-    void registrarNuevoSuperficie(SuperficieDTO dto);
+    void registrarNuevoSuperficie(SuperficieDTO superficie);
 
-    void modificarSuperficie(UUID id, SuperficieDTO dto);
+    void modificarSuperficieExistente(UUID id, SuperficieDTO superficie);
 
-    void darBajaDefinitivaSuperficieExistente(UUID id);
+    void darBajaDefinitivamenteSuperficieExistente(UUID id);
 
     SuperficieDTO consultarSuperficiePorId(UUID id);
 
-    List<SuperficieDTO> consultarSuperficiesPorFiltro(SuperficieDTO filtro);
+    List<SuperficieDTO> consultarSuperficies(SuperficieDTO filtro);
 
 }

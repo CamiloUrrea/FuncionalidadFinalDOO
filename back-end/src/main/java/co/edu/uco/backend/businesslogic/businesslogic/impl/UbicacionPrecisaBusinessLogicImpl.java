@@ -28,8 +28,4 @@ public class UbicacionPrecisaBusinessLogicImpl implements UbicacionPrecisaBusine
         return null;
     }
 
-    @Override
-    public UbicacionPrecisaDomain consultarUbicacionPrecisaPorCancha(UUID canchaId, UbicacionPrecisaDomain filtro) {
-        return null;
-    }
 }

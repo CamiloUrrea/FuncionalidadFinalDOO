@@ -7,14 +7,15 @@ import java.util.UUID;
 
 public interface EstadoReservaFacade {
 
-    void registrarNuevoEstadoReserva(EstadoReservaDTO dto);
+    void registrarNuevoEstadoReserva(EstadoReservaDTO estadoReserva);
 
-    void modificarEstadoReserva(UUID id, EstadoReservaDTO dto);
+    void modificarEstadoReservaExistente(UUID estadoReservaId, EstadoReservaDTO estadoReserva);
 
-    void darBajaDefinitivaEstadoReservaExistente(UUID id);
+    void darBajaDefinitivamenteEstadoReservaExistente(UUID estadoReservaId);
 
-    EstadoReservaDTO consultarEstadoReservaPorId(UUID id);
+    EstadoReservaDTO consultarEstadoReservaPorId(UUID estadoReservaId);
 
-    List<EstadoReservaDTO> consultarEstadoReservasPorFiltro(EstadoReservaDTO filtro);
+    List<EstadoReservaDTO> consultarEstadoReservas(EstadoReservaDTO filtro);
 
 }
+

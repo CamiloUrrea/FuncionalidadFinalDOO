@@ -1,14 +1,10 @@
 package co.edu.uco.backend.data.dao.factory;
 
-import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
-import co.edu.uco.backend.crosscutting.Exceptions.DataBackEndException;
-import co.edu.uco.backend.data.dao.factory.azuresql.AzureSQLDAOFactory;
-import co.edu.uco.backend.data.dao.factory.postgresql.PostgreSQLDAOFactory;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.entity.departamento.DepartamentoDAO;
 import co.edu.uco.backend.data.dao.entity.municipio.MunicipioDAO;
 import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.UbicacionPrecisaDAO;
 import co.edu.uco.backend.data.dao.entity.tipocancha.TipoCanchaDAO;
-import co.edu.uco.backend.data.dao.entity.diasemana.DiaSemanaDAO;
 import co.edu.uco.backend.data.dao.entity.horariodisponible.HorarioDisponibleDAO;
 import co.edu.uco.backend.data.dao.entity.horarioespecial.HorarioEspecialDAO;
 import co.edu.uco.backend.data.dao.entity.estadoverificacion.EstadoVerificacionDAO;
@@ -36,6 +32,10 @@ public abstract class DAOFactory{
 
     }
 
+    public static DAOFactory getFactory(Factory factory) {
+        return null;
+    }
+
     protected abstract void abrirConexion() throws BackEndException;
 
     public abstract void iniciarTransacion() throws BackEndException;
@@ -53,7 +53,6 @@ public abstract class DAOFactory{
     public abstract MunicipioDAO getMunicipioDAO() throws BackEndException;
     public abstract UbicacionPrecisaDAO getUbicacionPrecisaDAO() throws BackEndException;
     public abstract TipoCanchaDAO getTipoCanchaDAO() throws BackEndException;
-    public abstract DiaSemanaDAO getDiaSemanaDAO() throws BackEndException;
     public abstract HorarioDisponibleDAO getHorarioDisponibleDAO() throws BackEndException;
     public abstract HorarioEspecialDAO getHorarioEspecialDAO() throws BackEndException;
     public abstract EstadoVerificacionDAO getEstadoVerificacionDAO() throws BackEndException;

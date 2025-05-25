@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public interface TipoCanchaBusinessLogic {
 
-    void registrarNuevoTipoCancha(TipoCanchaDomain domain);
+    void registrarNuevoTipoCancha(TipoCanchaDomain tipoCancha);
 
-    void modificarTipoCanchaExistente(UUID id, TipoCanchaDomain domain);
+    void modificarTipoCanchaExistente(UUID id, TipoCanchaDomain tipoCancha);
 
-    void darBajaDefinitivamenteTipoCanchaExistente(UUID id);
+    void darBajaDefinitivamenteTipoCanchaExistente(UUID tipoCanchaId);
 
-    TipoCanchaDomain consultarTipoCanchaPorId(UUID id);
+    TipoCanchaDomain consultarTipoCanchaPorId(UUID tipoCanchaId);
 
     List<TipoCanchaDomain> consultarTipoCanchas(TipoCanchaDomain filtro);
 

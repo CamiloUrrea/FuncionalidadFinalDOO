@@ -14,18 +14,18 @@ public class ReservaBusinessLogicImpl implements ReservaBusinessLogic {
     }
 
     @Override
-    public void registrarNuevaReserva(UUID clienteID, ReservaDomain domain) {
+    public void registrarNuevaReserva(UUID clienteID, ReservaDomain reserva) {
 
     }
 
     @Override
-    public void confirmarReserva(UUID clienteId, UUID idReserva) {
+    public void confirmarReserva(UUID clienteId, UUID idReserva, ReservaDomain reserva) {
 
     }
 
 
     @Override
-    public void cancelarReservaPorCliente(UUID clienteId, UUID reservaId) {
+    public void cancelarReservaPorCliente(UUID clienteId, UUID reservaId, ReservaDomain reserva) {
 
     }
 

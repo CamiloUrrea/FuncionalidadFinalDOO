@@ -1,9 +1,8 @@
 package co.edu.uco.backend.data.dao.entity.cancha.impl.postgresql;
-import co.edu.uco.backend.crosscutting.Exceptions.BackEndException;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.entity.cancha.CanchaDAO;
 import co.edu.uco.backend.entity.CanchaEntity;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 

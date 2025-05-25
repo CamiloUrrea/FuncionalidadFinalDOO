@@ -2,11 +2,15 @@ package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.DepartamentoBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.DepartamentoDomain;
+import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
 import java.util.UUID;
 
 public class DepartamentoBusinessLogicImpl implements DepartamentoBusinessLogic {
+
+    public DepartamentoBusinessLogicImpl(DAOFactory daoFactory) {
+    }
 
     @Override
     public void registrarNuevoDepartamento(DepartamentoDomain domain) {

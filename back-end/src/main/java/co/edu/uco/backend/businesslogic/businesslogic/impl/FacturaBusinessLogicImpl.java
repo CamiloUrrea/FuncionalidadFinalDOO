@@ -14,12 +14,12 @@ public class FacturaBusinessLogicImpl implements FacturaBusinessLogic {
 
 
     @Override
-    public void registrarNuevaFactura(UUID reservaId, FacturaDomain domain) {
+    public void registrarNuevaFactura(UUID reservaId, FacturaDomain factura) {
 
     }
 
     @Override
-    public void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDomain domain) {
+    public void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDomain factura) {
 
     }
 

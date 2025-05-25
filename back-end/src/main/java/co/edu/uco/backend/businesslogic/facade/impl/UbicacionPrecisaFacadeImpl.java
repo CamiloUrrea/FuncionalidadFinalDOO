@@ -20,28 +20,19 @@ public class UbicacionPrecisaFacadeImpl implements UbicacionPrecisaFacade {
         businessLogic = new UbicacionPrecisaBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoUbicacionPrecisa(UbicacionPrecisaDTO dto) {
+    public void establecerUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDTO ubicacionPrecisa) {
 
     }
 
     @Override
-    public void modificarUbicacionPrecisa(UUID id, UbicacionPrecisaDTO dto) {
+    public void eliminarUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId) {
 
     }
 
     @Override
-    public void darBajaDefinitivaUbicacionPrecisaExistente(UUID id) {
-
-    }
-
-    @Override
-    public UbicacionPrecisaDTO consultarUbicacionPrecisaPorId(UUID id) {
+    public UbicacionPrecisaDTO consultarUbicacionPrecisaPorId(UUID canchaId, UUID ubicacionPrecisaId) {
         return null;
-    }
-
-    @Override
-    public List<UbicacionPrecisaDTO> consultarUbicacionPrecisasPorFiltro(UbicacionPrecisaDTO filtro) {
-        return List.of();
     }
 }

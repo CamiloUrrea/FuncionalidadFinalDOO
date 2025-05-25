@@ -20,28 +20,29 @@ public class HorarioDisponibleFacadeImpl implements HorarioDisponibleFacade {
         businessLogic = new HorarioDisponibleBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoHorarioDisponible(HorarioDisponibleDTO dto) {
+    public void registrarNuevoHorarioDisponible(UUID canchaId, HorarioDisponibleDTO horarioDisponible) {
 
     }
 
     @Override
-    public void modificarHorarioDisponible(UUID id, HorarioDisponibleDTO dto) {
+    public void modificarHorarioDisponibleExistente(UUID canchaId, UUID horarioDisponinbleID, HorarioDisponibleDTO horarioDisponible) {
 
     }
 
     @Override
-    public void darBajaDefinitivaHorarioDisponibleExistente(UUID id) {
+    public void darBajaDefinitivamenteHorarioDisponibleExistente(UUID canchaId, UUID horarioDisponibleId) {
 
     }
 
     @Override
-    public HorarioDisponibleDTO consultarHorarioDisponiblePorId(UUID id) {
+    public HorarioDisponibleDTO consultarHorarioDisponiblePorId(UUID canchaId, UUID horarioDisponibleId) {
         return null;
     }
 
     @Override
-    public List<HorarioDisponibleDTO> consultarHorarioDisponiblesPorFiltro(HorarioDisponibleDTO filtro) {
+    public List<HorarioDisponibleDTO> consultarHorariosDisponiblesPorCancha(UUID canchaId, HorarioDisponibleDTO filtro) {
         return List.of();
     }
 }

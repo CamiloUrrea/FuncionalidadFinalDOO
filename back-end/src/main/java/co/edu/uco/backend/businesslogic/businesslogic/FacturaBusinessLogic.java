@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface FacturaBusinessLogic {
 
-    void registrarNuevaFactura(UUID reservaId, FacturaDomain domain);
+    void registrarNuevaFactura(UUID reservaId, FacturaDomain factura);
 
-    void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDomain domain);
+    void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDomain factura);
 
     void darBajaDefinitivamenteFacturaExistente(UUID reservaId,UUID facturaId);
 

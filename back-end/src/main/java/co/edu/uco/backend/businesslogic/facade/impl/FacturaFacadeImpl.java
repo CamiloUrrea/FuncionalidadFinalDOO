@@ -20,28 +20,34 @@ public class FacturaFacadeImpl implements FacturaFacade {
         businessLogic = new FacturaBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoFactura(FacturaDTO dto) {
+    public void registrarNuevaFactura(UUID reservaId, FacturaDTO factura) {
 
     }
 
     @Override
-    public void modificarFactura(UUID id, FacturaDTO dto) {
+    public void modificarFacturaExistente(UUID reservaId, UUID facturaId, FacturaDTO factura) {
 
     }
 
     @Override
-    public void darBajaDefinitivaFacturaExistente(UUID id) {
+    public void darBajaDefinitivamenteFacturaExistente(UUID reservaId, UUID facturaId) {
 
     }
 
     @Override
-    public FacturaDTO consultarFacturaPorId(UUID id) {
+    public FacturaDTO consultarFacturaPorId(UUID reservaId, UUID facturaid) {
         return null;
     }
 
     @Override
-    public List<FacturaDTO> consultarFacturasPorFiltro(FacturaDTO filtro) {
+    public List<FacturaDTO> consultarFacturasPorReserva(UUID reservaId, FacturaDTO filtro) {
         return List.of();
+    }
+
+    @Override
+    public byte[] generarPdfFactura(UUID reservaId, UUID facturaId) {
+        return new byte[0];
     }
 }

@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface EstadoVerificacionFacade {
 
-    void registrarNuevoEstadoVerificacion(EstadoVerificacionDTO dto);
+    void registrarNuevoEstadoVerificacion(EstadoVerificacionDTO estadoVerificacion);
 
-    void modificarEstadoVerificacion(UUID id, EstadoVerificacionDTO dto);
+    void modificarEstadoVerificacionExistente(UUID estadoVerificacionId, EstadoVerificacionDTO estadoVerificacion);
 
-    void darBajaDefinitivaEstadoVerificacionExistente(UUID id);
+    void darBajaDefinitivamenteEstadoVerificacionExistente(UUID estadoVerificacionId);
 
-    EstadoVerificacionDTO consultarEstadoVerificacionPorId(UUID id);
+    EstadoVerificacionDTO consultarEstadoVerificacionPorId(UUID estadoVerificacionId);
 
-    List<EstadoVerificacionDTO> consultarEstadoVerificacionsPorFiltro(EstadoVerificacionDTO filtro);
+    List<EstadoVerificacionDTO> consultarEstadoVerificacions(EstadoVerificacionDTO filtro);
 
 }

@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface CanchaFacade {
 
-    void registrarNuevoCancha(CanchaDTO dto);
+    void registrarNuevaCancha(UUID orgId, CanchaDTO cancha) ;
 
-    void modificarCancha(UUID id, CanchaDTO dto);
+    void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDTO cancha) ;
 
-    void darBajaDefinitivaCanchaExistente(UUID id);
+    void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId) ;
 
-    CanchaDTO consultarCanchaPorId(UUID id);
+    CanchaDTO consultarCanchaPorId(UUID orgId, UUID canchaId);
 
-    List<CanchaDTO> consultarCanchasPorFiltro(CanchaDTO filtro);
+    List<CanchaDTO> consultarMisCanchas(UUID orgId, CanchaDTO filtro) ;
 
 }

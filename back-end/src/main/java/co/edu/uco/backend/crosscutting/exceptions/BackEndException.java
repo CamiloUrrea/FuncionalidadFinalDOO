@@ -1,10 +1,14 @@
-package co.edu.uco.backend.crosscutting.Exceptions;
+package co.edu.uco.backend.crosscutting.exceptions;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 
+import java.io.Serial;
+
+
 public class BackEndException extends Exception{
 
-
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String mensajeUsuario;
     private LayerException capa;
 

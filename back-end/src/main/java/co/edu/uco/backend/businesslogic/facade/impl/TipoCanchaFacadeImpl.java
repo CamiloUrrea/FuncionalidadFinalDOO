@@ -20,28 +20,29 @@ public class TipoCanchaFacadeImpl implements TipoCanchaFacade {
         businessLogic = new TipoCanchaBusinessLogicImpl(daoFactory);
     }
 
+
     @Override
-    public void registrarNuevoTipoCancha(TipoCanchaDTO dto) {
+    public void registrarNuevoTipoCancha(TipoCanchaDTO tipoCancha) {
 
     }
 
     @Override
-    public void modificarTipoCancha(UUID id, TipoCanchaDTO dto) {
+    public void modificarTipoCanchaExistente(UUID id, TipoCanchaDTO tipoCancha) {
 
     }
 
     @Override
-    public void darBajaDefinitivaTipoCanchaExistente(UUID id) {
+    public void darBajaDefinitivamenteTipoCanchaExistente(UUID tipoCanchaId) {
 
     }
 
     @Override
-    public TipoCanchaDTO consultarTipoCanchaPorId(UUID id) {
+    public TipoCanchaDTO consultarTipoCanchaPorId(UUID tipoCanchaId) {
         return null;
     }
 
     @Override
-    public List<TipoCanchaDTO> consultarTipoCanchasPorFiltro(TipoCanchaDTO filtro) {
+    public List<TipoCanchaDTO> consultarTipoCanchas(TipoCanchaDTO filtro) {
         return List.of();
     }
 }

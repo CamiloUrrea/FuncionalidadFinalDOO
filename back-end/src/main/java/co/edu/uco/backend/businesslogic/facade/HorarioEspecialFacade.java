@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public interface HorarioEspecialFacade {
 
-    void registrarNuevoHorarioEspecial(HorarioEspecialDTO dto);
+    void registrarNuevoHorarioEspecial(UUID canchaId, HorarioEspecialDTO horarioEspecial);
 
-    void modificarHorarioEspecial(UUID id, HorarioEspecialDTO dto);
+    void modificarHorarioEspecialExistente(UUID canchaId,UUID horarioEspecialId, HorarioEspecialDTO horarioEspecial);
 
-    void darBajaDefinitivaHorarioEspecialExistente(UUID id);
+    void darBajaDefinitivamenteHorarioEspecialExistente(UUID canchaId, UUID horarioEspecialId);
 
-    HorarioEspecialDTO consultarHorarioEspecialPorId(UUID id);
+    HorarioEspecialDTO consultarHorarioEspecialPorId(UUID canchaId, UUID horarioEspecialId);
 
-    List<HorarioEspecialDTO> consultarHorarioEspecialsPorFiltro(HorarioEspecialDTO filtro);
+    List<HorarioEspecialDTO> consultarHorariosEspecialesPorCancha(UUID canchaId, HorarioEspecialDTO horarioEspecial);
 
 }

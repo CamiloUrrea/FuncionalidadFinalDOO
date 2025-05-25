@@ -13,35 +13,36 @@ import java.util.UUID;
 public class CanchaFacadeImpl implements CanchaFacade {
 
     private DAOFactory daoFactory;
-    private CanchaBusinessLogic businessLogic;
+    private CanchaBusinessLogic canchaBusinessLogic;
 
     public CanchaFacadeImpl() {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new CanchaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        canchaBusinessLogic = new CanchaBusinessLogicImpl(daoFactory);
     }
 
-    @Override
-    public void registrarNuevoCancha(CanchaDTO dto) {
-
-    }
 
     @Override
-    public void modificarCancha(UUID id, CanchaDTO dto) {
+    public void registrarNuevaCancha(UUID orgId, CanchaDTO cancha)  {
 
     }
 
     @Override
-    public void darBajaDefinitivaCanchaExistente(UUID id) {
+    public void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDTO cancha)  {
 
     }
 
     @Override
-    public CanchaDTO consultarCanchaPorId(UUID id) {
+    public void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId)   {
+
+    }
+
+    @Override
+    public CanchaDTO consultarCanchaPorId(UUID orgId, UUID canchaId) {
         return null;
     }
 
     @Override
-    public List<CanchaDTO> consultarCanchasPorFiltro(CanchaDTO filtro) {
+    public List<CanchaDTO> consultarMisCanchas(UUID orgId, CanchaDTO filtro)   {
         return List.of();
     }
 }
