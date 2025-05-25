@@ -14,11 +14,11 @@ import java.util.UUID;
 public class HorarioDisponibleFacadeImpl implements HorarioDisponibleFacade {
 
     private DAOFactory daoFactory;
-    private HorarioDisponibleBusinessLogic businessLogic;
+    private HorarioDisponibleBusinessLogic horarioDisponibleBusinessLogic;
 
     public HorarioDisponibleFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new HorarioDisponibleBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        horarioDisponibleBusinessLogic = new HorarioDisponibleBusinessLogicImpl(daoFactory);
     }
 
 

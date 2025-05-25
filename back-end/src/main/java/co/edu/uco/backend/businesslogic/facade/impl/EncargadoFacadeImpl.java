@@ -1,6 +1,5 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.EncargadoBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.EncargadoBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.EncargadoFacade;
@@ -16,11 +15,11 @@ import java.util.UUID;
 public class EncargadoFacadeImpl implements EncargadoFacade {
 
     private DAOFactory daoFactory;
-    private EncargadoBusinessLogic businessLogic;
+    private EncargadoBusinessLogic encargadoBusinessLogic;
 
     public EncargadoFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new EncargadoBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        encargadoBusinessLogic = new EncargadoBusinessLogicImpl(daoFactory);
     }
 
 
@@ -80,7 +79,8 @@ public class EncargadoFacadeImpl implements EncargadoFacade {
     }
 
     @Override
-    public List<CanchaDomain> consultarcualquierCancha(CanchaDomain filtro) {
+    public List<UsuarioDTO> listarUsuarios(UsuarioDTO filtro) {
         return List.of();
     }
+
 }

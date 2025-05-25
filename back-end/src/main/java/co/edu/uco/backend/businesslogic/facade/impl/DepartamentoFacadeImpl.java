@@ -14,11 +14,11 @@ import java.util.UUID;
 public class DepartamentoFacadeImpl implements DepartamentoFacade {
 
     private DAOFactory daoFactory;
-    private DepartamentoBusinessLogic businessLogic;
+    private DepartamentoBusinessLogic departamentoBusinessLogic;
 
     public DepartamentoFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new DepartamentoBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        departamentoBusinessLogic = new DepartamentoBusinessLogicImpl(daoFactory);
     }
 
     @Override

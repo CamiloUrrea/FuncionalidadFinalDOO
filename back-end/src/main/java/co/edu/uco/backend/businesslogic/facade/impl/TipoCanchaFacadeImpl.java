@@ -14,11 +14,11 @@ import java.util.UUID;
 public class TipoCanchaFacadeImpl implements TipoCanchaFacade {
 
     private DAOFactory daoFactory;
-    private TipoCanchaBusinessLogic businessLogic;
+    private TipoCanchaBusinessLogic tipoCanchaBusinessLogic;
 
     public TipoCanchaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new TipoCanchaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        tipoCanchaBusinessLogic = new TipoCanchaBusinessLogicImpl(daoFactory);
     }
 
 

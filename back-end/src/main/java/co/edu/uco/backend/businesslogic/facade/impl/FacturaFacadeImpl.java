@@ -14,11 +14,11 @@ import java.util.UUID;
 public class FacturaFacadeImpl implements FacturaFacade {
 
     private DAOFactory daoFactory;
-    private FacturaBusinessLogic businessLogic;
+    private FacturaBusinessLogic facturaBusinessLogic;
 
     public FacturaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new FacturaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        facturaBusinessLogic = new FacturaBusinessLogicImpl(daoFactory);
     }
 
 

@@ -14,8 +14,12 @@ public interface CanchaBusinessLogic {
 
     void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId) throws BackEndException;
 
-    CanchaDomain consultarCanchaPorId(UUID orgId, UUID canchaId) throws BackEndException;
+    CanchaDomain consultarCanchaPorOrganizacion(UUID orgId, UUID canchaId) throws BackEndException;
 
-    List<CanchaDomain> consultarMisCanchas(UUID orgId, CanchaDomain filtro) throws BackEndException;
+    List<CanchaDomain> listarCanchasPorOrganizacion(UUID orgId, CanchaDomain filtro) throws BackEndException;
+
+    CanchaDomain consultarCanchaPorId(UUID canchaId) throws BackEndException;
+
+    List<CanchaDomain> consultarTodasCanchas(CanchaDomain filtro) throws BackEndException;
 
 }

@@ -14,11 +14,11 @@ import java.util.UUID;
 public class DimensionFacadeImpl implements DimensionFacade {
 
     private DAOFactory daoFactory;
-    private DimensionBusinessLogic businessLogic;
+    private DimensionBusinessLogic dimensionBusinessLogic;
 
     public DimensionFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new DimensionBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        dimensionBusinessLogic = new DimensionBusinessLogicImpl(daoFactory);
     }
 
 

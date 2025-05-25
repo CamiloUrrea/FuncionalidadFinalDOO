@@ -14,11 +14,11 @@ import java.util.UUID;
 public class SuperficieFacadeImpl implements SuperficieFacade {
 
     private DAOFactory daoFactory;
-    private SuperficieBusinessLogic businessLogic;
+    private SuperficieBusinessLogic superficieBusinessLogic;
 
     public SuperficieFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new SuperficieBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        superficieBusinessLogic = new SuperficieBusinessLogicImpl(daoFactory);
     }
 
     @Override

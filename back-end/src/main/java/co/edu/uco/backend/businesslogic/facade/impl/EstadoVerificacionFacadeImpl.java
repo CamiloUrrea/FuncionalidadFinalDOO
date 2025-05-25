@@ -14,11 +14,11 @@ import java.util.UUID;
 public class EstadoVerificacionFacadeImpl implements EstadoVerificacionFacade {
 
     private DAOFactory daoFactory;
-    private EstadoVerificacionBusinessLogic businessLogic;
+    private EstadoVerificacionBusinessLogic estadoVerificacionBusinessLogic;
 
     public EstadoVerificacionFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new EstadoVerificacionBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        estadoVerificacionBusinessLogic = new EstadoVerificacionBusinessLogicImpl(daoFactory);
     }
 
     @Override

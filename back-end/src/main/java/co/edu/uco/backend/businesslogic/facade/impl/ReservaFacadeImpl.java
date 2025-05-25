@@ -14,11 +14,11 @@ import java.util.UUID;
 public class ReservaFacadeImpl implements ReservaFacade {
 
     private DAOFactory daoFactory;
-    private ReservaBusinessLogic businessLogic;
+    private ReservaBusinessLogic reservaBusinessLogic;
 
     public ReservaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new ReservaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        reservaBusinessLogic = new ReservaBusinessLogicImpl(daoFactory);
     }
 
 

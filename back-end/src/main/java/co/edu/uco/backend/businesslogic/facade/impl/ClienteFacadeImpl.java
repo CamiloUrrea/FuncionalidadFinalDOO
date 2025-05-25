@@ -16,11 +16,11 @@ import java.util.UUID;
 public class ClienteFacadeImpl implements ClienteFacade {
 
     private DAOFactory daoFactory;
-    private ClienteBusinessLogic businessLogic;
+    private ClienteBusinessLogic clienteBusinessLogic;
 
     public ClienteFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new ClienteBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        clienteBusinessLogic = new ClienteBusinessLogicImpl(daoFactory);
     }
 
     @Override
@@ -74,7 +74,8 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public List<CanchaDomain> consultarcualquierCancha(CanchaDomain filtro) {
+    public List<UsuarioDTO> listarUsuarios(UsuarioDTO filtro) {
         return List.of();
     }
+
 }

@@ -14,11 +14,11 @@ import java.util.UUID;
 public class EstadoReservaFacadeImpl implements EstadoReservaFacade {
 
     private DAOFactory daoFactory;
-    private EstadoReservaBusinessLogic businessLogic;
+    private EstadoReservaBusinessLogic estadoReservaBusinessLogic;
 
     public EstadoReservaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new EstadoReservaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        estadoReservaBusinessLogic = new EstadoReservaBusinessLogicImpl(daoFactory);
     }
 
     @Override

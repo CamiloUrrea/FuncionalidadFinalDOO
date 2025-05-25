@@ -14,11 +14,11 @@ import java.util.UUID;
 public class MunicipioFacadeImpl implements MunicipioFacade {
 
     private DAOFactory daoFactory;
-    private MunicipioBusinessLogic businessLogic;
+    private MunicipioBusinessLogic municipioBusinessLogic;
 
     public MunicipioFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new MunicipioBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        municipioBusinessLogic = new MunicipioBusinessLogicImpl(daoFactory);
     }
 
 

@@ -14,11 +14,11 @@ import java.util.UUID;
 public class ResenaFacadeImpl implements ResenaFacade {
 
     private DAOFactory daoFactory;
-    private ResenaBusinessLogic businessLogic;
+    private ResenaBusinessLogic resenaBusinessLogic;
 
     public ResenaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new ResenaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        resenaBusinessLogic = new ResenaBusinessLogicImpl(daoFactory);
     }
 
 

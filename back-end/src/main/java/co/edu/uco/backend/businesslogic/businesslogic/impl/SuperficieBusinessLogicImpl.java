@@ -2,38 +2,51 @@ package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.SuperficieBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.SuperficieDomain;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
+import co.edu.uco.backend.entity.SuperficieEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class SuperficieBusinessLogicImpl implements SuperficieBusinessLogic {
 
-    public SuperficieBusinessLogicImpl(DAOFactory daoFactory) {
+    private DAOFactory factory;
+    public SuperficieBusinessLogicImpl(DAOFactory factory) {
+        this.factory = factory;
     }
 
     @Override
-    public void registrarNuevoSuperficie(SuperficieDomain superficie) {
-
+    public void registrarNuevoSuperficie(SuperficieDomain superficie) throws BackEndException {
+        SuperficieEntity superficieEntity = null;
+        factory.getSuperficieDAO().crear(superficieEntity);
     }
 
     @Override
-    public void modificarSuperficieExistente(UUID id, SuperficieDomain superficie) {
-
+    public void modificarSuperficieExistente(UUID superficieId, SuperficieDomain superficie) throws BackEndException {
+        SuperficieEntity superficieEntity = null;
+        factory.getSuperficieDAO().modificar(superficieId,superficieEntity);
     }
 
     @Override
-    public void darBajaDefinitivamenteSuperficieExistente(UUID id) {
-
+    public void darBajaDefinitivamenteSuperficieExistente(UUID superficieId) throws BackEndException {
+        SuperficieEntity superficieEntity = null;
+        factory.getSuperficieDAO().eliminar(superficieId);
     }
 
     @Override
-    public SuperficieDomain consultarSuperficiePorId(UUID id) {
+    public SuperficieDomain consultarSuperficiePorId(UUID superficieId) throws BackEndException {
+        SuperficieEntity superficieEntity = null;
+        factory.getSuperficieDAO().consultarPorId(superficieId);
         return null;
     }
 
     @Override
-    public List<SuperficieDomain> consultarSuperficies(SuperficieDomain filtro) {
-        return List.of();
+    public List<SuperficieDomain> consultarSuperficies(SuperficieDomain filtro) throws BackEndException {
+        SuperficieEntity superficieFilter = null;
+        List<SuperficieEntity> superficieEntities = factory.getSuperficieDAO().consultar(superficieFilter);
+        List<SuperficieDomain> datosARetornar = null;
+        return datosARetornar;
     }
 }

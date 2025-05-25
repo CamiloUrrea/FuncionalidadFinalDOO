@@ -1,6 +1,5 @@
 package co.edu.uco.backend.businesslogic.facade;
 
-import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.dto.UsuarioDTO;
 
 import java.util.List;
@@ -12,5 +11,5 @@ public interface UsuarioFacade {
     void recuperarContrasena(String username);
     void cambiarContrasena(UUID usuarioId, String rawPasswordActual, String rawPasswordNueva);
     UsuarioDTO consultarUsuarioPorId(UUID usuarioId);
-    List<CanchaDomain> consultarcualquierCancha(CanchaDomain filtro);
+    List<UsuarioDTO> listarUsuarios(UsuarioDTO filtro);
 }

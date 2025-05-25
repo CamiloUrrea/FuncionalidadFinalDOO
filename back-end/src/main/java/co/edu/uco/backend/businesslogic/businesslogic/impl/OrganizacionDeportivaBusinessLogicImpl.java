@@ -4,39 +4,51 @@ import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionDeportivaBusin
 import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.OrganizacionDeportivaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
+import co.edu.uco.backend.entity.OrganizacionDeportivaEntity;
 
 import java.util.List;
 import java.util.UUID;
 
 public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDeportivaBusinessLogic {
 
-    public OrganizacionDeportivaBusinessLogicImpl(DAOFactory daoFactory) {
+    private DAOFactory factory;
+    public OrganizacionDeportivaBusinessLogicImpl(DAOFactory factory) {
+        this.factory = factory;
     }
 
     @Override
-    public void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDomain organizacionDeportiva) {
-
+    public void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDomain organizacionDeportiva) throws BackEndException {
+        OrganizacionDeportivaEntity organizacionDeportivaEntity = null;
+        factory.getOrganizacionDeportivaDAO().crear(organizacionDeportivaEntity);
     }
 
     @Override
-    public void modificarOrganizacionDeportivaExistente(UUID id, OrganizacionDeportivaDomain organizacionDeportiva) {
-
+    public void modificarOrganizacionDeportivaExistente(UUID organizacionDeportivaId, OrganizacionDeportivaDomain organizacionDeportiva) throws BackEndException {
+        OrganizacionDeportivaEntity organizacionDeportivaEntity = null;
+        factory.getOrganizacionDeportivaDAO().modificar(organizacionDeportivaId,organizacionDeportivaEntity);
     }
 
     @Override
-    public void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID id) {
-
+    public void darBajaDefinitivamenteOrganizacionDeportivaExistente(UUID organizacionDeportivaId) throws BackEndException {
+        OrganizacionDeportivaEntity organizacionDeportivaEntity = null;
+        factory.getOrganizacionDeportivaDAO().eliminar(organizacionDeportivaId);
     }
 
     @Override
-    public OrganizacionDeportivaDomain consultarOrganizacionDeportivaPorId(UUID id) {
+    public OrganizacionDeportivaDomain consultarOrganizacionDeportivaPorId(UUID organizacionDeportivaId) throws BackEndException {
+        OrganizacionDeportivaEntity organizacionDeportivaEntity = null;
+        factory.getOrganizacionDeportivaDAO().consultarPorId(organizacionDeportivaId);
         return null;
     }
 
     @Override
-    public List<OrganizacionDeportivaDomain> consultarOrganizacionesDeportivas(OrganizacionDeportivaDomain filtro) {
-        return List.of();
+    public List<OrganizacionDeportivaDomain> consultarOrganizacionesDeportivas(OrganizacionDeportivaDomain filtro) throws BackEndException {
+        OrganizacionDeportivaEntity organizacionDeportivaFilter = null;
+        List<OrganizacionDeportivaEntity> organizacionDeportivaEntities = factory.getOrganizacionDeportivaDAO().consultar(organizacionDeportivaFilter);
+        List<OrganizacionDeportivaDomain> datosARetortnar = null;
+        return datosARetortnar;
     }
 
     @Override
@@ -75,8 +87,9 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
     }
 
     @Override
-    public List<CanchaDomain> consultarcualquierCancha(CanchaDomain filtro) {
+    public List<UsuarioDomain> listarUsuarios(UsuarioDomain filtro) {
         return List.of();
     }
+
 
 }

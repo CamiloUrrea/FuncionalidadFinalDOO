@@ -1,6 +1,5 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.OrganizacionDeportivaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionDeportivaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.OrganizacionDeportivaFacade;
@@ -16,11 +15,11 @@ import java.util.UUID;
 public class OrganizacionDeportivaFacadeImpl implements OrganizacionDeportivaFacade {
 
     private DAOFactory daoFactory;
-    private OrganizacionDeportivaBusinessLogic businessLogic;
+    private OrganizacionDeportivaBusinessLogic organizacionDeportivaBusinessLogic;
 
     public OrganizacionDeportivaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new OrganizacionDeportivaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        organizacionDeportivaBusinessLogic = new OrganizacionDeportivaBusinessLogicImpl(daoFactory);
     }
 
 
@@ -85,7 +84,8 @@ public class OrganizacionDeportivaFacadeImpl implements OrganizacionDeportivaFac
     }
 
     @Override
-    public List<CanchaDomain> consultarcualquierCancha(CanchaDomain filtro) {
+    public List<UsuarioDTO> listarUsuarios(UsuarioDTO filtro) {
         return List.of();
     }
+
 }

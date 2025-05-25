@@ -25,12 +25,14 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
         CanchaEntity canchaEntity = null;
         OrganizacionDeportivaEntity organizacionDeportivaEntity = factory.getOrganizacionDeportivaDAO().consultarPorId(orgId);
         canchaEntity.setOrganizacionDeportivaEntity(organizacionDeportivaEntity);
+        //TODO: Validar organizacion
         factory.getCanchaDAO().crear(canchaEntity);
     }
 
     @Override
     public void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDomain cancha) throws BackEndException {
         CanchaEntity canchaEntity = factory.getCanchaDAO().consultarPorId(canchaId);
+        //TODO: Validar organizacion
         factory.getCanchaDAO().modificar(canchaId,canchaEntity);
 
     }
@@ -38,19 +40,37 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
     @Override
     public void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId) throws BackEndException {
         CanchaEntity canchaEntity = null;
+        //TODO: Validar organizacion
         factory.getCanchaDAO().eliminar(canchaId);
     }
 
     @Override
-    public CanchaDomain consultarCanchaPorId(UUID orgId, UUID canchaId) throws BackEndException {
+    public CanchaDomain consultarCanchaPorOrganizacion(UUID orgId, UUID canchaId) throws BackEndException {
+        CanchaEntity canchaEntity = null;
+        factory.getCanchaDAO().consultarPorId(canchaId);
+        //TODO: Validar organizacion
+        return null;
+    }
+
+    @Override
+    public List<CanchaDomain> listarCanchasPorOrganizacion(UUID orgId, CanchaDomain filtro) throws BackEndException {
+        CanchaEntity canchaFilter = null;
+        List<CanchaEntity> canchaEntities = factory.getCanchaDAO().consultar(canchaFilter);
+        //TODO: Validar organizacion
+        List<CanchaDomain> datosARetornar = null;
+
+        return datosARetornar;
+    }
+
+    @Override
+    public CanchaDomain consultarCanchaPorId(UUID canchaId) throws BackEndException {
         CanchaEntity canchaEntity = null;
         factory.getCanchaDAO().consultarPorId(canchaId);
         return null;
     }
 
-
     @Override
-    public List<CanchaDomain> consultarMisCanchas(UUID orgId, CanchaDomain filtro) throws BackEndException {
+    public List<CanchaDomain> consultarTodasCanchas(CanchaDomain filtro) throws BackEndException {
         CanchaEntity canchaFilter = null;
         List<CanchaEntity> canchaEntities = factory.getCanchaDAO().consultar(canchaFilter);
 
@@ -58,7 +78,5 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
 
         return datosARetornar;
     }
-    
 
-    
 }

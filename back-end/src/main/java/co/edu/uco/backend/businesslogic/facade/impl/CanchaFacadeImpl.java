@@ -1,5 +1,6 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
+import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.CanchaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.CanchaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.CanchaFacade;
@@ -23,7 +24,19 @@ public class CanchaFacadeImpl implements CanchaFacade {
 
 
     @Override
-    public void registrarNuevaCancha(UUID orgId, CanchaDTO cancha)  {
+    public void registrarNuevaCancha(UUID orgId, CanchaDTO cancha) throws BackEndException {
+        try {
+            daoFactory.iniciarTransaccion();
+
+            CanchaDomain canchaDomain = null; //TODO: magia de convertir de DTO a Domain
+            canchaBusinessLogic.registrarNuevaCancha(orgId, canchaDomain);
+
+            daoFactory.confirmarTransaccion();
+        } catch (BackEndException exception) {
+            daoFactory.cancelarTransaccion();
+        } catch (Exception exception){
+            daoFactory.cancelarTransaccion();
+        }
 
     }
 
@@ -38,12 +51,24 @@ public class CanchaFacadeImpl implements CanchaFacade {
     }
 
     @Override
-    public CanchaDTO consultarCanchaPorId(UUID orgId, UUID canchaId) {
+    public CanchaDTO consultarCanchaPorOrganizacion(UUID orgId, UUID canchaId) throws BackEndException {
         return null;
     }
 
     @Override
-    public List<CanchaDTO> consultarMisCanchas(UUID orgId, CanchaDTO filtro)   {
+    public List<CanchaDTO> listarCanchasPorOrganizacion(UUID orgId, CanchaDTO filtro) throws BackEndException {
         return List.of();
     }
+
+    @Override
+    public CanchaDTO consultarCanchaPorId(UUID canchaId) throws BackEndException {
+        return null;
+    }
+
+    @Override
+    public List<CanchaDTO> consultarTodasCanchas(CanchaDTO filtro) throws BackEndException {
+        return List.of();
+    }
+
+
 }

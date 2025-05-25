@@ -14,11 +14,11 @@ import java.util.UUID;
 public class UbicacionPrecisaFacadeImpl implements UbicacionPrecisaFacade {
 
     private DAOFactory daoFactory;
-    private UbicacionPrecisaBusinessLogic businessLogic;
+    private UbicacionPrecisaBusinessLogic ubicacionPrecisaBusinessLogic;
 
     public UbicacionPrecisaFacadeImpl() throws BackEndException {
-        daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
-        businessLogic = new UbicacionPrecisaBusinessLogicImpl(daoFactory);
+        daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
+        ubicacionPrecisaBusinessLogic = new UbicacionPrecisaBusinessLogicImpl(daoFactory);
     }
 
 
