@@ -1,4 +1,99 @@
 package co.edu.uco.backend.entity;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
-public class UsuarioEntity {
+import java.util.UUID;
+
+public abstract class UsuarioEntity {
+
+    private UUID id;
+    private String nombre;
+    private String username;
+    private String contrasena;
+    private String prefijoTelefono;
+    private String telefono;
+
+    protected UsuarioEntity() {
+        setId(UtilUUID.obtenerValorDefecto());
+        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setUsername(UtilTexto.getInstance().obtenerValorDefecto());
+        setContrasena(UtilTexto.getInstance().obtenerValorDefecto());
+        setPrefijoTelefono(UtilTexto.getInstance().obtenerValorDefecto());
+        setTelefono(UtilTexto.getInstance().obtenerValorDefecto());
+    }
+
+    protected UsuarioEntity(final UUID id) {
+        setId(id);
+        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
+        setUsername(UtilTexto.getInstance().obtenerValorDefecto());
+        setContrasena(UtilTexto.getInstance().obtenerValorDefecto());
+        setPrefijoTelefono(UtilTexto.getInstance().obtenerValorDefecto());
+        setTelefono(UtilTexto.getInstance().obtenerValorDefecto());
+    }
+
+    protected UsuarioEntity(final UUID id, final String nombre, final String username, final String contrasena,
+                            final String prefijoTelefono, final String telefono) {
+        setId(id);
+        setNombre(nombre);
+        setUsername(username);
+        setContrasena(contrasena);
+        setPrefijoTelefono(prefijoTelefono);
+        setTelefono(telefono);
+    }
+
+    static UsuarioEntity obtenerUsuarioDefecto() {
+        return new UsuarioEntity() {};
+    }
+
+    static UsuarioEntity obtenerValorDefecto(final UsuarioEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerUsuarioDefecto());
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public String getPrefijoTelefono() {
+        return prefijoTelefono;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    protected void setId(final UUID id) {
+        this.id = UtilUUID.obtenerValorDefecto(id);
+    }
+
+    protected void setNombre(final String nombre) {
+        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
+    }
+
+    protected void setUsername(final String username) {
+        this.username = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(username);
+    }
+
+    protected void setContrasena(final String contrasena) {
+        this.contrasena = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(contrasena);
+    }
+
+    protected void setPrefijoTelefono(final String prefijoTelefono) {
+        this.prefijoTelefono = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(prefijoTelefono);
+    }
+
+    protected void setTelefono(final String telefono) {
+        this.telefono = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(telefono);
+    }
 }
+

@@ -11,31 +11,27 @@ public final class EstadoReservaEntity {
     private UUID id;
     private String nombre;
 
-
-    public EstadoReservaEntity() {
+    EstadoReservaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-
     }
 
     public EstadoReservaEntity(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-
     }
 
-    public EstadoReservaEntity(final UUID id, String nombre) {
+    public EstadoReservaEntity(final UUID id, final String nombre) {
         setId(id);
         setNombre(nombre);
-
     }
 
     public static EstadoReservaEntity obtenerEstadoReservaDefecto() {
         return new EstadoReservaEntity();
     }
 
-    public static EstadoReservaEntity obtenerValorDefecto(EstadoReservaEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerEstadoReservaDefecto());
+    public static EstadoReservaEntity obtenerValorDefecto(final EstadoReservaEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerEstadoReservaDefecto());
     }
 
     public UUID getId() {
@@ -50,9 +46,8 @@ public final class EstadoReservaEntity {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setNombre(final String nombre) {
+        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
     }
-
-
 }
+

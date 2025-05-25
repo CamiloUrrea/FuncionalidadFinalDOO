@@ -1,8 +1,8 @@
 package co.edu.uco.backend.dto;
 
+import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 
 import java.util.UUID;
 
@@ -26,8 +26,20 @@ public final class SuperficieDTO {
         setNombre(nombre);
     }
 
+    public static SuperficieDTO obtenerValorDefecto() {
+        return new SuperficieDTO();
+    }
+
+    public static SuperficieDTO obtenerValorDefecto(final SuperficieDTO dto) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
+    }
+
     public UUID getId() {
         return id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public SuperficieDTO setId(final UUID id) {
@@ -35,20 +47,8 @@ public final class SuperficieDTO {
         return this;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public SuperficieDTO setNombre(final String nombre) {
         this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
         return this;
-    }
-
-    public static SuperficieDTO obtenerValorDefecto() {
-        return new SuperficieDTO();
-    }
-
-    public static SuperficieDTO obtenerValorDefecto(final SuperficieDTO dto) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(dto, obtenerValorDefecto());
     }
 }

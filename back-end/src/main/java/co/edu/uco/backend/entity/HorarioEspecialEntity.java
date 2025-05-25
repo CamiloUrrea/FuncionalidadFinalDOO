@@ -1,41 +1,63 @@
 package co.edu.uco.backend.entity;
 
+import co.edu.uco.backend.crosscutting.utilitarios.UtilFecha;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
 import java.util.UUID;
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 public final class HorarioEspecialEntity {
 
-    private UUID id;
-    private String nombre;
-    private CanchaEntity canchaEntity;
+    public UUID id;
+    public CanchaEntity cancha;
+    public LocalDate fechaInicio;
+    public LocalDate fechaFin;
+    public LocalTime horaInicio;
+    public LocalTime horaFin;
+    public String motivo;
 
     public HorarioEspecialEntity() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaEntity(CanchaEntity.obtenerCanchaDefecto());
+        setCancha(CanchaEntity.obtenerCanchaDefecto());
+        setFechaInicio(UtilFecha.obtenerValorDefecto());
+        setFechaFin(UtilFecha.obtenerValorDefecto());
+        setHoraInicio(LocalTime.MIDNIGHT);
+        setHoraFin(LocalTime.MIDNIGHT);
+        setMotivo(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
     public HorarioEspecialEntity(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setCanchaEntity(CanchaEntity.obtenerCanchaDefecto());
     }
 
-    public HorarioEspecialEntity(final UUID id, String nombre, CanchaEntity canchaEntity) {
+    public HorarioEspecialEntity(
+            final UUID id,
+            final CanchaEntity cancha,
+            final LocalDate fechaInicio,
+            final LocalDate fechaFin,
+            final LocalTime horaInicio,
+            final LocalTime horaFin,
+            final String motivo
+    ) {
         setId(id);
-        setNombre(nombre);
-        setCanchaEntity(canchaEntity);
+        setCancha(cancha);
+        setFechaInicio(fechaInicio);
+        setFechaFin(fechaFin);
+        setHoraInicio(horaInicio);
+        setHoraFin(horaFin);
+        setMotivo(motivo);
     }
 
     public static HorarioEspecialEntity obtenerHorarioEspecialDefecto() {
         return new HorarioEspecialEntity();
     }
 
-    public static HorarioEspecialEntity obtenerValorDefecto(HorarioEspecialEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerHorarioEspecialDefecto());
+    public static HorarioEspecialEntity obtenerValorDefecto(final HorarioEspecialEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerHorarioEspecialDefecto());
     }
 
     public UUID getId() {
@@ -46,19 +68,52 @@ public final class HorarioEspecialEntity {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public CanchaEntity getCancha() {
+        return cancha;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setCancha(final CanchaEntity cancha) {
+        this.cancha = CanchaEntity.obtenerValorDefecto(cancha);
     }
 
-    public CanchaEntity getCanchaEntity() {
-        return canchaEntity;
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setCanchaEntity(final CanchaEntity canchaEntity) {
-        this.canchaEntity = CanchaEntity.obtenerValorDefecto(canchaEntity);
+    public void setFechaInicio(final LocalDate fechaInicio) {
+        this.fechaInicio = UtilFecha.obtenerValorDefecto(fechaInicio);
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(final LocalDate fechaFin) {
+        this.fechaFin = UtilFecha.obtenerValorDefecto(fechaFin);
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(final LocalTime horaInicio) {
+        this.horaInicio = UtilObjeto.getInstance().obtenerValorDefecto(horaInicio, LocalTime.MIDNIGHT);
+    }
+
+    public LocalTime getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(final LocalTime horaFin) {
+        this.horaFin = UtilObjeto.getInstance().obtenerValorDefecto(horaFin, LocalTime.MIDNIGHT);
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(final String motivo) {
+        this.motivo = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(motivo);
     }
 }
+

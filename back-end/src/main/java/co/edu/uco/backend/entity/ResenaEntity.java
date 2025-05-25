@@ -1,41 +1,46 @@
 package co.edu.uco.backend.entity;
 
-import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
-import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
+import co.edu.uco.backend.crosscutting.utilitarios.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public final class ResenaEntity {
 
     private UUID id;
-    private String nombre;
-    private ReservaEntity reservaEntity;
+    private ReservaEntity reserva;
+    private int calificacion;
+    private String comentario;
+    private LocalDate fecha;
 
     public ResenaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaEntity(ReservaEntity.obtenerReservaDefecto());
+        setReserva(ReservaEntity.obtenerReservaDefecto());
+        setCalificacion(UtilEntero.obtenerValorDefecto(null));
+        setComentario(UtilTexto.getInstance().obtenerValorDefecto());
+        setFecha(UtilFecha.obtenerValorDefecto((LocalDate) null));
     }
 
     public ResenaEntity(final UUID id) {
+        this();
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setReservaEntity(ReservaEntity.obtenerReservaDefecto());
     }
 
-    public ResenaEntity(final UUID id, String nombre, ReservaEntity reservaEntity) {
+    public ResenaEntity(final UUID id, final ReservaEntity reserva, final int calificacion,
+                        final String comentario, final LocalDate fecha) {
         setId(id);
-        setNombre(nombre);
-        setReservaEntity(reservaEntity);
+        setReserva(reserva);
+        setCalificacion(calificacion);
+        setComentario(comentario);
+        setFecha(fecha);
     }
 
     public static ResenaEntity obtenerResenaDefecto() {
         return new ResenaEntity();
     }
 
-    public static ResenaEntity obtenerValorDefecto(ResenaEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerResenaDefecto());
+    public static ResenaEntity obtenerValorDefecto(final ResenaEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerResenaDefecto());
     }
 
     public UUID getId() {
@@ -46,19 +51,36 @@ public final class ResenaEntity {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public ReservaEntity getReserva() {
+        return reserva;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setReserva(final ReservaEntity reserva) {
+        this.reserva = ReservaEntity.obtenerValorDefecto(reserva);
     }
 
-    public ReservaEntity getReservaEntity() {
-        return reservaEntity;
+    public int getCalificacion() {
+        return calificacion;
     }
 
-    public void setReservaEntity(final ReservaEntity reservaEntity) {
-        this.reservaEntity = ReservaEntity.obtenerValorDefecto(reservaEntity);
+    public void setCalificacion(final int calificacion) {
+        this.calificacion = UtilEntero.obtenerValorDefecto(calificacion);
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(final String comentario) {
+        this.comentario = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(comentario);
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(final LocalDate fecha) {
+        this.fecha = UtilFecha.obtenerValorDefecto(fecha);
     }
 }
+

@@ -8,34 +8,34 @@ import java.util.UUID;
 
 public final class MunicipioEntity {
 
-    private UUID id;
-    private String nombre;
-    private DepartamentoEntity departamentoEntity;
+    public UUID id;
+    public String nombre;
+    public DepartamentoEntity departamento;
 
     public MunicipioEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setDepartamentoEntity(DepartamentoEntity.obtenerDepartamentoDefecto());
+        setDepartamento(DepartamentoEntity.obtenerDepartamentoDefecto());
     }
 
     public MunicipioEntity(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setDepartamentoEntity(DepartamentoEntity.obtenerDepartamentoDefecto());
+        setDepartamento(DepartamentoEntity.obtenerDepartamentoDefecto());
     }
 
-    public MunicipioEntity(final UUID id, String nombre, DepartamentoEntity departamentoEntity) {
+    public MunicipioEntity(final UUID id, final String nombre, final DepartamentoEntity departamento) {
         setId(id);
         setNombre(nombre);
-        setDepartamentoEntity(departamentoEntity);
+        setDepartamento(departamento);
     }
 
     public static MunicipioEntity obtenerMunicipioDefecto() {
         return new MunicipioEntity();
     }
 
-    public static MunicipioEntity obtenerValorDefecto(MunicipioEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerMunicipioDefecto());
+    public static MunicipioEntity obtenerValorDefecto(final MunicipioEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerMunicipioDefecto());
     }
 
     public UUID getId() {
@@ -50,15 +50,15 @@ public final class MunicipioEntity {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setNombre(final String nombre) {
+        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
     }
 
-    public DepartamentoEntity getDepartamentoEntity() {
-        return departamentoEntity;
+    public DepartamentoEntity getDepartamento() {
+        return departamento;
     }
 
-    public void setDepartamentoEntity(final DepartamentoEntity departamentoEntity) {
-        this.departamentoEntity = DepartamentoEntity.obtenerValorDefecto(departamentoEntity);
+    public void setDepartamento(final DepartamentoEntity departamento) {
+        this.departamento = DepartamentoEntity.obtenerValorDefecto(departamento);
     }
 }
