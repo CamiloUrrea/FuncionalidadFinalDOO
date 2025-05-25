@@ -44,6 +44,12 @@ public abstract class DAOFactory{
 
     public abstract void cancelarTransacion() throws BackEndException;
 
+    public abstract void iniciartransaccion() throws BackEndException;
+
+    public abstract void confirmartransaccion() throws BackEndException;
+
+    public abstract void cancelartransaccion() throws BackEndException;
+
     public abstract void cerrarConexion() throws BackEndException;
 
 

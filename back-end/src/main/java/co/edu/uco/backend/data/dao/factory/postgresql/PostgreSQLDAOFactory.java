@@ -45,145 +45,158 @@ import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 
 public abstract class PostgreSQLDAOFactory extends DAOFactory {
 
-    private final Connection conexion;
-    private boolean transaccionEstaInciada;
-    private boolean conexionEstaAbierta;
+    private Connection conexion;
+    private boolean transaccionEstaIniciada = false;
+    private boolean connexionEstaAbierta = false;
 
-
-    protected PostgreSQLDAOFactory(Connection conexion) throws BackEndException {
-        this.conexion = conexion;
+    protected PostgreSQLDAOFactory() throws BackEndException {
+        transaccionEstaIniciada = false;
+        connexionEstaAbierta = false;
         abrirConexion();
-        transaccionEstaInciada = false;
-        conexionEstaAbierta = true;
     }
 
-
-
-    protected void abrirConexion() throws BackEndException {
-        var baseDatos = "";
-        var servidor = "";
-        try {
-            DriverManager.getConnection("");
-            conexionEstaAbierta = true;
-        }catch (SQLException exception) {
-            var mensajeUsuario = "Se ha presentado un problema tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
-
-            throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }catch (Exception exception) {
-            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de obtener la conexion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo Exception tratando de obtener la conexión con la base de datos "+ baseDatos+" en el servidor "+ servidor +" para tener mas detalles, revise el log de errores";
-
-            throw  DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }
-
-
-
-    }
 
 
     @Override
-    public void iniciarTransacion() throws BackEndException{
+    public void abrirConexion() throws BackEndException {
+        var baseDatos = "DOODB";
+        var servidor = "localhost:5432";
+
+        try {
+            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos);
+            connexionEstaAbierta = true;
+
+        } catch (SQLException exception) {
+            var mensajeTecnico = "Se presentó una SQLException tratando de obtener la conexión con la base de datos "
+                    + baseDatos + " en el servidor " + servidor + ", para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema tratando de obtener la conexión con la fuente de datos";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+
+        } catch (Exception exception) {
+            var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de obtener la conexión con la base de datos "
+                    + baseDatos + " en el servidor " + servidor + ", para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de obtener la conexión con la fuente de datos";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+    }
+
+    @Override
+    public void iniciartransaccion() throws BackEndException {
         try {
             asegurarConexionAbierta();
             conexion.setAutoCommit(false);
-            transaccionEstaInciada = true;
-
-        }catch (BackEndException exception){
-            throw exception;
-        }catch (SQLException exception) {
-            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
-
-            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }catch (Exception exception) {
-            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
-
-            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }
-    }
-
-    @Override
-    public void confirmarTransacion() throws BackEndException{
-        try {
-            asegurarConexionAbierta();
-            conexion.commit();
-            asegurarTransaccionIniciada();
-
-        }catch (BackEndException exception){
-            throw exception;
-
-        }catch (SQLException exception) {
-            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
-
-            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }catch (Exception exception) {
-            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de iniciar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de iniciar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
-
-            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }
-    }
-
-    @Override
-    public void cancelarTransacion() throws BackEndException {
-        try {
-            asegurarConexionAbierta();
-            asegurarTransaccionIniciada();
-            conexion.rollback();
+            transaccionEstaIniciada =true;
 
         } catch (BackEndException exception) {
             throw exception;
 
-        }catch (SQLException exception) {
-            var mensajeUsuario = "Se ha presentado un problema tratando de cancelar la transaccion con la fuente de datos";
-            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de cancelar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+        } catch (SQLException exception) {
+            var mensajeTecnico = "Se presentó una SQLException tratando de iniciar la transacción sobre la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema tratando de iniciar la transacción con la fuente de datos";
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }catch (Exception exception) {
-            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de cancelar la transaccion con la fuente de datos";
-            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de cancelar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+        } catch (Exception exception) {
+            var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de iniciar la transacción sobre la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de iniciar la transacción con la fuente de datos";
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
 
     @Override
-    public void cerrarConexion() throws BackEndException{
+    public void confirmartransaccion() throws BackEndException {
+        try {
+
+            asegurarConexionAbierta();
+            asegurarTransaccionIniciada();
+            conexion.commit();
+            conexion.setAutoCommit(true);
+            transaccionEstaIniciada = false;
+
+        } catch (BackEndException exception) {
+            throw exception;
+
+        } catch (SQLException exception) {
+            var mensajeTecnico = "Se presentó una SQLException tratando de CONFIRMAR la transacción sobre la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema tratando de confirmar la transacción con la fuente de datos";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+
+        } catch (Exception exception) {
+            var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de CONFIRMAR la transacción sobre la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de confirmar la transacción con la fuente de datos";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+    }
+
+    @Override
+    public void cancelartransaccion() throws BackEndException {
+        try {
+            asegurarConexionAbierta();
+            asegurarTransaccionIniciada();
+            conexion.rollback();
+            conexion.setAutoCommit(true);
+            transaccionEstaIniciada = false;
+
+        } catch (BackEndException exception) {
+            throw exception;
+
+        } catch (SQLException exception) {
+            var mensajeTecnico = "Se presentó una SQLException tratando de CANCELAR la transacción sobre la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema tratando de cancelar la transacción con la fuente de datos para revertir la operación realizada";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+
+        } catch (Exception exception) {
+            var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de CANCELAR la transacción sobre la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de cancelar la transacción con la fuente de datos para revertir la operación realizada";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+    }
+
+    @Override
+    public void cerrarConexion() throws BackEndException {
         try {
             asegurarConexionAbierta();
             conexion.close();
+            connexionEstaAbierta = false;
 
-
-        }catch (BackEndException exception){
+        } catch (BackEndException exception) {
             throw exception;
-        }catch (SQLException exception) {
-            var mensajeUsuario = "Se ha presentado un problema tratando de cerrar la conexión con la fuente de datos";
-            var mensajeTecnico = "Se presento una excepción de tipo SQLException tratando de cerrar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+        } catch (SQLException exception) {
+            var mensajeTecnico = "Se presentó una SQLException tratando de CERRAR la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema tratando de cerrar la conexión con la fuente de datos luego de realizar la operación";
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
-        }catch (Exception exception) {
-            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de cerrar la conexión con la fuente de datos";
-            var mensajeTecnico = "Se presento una excepción NO CONTROLADA de tipo SQLException tratando de cerrar la conexion con la base de datos. para tener mas detalles, revise el log de errores";
+
+        } catch (Exception exception) {
+            var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de CERRAR la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de cerrar la conexión con la fuente de datos luego de realizar la operación";
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
 
     private void asegurarTransaccionIniciada() throws BackEndException {
-        if (!transaccionEstaInciada) {
-            var mensajeUsuario = "Se ha presentado un problema tratando de gestionar la transaccion con la fuente de datos para llevar a cabo la operacion deseada";
-            var mensajeTecnico = "Se intentó gestionar (COMMIT/ROLLBACK) una transaccion que previamente no fué iniciada... ";
+        if (!transaccionEstaIniciada) {
+            var mensajeTecnico = "Se presentó una excepción tratando de gestionar(COMMIT,ROLLBACK) la conexión con la base de datos, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de gestionar la conexión con la fuente de datos luego de realizar la operación";
+
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
         }
     }
 
     private void asegurarConexionAbierta() throws BackEndException {
-        if (!conexionEstaAbierta) {
-            var mensajeUsuario = "Se ha presentado un problema tratando llevar a cabo la opearacion deseada con la conexion cerrada...";
-            var mensajeTecnico = "Se intentó llevar a cabo una operacion que requería una conexion abierta, pero al momento de validar, está cerrada... ";
+        if (!connexionEstaAbierta) {
+            var mensajeTecnico = "Se intentó llevar a cabo una operación que requería una conexión abierta, pero al momento de validarla esta cerrada";
+            var mensajeUsuario = "Se presentó una excepción tratando de llevar a cabo operación deseada con la conexión cerrada";
+
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico);
         }
     }
@@ -275,3 +288,4 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
         return new DimensionAzureSQLDAO(conexion);
     }
 }
+
