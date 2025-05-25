@@ -30,7 +30,7 @@ public final class SuperficieEntity {
         return new SuperficieEntity();
     }
 
-    public static SuperficieEntity obtenerValorDefecto(final SuperficieEntity entity) {
+    public static SuperficieEntity obtenerValorDefecto(SuperficieEntity entity) {
         return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerSuperficieDefecto());
     }
 
@@ -47,6 +47,7 @@ public final class SuperficieEntity {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
     }
 }
+

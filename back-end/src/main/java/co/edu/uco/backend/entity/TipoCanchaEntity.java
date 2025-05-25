@@ -8,34 +8,34 @@ import java.util.UUID;
 
 public final class TipoCanchaEntity {
 
-    private UUID id;
-    private String nombre;
-
+    public UUID id;
+    public String nombre;
+    public String jugadoresRecomendados;
 
     public TipoCanchaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-
+        setJugadoresRecomendados(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
     public TipoCanchaEntity(final UUID id) {
         setId(id);
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-
+        setJugadoresRecomendados(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
-    public TipoCanchaEntity(final UUID id, String nombre) {
+    public TipoCanchaEntity(final UUID id, final String nombre, final String jugadoresRecomendados) {
         setId(id);
         setNombre(nombre);
-
+        setJugadoresRecomendados(jugadoresRecomendados);
     }
 
     public static TipoCanchaEntity obtenerTipoCanchaDefecto() {
         return new TipoCanchaEntity();
     }
 
-    public static TipoCanchaEntity obtenerValorDefecto(TipoCanchaEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerTipoCanchaDefecto());
+    public static TipoCanchaEntity obtenerValorDefecto(TipoCanchaEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerTipoCanchaDefecto());
     }
 
     public UUID getId() {
@@ -51,8 +51,15 @@ public final class TipoCanchaEntity {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+        this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
     }
 
+    public String getJugadoresRecomendados() {
+        return jugadoresRecomendados;
+    }
 
+    public void setJugadoresRecomendados(String jugadoresRecomendados) {
+        this.jugadoresRecomendados = UtilTexto.getInstance().obtenerValorDefecto(jugadoresRecomendados);
+    }
 }
+

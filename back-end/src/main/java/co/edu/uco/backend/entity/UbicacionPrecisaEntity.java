@@ -1,5 +1,6 @@
 package co.edu.uco.backend.entity;
 
+import co.edu.uco.backend.crosscutting.utilitarios.UtilDouble;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
@@ -8,34 +9,47 @@ import java.util.UUID;
 
 public final class UbicacionPrecisaEntity {
 
-    private UUID id;
-    private String nombre;
-    private MunicipioEntity municipioEntity;
+    public UUID id;
+    public String direccion;
+    public double latitud;
+    public double longitud;
+    public MunicipioEntity municipio;
+    public String informacionAdicional;
 
     public UbicacionPrecisaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setMunicipioEntity(MunicipioEntity.obtenerMunicipioDefecto());
+        setDireccion(UtilTexto.getInstance().obtenerValorDefecto());
+        setLatitud(UtilDouble.obtenerValorDefecto(0.0));
+        setLongitud(UtilDouble.obtenerValorDefecto(0.0));
+        setMunicipio(MunicipioEntity.obtenerMunicipioDefecto());
+        setInformacionAdicional(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
     public UbicacionPrecisaEntity(final UUID id) {
         setId(id);
-        setNombre(UtilTexto.getInstance().obtenerValorDefecto());
-        setMunicipioEntity(MunicipioEntity.obtenerMunicipioDefecto());
+        setDireccion(UtilTexto.getInstance().obtenerValorDefecto());
+        setLatitud(UtilDouble.obtenerValorDefecto(0.0));
+        setLongitud(UtilDouble.obtenerValorDefecto(0.0));
+        setMunicipio(MunicipioEntity.obtenerMunicipioDefecto());
+        setInformacionAdicional(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
-    public UbicacionPrecisaEntity(final UUID id, String nombre, MunicipioEntity municipioEntity) {
+    public UbicacionPrecisaEntity(final UUID id, final String direccion, final double latitud, final double longitud,
+                                  final MunicipioEntity municipio, final String informacionAdicional) {
         setId(id);
-        setNombre(nombre);
-        setMunicipioEntity(municipioEntity);
+        setDireccion(direccion);
+        setLatitud(latitud);
+        setLongitud(longitud);
+        setMunicipio(municipio);
+        setInformacionAdicional(informacionAdicional);
     }
 
     public static UbicacionPrecisaEntity obtenerUbicacionPrecisaDefecto() {
         return new UbicacionPrecisaEntity();
     }
 
-    public static UbicacionPrecisaEntity obtenerValorDefecto(UbicacionPrecisaEntity entidadOriginal) {
-        return UtilObjeto.getInstance().obtenerValorDefecto(entidadOriginal, obtenerUbicacionPrecisaDefecto());
+    public static UbicacionPrecisaEntity obtenerValorDefecto(final UbicacionPrecisaEntity entity) {
+        return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerUbicacionPrecisaDefecto());
     }
 
     public UUID getId() {
@@ -46,19 +60,46 @@ public final class UbicacionPrecisaEntity {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = UtilTexto.getInstance().obtenerValorDefecto(nombre);
+    public void setDireccion(final String direccion) {
+        this.direccion = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(direccion);
     }
 
-    public MunicipioEntity getMunicipioEntity() {
-        return municipioEntity;
+    public double getLatitud() {
+        return latitud;
     }
 
-    public void setMunicipioEntity(final MunicipioEntity municipioEntity) {
-        this.municipioEntity = MunicipioEntity.obtenerValorDefecto(municipioEntity);
+    public void setLatitud(final double latitud) {
+        this.latitud = UtilDouble.obtenerValorDefecto(latitud);
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(final double longitud) {
+        this.longitud = UtilDouble.obtenerValorDefecto(longitud);
+    }
+
+    public MunicipioEntity getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(final MunicipioEntity municipio) {
+        this.municipio = MunicipioEntity.obtenerValorDefecto(municipio);
+    }
+
+    public String getInformacionAdicional() {
+        return informacionAdicional;
+    }
+
+    public void setInformacionAdicional(final String informacionAdicional) {
+        this.informacionAdicional = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(informacionAdicional);
     }
 }
+
+
+
