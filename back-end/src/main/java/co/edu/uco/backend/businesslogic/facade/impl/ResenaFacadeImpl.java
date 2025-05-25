@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.ResenaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.ResenaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.ResenaFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.ResenaDTO;
@@ -15,7 +16,7 @@ public class ResenaFacadeImpl implements ResenaFacade {
     private DAOFactory daoFactory;
     private ResenaBusinessLogic businessLogic;
 
-    public ResenaFacadeImpl() {
+    public ResenaFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new ResenaBusinessLogicImpl(daoFactory);
     }

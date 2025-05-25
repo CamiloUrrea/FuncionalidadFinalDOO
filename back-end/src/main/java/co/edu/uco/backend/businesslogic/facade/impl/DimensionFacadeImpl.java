@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.DimensionBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.DimensionBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.DimensionFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.DimensionDTO;
@@ -15,7 +16,7 @@ public class DimensionFacadeImpl implements DimensionFacade {
     private DAOFactory daoFactory;
     private DimensionBusinessLogic businessLogic;
 
-    public DimensionFacadeImpl() {
+    public DimensionFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new DimensionBusinessLogicImpl(daoFactory);
     }

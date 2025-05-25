@@ -3,6 +3,7 @@ package co.edu.uco.backend.businesslogic.facade.impl;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.ReservaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.ReservaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.ReservaFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.ReservaDTO;
@@ -15,7 +16,7 @@ public class ReservaFacadeImpl implements ReservaFacade {
     private DAOFactory daoFactory;
     private ReservaBusinessLogic businessLogic;
 
-    public ReservaFacadeImpl() {
+    public ReservaFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new ReservaBusinessLogicImpl(daoFactory);
     }

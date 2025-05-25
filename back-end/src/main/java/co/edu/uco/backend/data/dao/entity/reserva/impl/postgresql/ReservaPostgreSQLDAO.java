@@ -35,8 +35,9 @@ public class ReservaPostgreSQLDAO implements ReservaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(ReservaEntity entity) {
+    public void modificar(UUID uuid, ReservaEntity entity) {
 
     }
 }

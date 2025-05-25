@@ -35,8 +35,9 @@ public class ResenaPostgreSQLDAO implements ResenaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(ResenaEntity entity) {
+    public void modificar(UUID uuid, ResenaEntity entity) {
 
     }
 }

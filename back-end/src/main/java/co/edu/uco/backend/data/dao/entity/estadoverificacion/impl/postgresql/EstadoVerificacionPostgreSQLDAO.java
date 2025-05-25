@@ -35,8 +35,9 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(EstadoVerificacionEntity entity) {
+    public void modificar(UUID uuid, EstadoVerificacionEntity entity) {
 
     }
 }

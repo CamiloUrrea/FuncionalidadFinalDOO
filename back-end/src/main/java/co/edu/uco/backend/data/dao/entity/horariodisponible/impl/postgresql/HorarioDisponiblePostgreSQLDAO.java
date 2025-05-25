@@ -35,8 +35,9 @@ public class HorarioDisponiblePostgreSQLDAO implements HorarioDisponibleDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(HorarioDisponibleEntity entity) {
+    public void modificar(UUID uuid, HorarioDisponibleEntity entity) {
 
     }
 }

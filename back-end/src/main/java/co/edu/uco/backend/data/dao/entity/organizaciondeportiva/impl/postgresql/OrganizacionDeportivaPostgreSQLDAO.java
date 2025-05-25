@@ -35,8 +35,9 @@ public class OrganizacionDeportivaPostgreSQLDAO implements OrganizacionDeportiva
         return null;
     }
 
+
     @Override
-    public void modificar(OrganizacionDeportivaEntity entity) {
+    public void modificar(UUID uuid, OrganizacionDeportivaEntity entity) {
 
     }
 }

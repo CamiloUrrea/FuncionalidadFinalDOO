@@ -4,6 +4,7 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.ClienteBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.ClienteBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.ClienteFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.ClienteDTO;
@@ -17,7 +18,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
     private DAOFactory daoFactory;
     private ClienteBusinessLogic businessLogic;
 
-    public ClienteFacadeImpl() {
+    public ClienteFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new ClienteBusinessLogicImpl(daoFactory);
     }

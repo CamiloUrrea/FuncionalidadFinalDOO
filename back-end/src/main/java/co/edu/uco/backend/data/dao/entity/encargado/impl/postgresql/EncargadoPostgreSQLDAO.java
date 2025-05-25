@@ -35,8 +35,10 @@ public class EncargadoPostgreSQLDAO implements EncargadoDAO {
         return null;
     }
 
+
+
     @Override
-    public void modificar(EncargadoEntity entity) {
+    public void modificar(UUID uuid, EncargadoEntity entity) {
 
     }
 }

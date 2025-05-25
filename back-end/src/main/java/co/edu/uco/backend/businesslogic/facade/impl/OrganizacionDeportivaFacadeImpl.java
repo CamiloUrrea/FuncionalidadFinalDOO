@@ -4,6 +4,7 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.OrganizacionDeportivaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.OrganizacionDeportivaBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.OrganizacionDeportivaFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.OrganizacionDeportivaDTO;
@@ -17,7 +18,7 @@ public class OrganizacionDeportivaFacadeImpl implements OrganizacionDeportivaFac
     private DAOFactory daoFactory;
     private OrganizacionDeportivaBusinessLogic businessLogic;
 
-    public OrganizacionDeportivaFacadeImpl() {
+    public OrganizacionDeportivaFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new OrganizacionDeportivaBusinessLogicImpl(daoFactory);
     }

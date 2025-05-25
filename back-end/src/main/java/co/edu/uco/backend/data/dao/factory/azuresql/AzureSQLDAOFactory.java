@@ -100,7 +100,7 @@ public abstract class AzureSQLDAOFactory extends DAOFactory {
 
 
     @Override
-    public void iniciarTransacion() throws BackEndException{
+    public void iniciarTransaccion() throws BackEndException{
         try {
             asegurarConexionAbierta();
             conexion.setAutoCommit(false);
@@ -122,7 +122,7 @@ public abstract class AzureSQLDAOFactory extends DAOFactory {
     }
 
     @Override
-    public void confirmarTransacion() throws BackEndException{
+    public void confirmarTransaccion() throws BackEndException{
         try {
             asegurarConexionAbierta();
             conexion.commit();
@@ -145,7 +145,7 @@ public abstract class AzureSQLDAOFactory extends DAOFactory {
     }
 
     @Override
-    public void cancelarTransacion() throws BackEndException {
+    public void cancelarTransaccion() throws BackEndException {
         try {
             asegurarConexionAbierta();
             asegurarTransaccionIniciada();

@@ -35,8 +35,9 @@ public class FacturaPostgreSQLDAO implements FacturaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(FacturaEntity entity) {
+    public void modificar(UUID uuid, FacturaEntity entity) {
 
     }
 }

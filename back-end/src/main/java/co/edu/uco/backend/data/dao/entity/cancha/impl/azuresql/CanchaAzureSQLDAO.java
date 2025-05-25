@@ -15,6 +15,8 @@ public class CanchaAzureSQLDAO implements CanchaDAO {
         this.connection = connection;
     }
 
+
+
     @Override
     public void crear(CanchaEntity entity) {
         StringBuilder sentenciaSQL = new StringBuilder();
@@ -37,7 +39,7 @@ public class CanchaAzureSQLDAO implements CanchaDAO {
     }
 
     @Override
-    public void modificar(CanchaEntity entity) {
+    public void modificar(UUID id, CanchaEntity entity) {
 
     }
 }

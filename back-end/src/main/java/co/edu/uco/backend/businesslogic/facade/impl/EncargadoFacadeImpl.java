@@ -4,6 +4,7 @@ import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.EncargadoBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.EncargadoBusinessLogic;
 import co.edu.uco.backend.businesslogic.facade.EncargadoFacade;
+import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.EncargadoDTO;
@@ -17,7 +18,7 @@ public class EncargadoFacadeImpl implements EncargadoFacade {
     private DAOFactory daoFactory;
     private EncargadoBusinessLogic businessLogic;
 
-    public EncargadoFacadeImpl() {
+    public EncargadoFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.AZURE_SQL);
         businessLogic = new EncargadoBusinessLogicImpl(daoFactory);
     }

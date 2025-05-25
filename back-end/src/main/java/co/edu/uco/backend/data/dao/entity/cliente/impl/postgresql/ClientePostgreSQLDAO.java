@@ -36,7 +36,7 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     }
 
     @Override
-    public void modificar(ClienteEntity entity) {
+    public void modificar(UUID uuid, ClienteEntity entity) {
 
     }
 }

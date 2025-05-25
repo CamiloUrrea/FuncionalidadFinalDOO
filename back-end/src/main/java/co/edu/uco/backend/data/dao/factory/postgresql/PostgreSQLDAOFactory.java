@@ -2,23 +2,23 @@ package co.edu.uco.backend.data.dao.factory.postgresql;
 
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
-import co.edu.uco.backend.data.dao.entity.cancha.impl.azuresql.CanchaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.cliente.impl.azuresql.ClienteAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.departamento.impl.azuresql.DepartamentoAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.dimension.impl.azuresql.DimensionAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.encargado.impl.azuresql.EncargadoAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.estadoreserva.impl.azuresql.EstadoReservaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.estadoverificacion.impl.azuresql.EstadoVerificacionAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.factura.impl.azuresql.FacturaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.horariodisponible.impl.azuresql.HorarioDisponibleAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.horarioespecial.impl.azuresql.HorarioEspecialAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.municipio.impl.azuresql.MunicipioAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.organizaciondeportiva.impl.azuresql.OrganizacionDeportivaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.resena.impl.azuresql.ResenaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.reserva.impl.azuresql.ReservaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.superficie.impl.azuresql.SuperficieAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.tipocancha.impl.azuresql.TipoCanchaAzureSQLDAO;
-import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.impl.azuresql.UbicacionPrecisaAzureSQLDAO;
+import co.edu.uco.backend.data.dao.entity.cancha.impl.postgresql.CanchaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.cliente.impl.postgresql.ClientePostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.departamento.impl.postgresql.DepartamentoPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.dimension.impl.postgresql.DimensionPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.encargado.impl.postgresql.EncargadoPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.estadoreserva.impl.postgresql.EstadoReservaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.estadoverificacion.impl.postgresql.EstadoVerificacionPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.factura.impl.postgresql.FacturaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.horariodisponible.impl.postgresql.HorarioDisponiblePostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.horarioespecial.impl.postgresql.HorarioEspecialPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.municipio.impl.postgresql.MunicipioPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.organizaciondeportiva.impl.postgresql.OrganizacionDeportivaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.resena.impl.postgresql.ResenaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.reserva.impl.postgresql.ReservaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.superficie.impl.postgresql.SuperficiePostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.tipocancha.impl.postgresql.TipoCanchaPostgreSQLDAO;
+import co.edu.uco.backend.data.dao.entity.ubicacionprecisa.impl.postgresql.UbicacionPrecisaPostgreSQLDAO;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,13 +43,13 @@ import co.edu.uco.backend.data.dao.entity.factura.FacturaDAO;
 import co.edu.uco.backend.data.dao.entity.superficie.SuperficieDAO;
 import co.edu.uco.backend.data.dao.entity.dimension.DimensionDAO;
 
-public abstract class PostgreSQLDAOFactory extends DAOFactory {
+public class PostgreSQLDAOFactory extends DAOFactory {
 
     private Connection conexion;
-    private boolean transaccionEstaIniciada = false;
-    private boolean connexionEstaAbierta = false;
+    private boolean transaccionEstaIniciada;
+    private boolean connexionEstaAbierta;
 
-    protected PostgreSQLDAOFactory() throws BackEndException {
+    public PostgreSQLDAOFactory() throws BackEndException {
         transaccionEstaIniciada = false;
         connexionEstaAbierta = false;
         abrirConexion();
@@ -58,7 +58,7 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
 
 
     @Override
-    public void abrirConexion() throws BackEndException {
+    protected void abrirConexion() throws BackEndException {
         var baseDatos = "DOODB";
         var servidor = "localhost:5432";
 
@@ -83,7 +83,7 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
     }
 
     @Override
-    public void iniciartransaccion() throws BackEndException {
+    public void iniciarTransaccion() throws BackEndException {
         try {
             asegurarConexionAbierta();
             conexion.setAutoCommit(false);
@@ -107,7 +107,7 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
     }
 
     @Override
-    public void confirmartransaccion() throws BackEndException {
+    public void confirmarTransaccion() throws BackEndException {
         try {
 
             asegurarConexionAbierta();
@@ -134,7 +134,7 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
     }
 
     @Override
-    public void cancelartransaccion() throws BackEndException {
+    public void cancelarTransaccion() throws BackEndException {
         try {
             asegurarConexionAbierta();
             asegurarTransaccionIniciada();
@@ -204,88 +204,104 @@ public abstract class PostgreSQLDAOFactory extends DAOFactory {
     @Override
     public DepartamentoDAO getDepartamentoDAO() throws BackEndException{
         asegurarConexionAbierta();
-        return new DepartamentoAzureSQLDAO(conexion);
+        return new DepartamentoPostgreSQLDAO(conexion);
     }
 
     @Override
-    public MunicipioDAO getMunicipioDAO() {
-        return new MunicipioAzureSQLDAO(conexion);
+    public MunicipioDAO getMunicipioDAO() throws BackEndException{
+        asegurarConexionAbierta();
+        return new MunicipioPostgreSQLDAO(conexion);
     }
 
     @Override
-    public UbicacionPrecisaDAO getUbicacionPrecisaDAO() {
-        return new UbicacionPrecisaAzureSQLDAO(conexion);
+    public UbicacionPrecisaDAO getUbicacionPrecisaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new UbicacionPrecisaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public TipoCanchaDAO getTipoCanchaDAO() {
-        return new TipoCanchaAzureSQLDAO(conexion);
+    public TipoCanchaDAO getTipoCanchaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new TipoCanchaPostgreSQLDAO(conexion);
     }
 
 
     @Override
-    public HorarioDisponibleDAO getHorarioDisponibleDAO() {
-        return new HorarioDisponibleAzureSQLDAO(conexion);
+    public HorarioDisponibleDAO getHorarioDisponibleDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new HorarioDisponiblePostgreSQLDAO(conexion);
     }
 
     @Override
-    public HorarioEspecialDAO getHorarioEspecialDAO() {
-        return new HorarioEspecialAzureSQLDAO(conexion);
+    public HorarioEspecialDAO getHorarioEspecialDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new HorarioEspecialPostgreSQLDAO(conexion);
     }
 
     @Override
-    public EstadoVerificacionDAO getEstadoVerificacionDAO() {
-        return new EstadoVerificacionAzureSQLDAO(conexion);
+    public EstadoVerificacionDAO getEstadoVerificacionDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new EstadoVerificacionPostgreSQLDAO(conexion);
     }
 
     @Override
-    public OrganizacionDeportivaDAO getOrganizacionDeportivaDAO() {
-        return new OrganizacionDeportivaAzureSQLDAO(conexion);
+    public OrganizacionDeportivaDAO getOrganizacionDeportivaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new OrganizacionDeportivaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public EncargadoDAO getEncargadoDAO() {
-        return new EncargadoAzureSQLDAO(conexion);
+    public EncargadoDAO getEncargadoDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new EncargadoPostgreSQLDAO(conexion);
     }
 
     @Override
-    public CanchaDAO getCanchaDAO() {
-        return new CanchaAzureSQLDAO(conexion);
+    public CanchaDAO getCanchaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new CanchaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public EstadoReservaDAO getEstadoReservaDAO() {
-        return new EstadoReservaAzureSQLDAO(conexion);
+    public EstadoReservaDAO getEstadoReservaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new EstadoReservaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public ClienteDAO getClienteDAO() {
-        return new ClienteAzureSQLDAO(conexion);
+    public ClienteDAO getClienteDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new ClientePostgreSQLDAO(conexion);
     }
 
     @Override
-    public ReservaDAO getReservaDAO() {
-        return new ReservaAzureSQLDAO(conexion);
+    public ReservaDAO getReservaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new ReservaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public ResenaDAO getResenaDAO() {
-        return new ResenaAzureSQLDAO(conexion);
+    public ResenaDAO getResenaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new ResenaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public FacturaDAO getFacturaDAO() {
-        return new FacturaAzureSQLDAO(conexion);
+    public FacturaDAO getFacturaDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new FacturaPostgreSQLDAO(conexion);
     }
 
     @Override
-    public SuperficieDAO getSuperficieDAO() {
-        return new SuperficieAzureSQLDAO(conexion);
+    public SuperficieDAO getSuperficieDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new SuperficiePostgreSQLDAO(conexion);
     }
 
     @Override
-    public DimensionDAO getDimensionDAO() {
-        return new DimensionAzureSQLDAO(conexion);
+    public DimensionDAO getDimensionDAO() throws BackEndException {
+        asegurarConexionAbierta();
+        return new DimensionPostgreSQLDAO(conexion);
     }
 }
 

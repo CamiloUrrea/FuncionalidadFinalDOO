@@ -2,11 +2,15 @@ package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
 import co.edu.uco.backend.businesslogic.businesslogic.TipoCanchaBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.TipoCanchaDomain;
+import co.edu.uco.backend.data.dao.factory.DAOFactory;
 
 import java.util.List;
 import java.util.UUID;
 
 public class TipoCanchaBusinessLogicImpl implements TipoCanchaBusinessLogic {
+
+    public TipoCanchaBusinessLogicImpl(DAOFactory daoFactory) {
+    }
 
     @Override
     public void registrarNuevoTipoCancha(TipoCanchaDomain tipoCancha) {

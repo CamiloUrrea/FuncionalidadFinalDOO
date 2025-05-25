@@ -35,8 +35,9 @@ public class HorarioEspecialPostgreSQLDAO implements HorarioEspecialDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(HorarioEspecialEntity entity) {
+    public void modificar(UUID uuid, HorarioEspecialEntity entity) {
 
     }
 }

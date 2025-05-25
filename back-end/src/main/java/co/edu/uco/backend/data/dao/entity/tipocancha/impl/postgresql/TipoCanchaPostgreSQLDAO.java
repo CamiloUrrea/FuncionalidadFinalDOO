@@ -35,8 +35,9 @@ public class TipoCanchaPostgreSQLDAO implements TipoCanchaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(TipoCanchaEntity entity) {
+    public void modificar(UUID uuid, TipoCanchaEntity entity) {
 
     }
 }

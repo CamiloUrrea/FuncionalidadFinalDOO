@@ -15,15 +15,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
     }
 
     @Override
-    public void create(CanchaEntity entity){
-        var sentenciaSQL = new StringBuilder();
-
-        sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombre, dimensiones, superficie, iluminacion, cubierta, costoporhora, codigotipocancha, codigoorganizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    }
-
-
-    @Override
     public void eliminar(UUID uuid) {
 
     }
@@ -38,13 +29,16 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
         return null;
     }
 
+
     @Override
-    public void modificar(CanchaEntity entity) {
+    public void crear(CanchaEntity entity) throws BackEndException {
+        StringBuilder sentenciaSQL = new StringBuilder();
+        sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombre, dimensiones, superficie, iluminacion, cubierta, costoporhora, codigotipocancha, codigoorganizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     }
 
     @Override
-    public void crear(CanchaEntity entity) throws BackEndException {
+    public void modificar(UUID uuid, CanchaEntity entity) {
 
     }
 }
