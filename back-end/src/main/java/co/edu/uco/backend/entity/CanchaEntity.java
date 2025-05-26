@@ -21,7 +21,7 @@ public final class CanchaEntity {
     private List<HorarioDisponibleEntity> horariosDisponibles;
     private List<HorarioEspecialEntity> horariosEspeciales;
 
-    CanchaEntity() {
+    public CanchaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombreCancha(UtilTexto.getInstance().obtenerValorDefecto());
         setTipo(TipoCanchaEntity.obtenerTipoCanchaDefecto());

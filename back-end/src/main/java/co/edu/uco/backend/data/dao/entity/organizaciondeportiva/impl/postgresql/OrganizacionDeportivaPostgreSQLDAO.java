@@ -22,7 +22,7 @@ public class OrganizacionDeportivaPostgreSQLDAO implements OrganizacionDeportiva
     public void crear(OrganizacionDeportivaEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
         sentenciaSQL.append("INSERT INTO organizaciondeportiva(codigoorganizacion, nombre, usuario, contrasena, prefijo, telefono, documentoexistencia, correo, paginaweb, codigoestadover)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?");
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,entity.getId());
             sentenciaPreparada.setString(2,entity.getNombre());

@@ -29,7 +29,7 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
 
             sentenciaPreparada.executeUpdate();
         } catch (SQLException exception) {
-            var mensajeTecnico = "Se presentó una SQLException tratando de hacer un DELETE en la tabla cancha de la cancha en la base de datos, para más detalles revise el log de errores";
+            var mensajeTecnico = "Se presentó una SQLException tratando de hacer un DELETE en la tabla de la cancha en la base de datos, para más detalles revise el log de errores";
             var mensajeUsuario = "Se ha presentado un problema tratando de eliminar definitivamente informacion de la cancha deseada de la fuente de datos";
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
@@ -112,7 +112,7 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
     public void crear(CanchaEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
         sentenciaSQL.append("INSERT INTO cancha(codigocancha, nombreCancha, tipo, dimensiones, superficie, costoHora, ubicacion, organizacion, iluminacion, cubierta, HorariosDisponibles, HorariosEspeciales)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?");
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,entity.getId());
             sentenciaPreparada.setString(2,entity.getNombreCancha());
@@ -144,11 +144,11 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
 
 
     @Override
-    public void modificar(UUID uuid, CanchaEntity entity) throws BackEndException{
+    public void modificar(UUID codigocancha, CanchaEntity entity) throws BackEndException{
         var sentenciaSQL = new StringBuilder();
         sentenciaSQL.append("UPDATE cancha SET nombreCancha = ?, tipo = ?, dimensiones = ?, superficie = ?, costoHora = ?, ubicacion = ?, iluminacion = ?, cubierta = ?, HorariosDisponibles = ?, HorariosEspeciales = ? WHERE codigocancha = ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-            sentenciaPreparada.setObject(1,entity.getId());
+            sentenciaPreparada.setObject(1,codigocancha);
             sentenciaPreparada.setString(2,entity.getNombreCancha());
             sentenciaPreparada.setObject(3,entity.getTipo());
             sentenciaPreparada.setObject(4,entity.getSuperficie());
