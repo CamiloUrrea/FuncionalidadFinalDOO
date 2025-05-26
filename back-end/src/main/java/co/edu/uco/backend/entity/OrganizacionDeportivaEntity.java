@@ -8,12 +8,13 @@ import java.util.UUID;
 
 public final class OrganizacionDeportivaEntity extends UsuarioEntity {
 
-    public String documentoExistencia;
-    public String correoAdministrativo;
-    public String paginaWeb;
-    public List<EncargadoEntity> encargados;
-    public List<CanchaEntity> canchas;
-    public EstadoVerificacionEntity estadoVerificacion;
+
+    private String documentoExistencia;
+    private String correoAdministrativo;
+    private String paginaWeb;
+    private List<EncargadoEntity> encargados;
+    private List<CanchaEntity> canchas;
+    private EstadoVerificacionEntity estadoVerificacion;
 
     public OrganizacionDeportivaEntity() {
         super();

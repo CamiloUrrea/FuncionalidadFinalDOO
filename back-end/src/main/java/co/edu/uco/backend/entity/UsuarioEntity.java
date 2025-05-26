@@ -40,11 +40,11 @@ public abstract class UsuarioEntity {
         setTelefono(telefono);
     }
 
-    static UsuarioEntity obtenerUsuarioDefecto() {
+    public static UsuarioEntity obtenerUsuarioDefecto() {
         return new UsuarioEntity() {};
     }
 
-    static UsuarioEntity obtenerValorDefecto(final UsuarioEntity entity) {
+    public static UsuarioEntity obtenerValorDefecto(final UsuarioEntity entity) {
         return UtilObjeto.getInstance().obtenerValorDefecto(entity, obtenerUsuarioDefecto());
     }
 

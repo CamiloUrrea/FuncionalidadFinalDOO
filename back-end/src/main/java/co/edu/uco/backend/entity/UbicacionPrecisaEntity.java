@@ -9,12 +9,12 @@ import java.util.UUID;
 
 public final class UbicacionPrecisaEntity {
 
-    public UUID id;
-    public String direccion;
-    public double latitud;
-    public double longitud;
-    public MunicipioEntity municipio;
-    public String informacionAdicional;
+    private UUID id;
+    private String direccion;
+    private double latitud;
+    private double longitud;
+    private MunicipioEntity municipio;
+    private String informacionAdicional;
 
     public UbicacionPrecisaEntity() {
         setId(UtilUUID.obtenerValorDefecto());

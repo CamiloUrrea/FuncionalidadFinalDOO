@@ -8,9 +8,9 @@ import java.util.UUID;
 
 public final class MunicipioEntity {
 
-    public UUID id;
-    public String nombre;
-    public DepartamentoEntity departamento;
+    private UUID id;
+    private String nombre;
+    private DepartamentoEntity departamento;
 
     public MunicipioEntity() {
         setId(UtilUUID.obtenerValorDefecto());

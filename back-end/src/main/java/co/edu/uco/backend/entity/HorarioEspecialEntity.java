@@ -11,13 +11,13 @@ import java.time.LocalDate;
 
 public final class HorarioEspecialEntity {
 
-    public UUID id;
-    public CanchaEntity cancha;
-    public LocalDate fechaInicio;
-    public LocalDate fechaFin;
-    public LocalTime horaInicio;
-    public LocalTime horaFin;
-    public String motivo;
+    private UUID id;
+    private CanchaEntity cancha;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
+    private String motivo;
 
     public HorarioEspecialEntity() {
         setId(UtilUUID.obtenerValorDefecto());
