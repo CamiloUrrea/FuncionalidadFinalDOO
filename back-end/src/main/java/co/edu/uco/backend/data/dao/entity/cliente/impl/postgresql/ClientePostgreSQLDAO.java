@@ -22,7 +22,7 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     @Override
     public void crear(ClienteEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("INSERT INTO encargado(encargadoId, nombre, usuario, contrasena, prefijo, telefono)" +
+        sentenciaSQL.append("INSERT INTO clinte(codigocliente, nombre, usuario, contrasena, prefijo, telefono)" +
                 " VALUES (?, ?, ?, ?, ?, ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,entity.getId());

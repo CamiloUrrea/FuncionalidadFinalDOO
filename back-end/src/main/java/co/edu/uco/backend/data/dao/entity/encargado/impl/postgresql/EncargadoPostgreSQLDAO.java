@@ -23,7 +23,7 @@ public class EncargadoPostgreSQLDAO implements EncargadoDAO {
     @Override
     public void crear(EncargadoEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("INSERT INTO encargado(encargadoId, nombre, usuario, contrasena, prefijo, telefono, correo, tipodocumento, documento, organizacion)" +
+        sentenciaSQL.append("INSERT INTO encargado(encargadoId, nombre, usuario, contrasena, prefijo, telefono, correo, tipodocumento, documento, codigoorganizacion)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,entity.getId());
@@ -90,7 +90,7 @@ public class EncargadoPostgreSQLDAO implements EncargadoDAO {
     @Override
     public void modificar(UUID encargadoId, EncargadoEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("UPDATE encargado SET nombre = ?, usuario = ?, contrasena = ?,prefijo = ?, telefono = ?, correo = ?, tipodocumento = ?, documento = ?, organizacion = ? WHERE encargadoId = ?)");
+        sentenciaSQL.append("UPDATE encargado SET nombre = ?, usuario = ?, contrasena = ?,prefijo = ?, telefono = ?, correo = ?, tipodocumento = ?, documento = ?, codigoorganizacion = ? WHERE encargadoId = ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,encargadoId);
             sentenciaPreparada.setString(2,entity.getNombre());
