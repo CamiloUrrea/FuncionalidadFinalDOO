@@ -24,7 +24,7 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
     public void registrarNuevaCancha(UUID orgId, CanchaDomain cancha) throws BackEndException {
         CanchaEntity canchaEntity = null;
         OrganizacionDeportivaEntity organizacionDeportivaEntity = factory.getOrganizacionDeportivaDAO().consultarPorId(orgId);
-        canchaEntity.setOrganizacionDeportivaEntity(organizacionDeportivaEntity);
+        canchaEntity.setOrganizacion(organizacionDeportivaEntity);
         //TODO: Validar organizacion
         factory.getCanchaDAO().crear(canchaEntity);
     }

@@ -11,7 +11,7 @@ public final class EstadoReservaEntity {
     private UUID id;
     private String nombre;
 
-    EstadoReservaEntity() {
+    public EstadoReservaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
     }

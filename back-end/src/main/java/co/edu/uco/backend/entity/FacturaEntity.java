@@ -13,7 +13,7 @@ public final class FacturaEntity {
     private LocalDate fechaGeneracion;
     private double total;
 
-    FacturaEntity() {
+    public FacturaEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setIdentificador(UtilTexto.getInstance().obtenerValorDefecto());
         setReserva(ReservaEntity.obtenerReservaDefecto());

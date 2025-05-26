@@ -15,7 +15,7 @@ public final class HorarioDisponibleEntity {
     private LocalTime horaApertura;
     private LocalTime horaCierre;
 
-    HorarioDisponibleEntity() {
+    public HorarioDisponibleEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setCancha(CanchaEntity.obtenerCanchaDefecto());
         setDia(UtilObjeto.getInstance().obtenerValorDefecto(null, DiaSemana.obtenerValorPorDefecto()));

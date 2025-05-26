@@ -14,7 +14,7 @@ public final class DimensionEntity {
     private double largo;
     private double ancho;
 
-    DimensionEntity() {
+    public DimensionEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setLargo(UtilDouble.obtenerValorDefecto(0.0));
         setAncho(UtilDouble.obtenerValorDefecto(0.0));

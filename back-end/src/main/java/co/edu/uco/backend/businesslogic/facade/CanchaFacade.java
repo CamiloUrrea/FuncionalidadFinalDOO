@@ -10,9 +10,9 @@ public interface CanchaFacade {
 
     void registrarNuevaCancha(UUID orgId, CanchaDTO cancha) throws BackEndException;
 
-    void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDTO cancha) ;
+    void modificarCanchaExistente(UUID orgId, UUID canchaId, CanchaDTO cancha) throws BackEndException;
 
-    void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId) ;
+    void darBajaDefinitivamenteCanchaExistente(UUID orgId, UUID canchaId) throws BackEndException;
 
     CanchaDTO consultarCanchaPorOrganizacion(UUID orgId, UUID canchaId) throws BackEndException;
 

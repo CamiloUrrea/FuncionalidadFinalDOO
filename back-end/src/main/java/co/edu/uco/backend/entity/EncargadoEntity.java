@@ -13,7 +13,7 @@ public final class EncargadoEntity extends UsuarioEntity {
     private String documento;
     private OrganizacionDeportivaEntity organizacion;
 
-    EncargadoEntity() {
+    public EncargadoEntity() {
         super();
         setCorreo(UtilTexto.getInstance().obtenerValorDefecto());
         setTipoDocumento(UtilTexto.getInstance().obtenerValorDefecto());

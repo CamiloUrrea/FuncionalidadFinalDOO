@@ -11,7 +11,7 @@ public final class EstadoVerificacionEntity {
     private UUID id;
     private String nombre;
 
-    EstadoVerificacionEntity() {
+    public EstadoVerificacionEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
     }

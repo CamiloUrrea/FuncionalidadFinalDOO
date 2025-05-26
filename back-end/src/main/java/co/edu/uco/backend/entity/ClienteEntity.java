@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public final class ClienteEntity extends UsuarioEntity {
 
-    ClienteEntity() {
+    public ClienteEntity() {
         super();
     }
 

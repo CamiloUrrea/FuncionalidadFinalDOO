@@ -11,7 +11,7 @@ public final class DepartamentoEntity {
     private UUID id;
     private String nombre;
 
-    DepartamentoEntity() {
+    public DepartamentoEntity() {
         setId(UtilUUID.obtenerValorDefecto());
         setNombre(UtilTexto.getInstance().obtenerValorDefecto());
     }
