@@ -1,10 +1,10 @@
 package co.edu.uco.backend.data.dao.entity.cliente.impl.postgresql;
-
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.entity.cliente.ClienteDAO;
 import co.edu.uco.backend.entity.ClienteEntity;
-import co.edu.uco.backend.entity.EncargadoEntity;
+import jdk.jshell.execution.Util;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,7 +22,7 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     @Override
     public void crear(ClienteEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("INSERT INTO clinte(codigocliente, nombre, usuario, contrasena, prefijo, telefono)" +
+        sentenciaSQL.append("INSERT INTO cliente(codigocliente, nombre, username, contrasena, prefijotelefono, telefono)" +
                 " VALUES (?, ?, ?, ?, ?, ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,entity.getId());
@@ -48,11 +48,11 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     }
 
     @Override
-    public void eliminar(UUID clienteId) throws BackEndException {
+    public void eliminar(UUID codigocliente) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("DELETE FROM cliente WHERE clieenteid = ?)");
+        sentenciaSQL.append("DELETE FROM cliente WHERE codigocliente = ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-            sentenciaPreparada.setObject(1,clienteId);
+            sentenciaPreparada.setObject(1,codigocliente);
 
             sentenciaPreparada.executeUpdate();
         } catch (SQLException exception) {
@@ -69,22 +69,69 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
         }
     }
 
+
+
+
+
+
+
+
+
     @Override
     public List<ClienteEntity> consultar(ClienteEntity entity) {
         return List.of();
     }
 
     @Override
-    public ClienteEntity consultarPorId(UUID id) {
-        return null;
+    public ClienteEntity consultarPorId(UUID codigocliente) throws BackEndException {
+        var ClienteEntityRetorno = new ClienteEntity();
+        var sentenciaSQL = new StringBuilder();
+        sentenciaSQL.append("SELECT * FROM cliente WHERE codigocliente = ?)");
+
+        try(var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
+
+            sentenciaPreparada.setObject(1, codigocliente);
+
+
+            try (var cursorResultados = sentenciaPreparada.executeQuery()){
+
+                if(cursorResultados.next()){
+                    ClienteEntityRetorno.setId(UtilUUID.convertirAUUID(cursorResultados.getString("codigocliente")));
+                    ClienteEntityRetorno.setNombre(cursorResultados.getString("nombre"));
+                    ClienteEntityRetorno.setUsername(cursorResultados.getString("username"));
+                    ClienteEntityRetorno.setContrasena(cursorResultados.getString("contrasena"));
+                    ClienteEntityRetorno.setPrefijoTelefono(cursorResultados.getString("prefijotelefono"));
+                    ClienteEntityRetorno.setTelefono(cursorResultados.getString("telefono"));
+                }
+            }
+        }catch (SQLException exception){
+            var mensajeUsuario = "Se ha presentado un problema tratando de consultar la informacion del cliente deseado en la base de datos";
+            var mensajeTecnico = "Se presentó una excepción de tipo SQLException tratando de hacer un SELECT en la tabla ";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }   catch (Exception exception){
+            var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de consultar la informacion del cliente deseado en la base de datos ";
+            var mensajeTecnico = "Se ha presentado una Excepcion NO CONTROLADA tratando de hacer un SELECT en la tabla cliente ";
+
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+        return ClienteEntityRetorno;
+
     }
 
+
+
+
+
+
+
+
     @Override
-    public void modificar(UUID clienteId, ClienteEntity entity) throws BackEndException {
+    public void modificar(UUID codigocliente, ClienteEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("UPDATE encargado SET nombre = ?, usuario = ?, contrasena = ?,prefijo = ?, telefono = ?)");
+        sentenciaSQL.append("UPDATE cliente SET nombre = ?, username = ?, contrasena = ?,prefijotelefono = ?, telefono = ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-            sentenciaPreparada.setObject(1,clienteId);
+            sentenciaPreparada.setObject(1,codigocliente);
             sentenciaPreparada.setString(2,entity.getNombre());
             sentenciaPreparada.setString(3,entity.getUsername());
             sentenciaPreparada.setString(4,entity.getContrasena());
@@ -107,3 +154,5 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
 
     }
 }
+
+
