@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class PruebaConexion {
     public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5432/D00DB";
+        String url = "jdbc:postgresql://localhost:5432/DOODB";
         String usuario = "postgres";
         String clave = "321325";
 

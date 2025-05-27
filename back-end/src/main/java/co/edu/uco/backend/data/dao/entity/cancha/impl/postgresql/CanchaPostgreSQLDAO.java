@@ -42,18 +42,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public List<CanchaEntity> consultar(CanchaEntity filtro) {
         return List.of();
@@ -64,7 +52,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
 
         var CanchaEntityRetorno = new CanchaEntity();
         var sentenciaSQL = new StringBuilder();
-
 
         sentenciaSQL.append("SELECT codigocancha, nombreCancha, tipo, dimensiones, superficie, costoHora, ubicacion, organizacion, iluminacion, cubierta, HorariosDisponibles, HorariosEspeciales FROM cancha WHERE codigocancha = ?");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
@@ -95,18 +82,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
         }
         return CanchaEntityRetorno;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void crear(CanchaEntity entity) throws BackEndException {
@@ -176,8 +151,4 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
         }
     }
 }
-
-
-
-
 
