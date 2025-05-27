@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.ubicacionprecisa.entity;
+package co.edu.uco.backend.businesslogic.assembler.ubicacionPrecisa.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UbicacionPrecisaDomain;

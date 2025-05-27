@@ -1,7 +1,7 @@
 package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
+import co.edu.uco.backend.businesslogic.assembler.cliente.entity.ClienteEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.ClienteBusinessLogic;
-import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ClienteDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
@@ -9,16 +9,15 @@ import co.edu.uco.backend.crosscutting.exceptions.BusinessLogicBackEndException;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
-import co.edu.uco.backend.entity.CanchaEntity;
 import co.edu.uco.backend.entity.ClienteEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
 public class ClienteBusinessLogicImpl implements ClienteBusinessLogic {
 
-    private DAOFactory factory;
+    private final DAOFactory factory;
     public ClienteBusinessLogicImpl(DAOFactory factory) {
         this.factory = factory;
     }
@@ -42,7 +41,7 @@ public class ClienteBusinessLogicImpl implements ClienteBusinessLogic {
         var clienteDomainACrear = new ClienteDomain(id,cliente.getNombre(),cliente.getUsername(),cliente.getContrasena(),cliente.getPrefijoTelefono(),cliente.getTelefono());
 
         //  7. Creamos el cliente siempre y cuando se cumplan todas las reglas
-        ClienteEntity clienteEntity = null;//ClienteEntityAssembler.getInstance().toEntity(clienteDomainACrear)
+        ClienteEntity clienteEntity = ClienteEntityAssembler.getInstance().toEntity(clienteDomainACrear);
         factory.getClienteDAO().crear(clienteEntity);
     }
 

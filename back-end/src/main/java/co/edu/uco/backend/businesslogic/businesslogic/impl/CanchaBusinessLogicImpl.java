@@ -1,5 +1,6 @@
 package co.edu.uco.backend.businesslogic.businesslogic.impl;
 
+import co.edu.uco.backend.businesslogic.assembler.cancha.entity.CanchaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.CanchaBusinessLogic;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.*;
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
@@ -9,15 +10,14 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.entity.CanchaEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-@Service
+
 public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
 
-    private DAOFactory factory;
+    private final DAOFactory factory;
 
     public CanchaBusinessLogicImpl(DAOFactory factory) {
         this.factory = factory;
@@ -42,7 +42,7 @@ public class CanchaBusinessLogicImpl implements CanchaBusinessLogic {
         var canchaDomainACrear = new CanchaDomain(id, cancha.getNombreCancha(),cancha.getTipo(),cancha.getDimensiones(),cancha.getSuperficie(),cancha.getCostoHora(),cancha.getUbicacion(),cancha.getOrganizacion(),cancha.isIluminacion(),cancha.isCubierta(),cancha.getHorariosDisponibles(),cancha.getHorariosEspeciales());
 
         //  6. Creamos la cancha siempre y cuando se cumplan todas las reglas
-        CanchaEntity canchaEntity = null;//CanchaEntityAssembler.getInstance().toEntity(canchaDomainACrear)
+        CanchaEntity canchaEntity = CanchaEntityAssembler.getInstance().toEntity(canchaDomainACrear);
         factory.getCanchaDAO().crear(canchaEntity);
     }
 

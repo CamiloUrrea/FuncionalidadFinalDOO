@@ -1,5 +1,6 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
+import co.edu.uco.backend.businesslogic.assembler.cliente.dto.ClienteDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ClienteDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.ClienteBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.ClienteBusinessLogic;
@@ -16,8 +17,8 @@ import java.util.UUID;
 
 public class ClienteFacadeImpl implements ClienteFacade {
 
-    private DAOFactory daoFactory;
-    private ClienteBusinessLogic clienteBusinessLogic;
+    private final DAOFactory daoFactory;
+    private final ClienteBusinessLogic clienteBusinessLogic;
 
     public ClienteFacadeImpl() throws BackEndException {
         daoFactory = DAOFactory.getFactory(Factory.POSTGRE_SQL);
@@ -29,7 +30,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
         try {
             daoFactory.iniciarTransaccion();
 
-            ClienteDomain clienteDomain = null; //ClienteDTOAssembler.getInstance().toDomain(cliente)
+            ClienteDomain clienteDomain = ClienteDTOAssembler.getInstance().toDomain(cliente);
             clienteBusinessLogic.registrarNuevoCliente(clienteDomain);
 
             daoFactory.confirmarTransaccion();

@@ -7,7 +7,7 @@ import co.edu.uco.backend.businesslogic.assembler.horarioespecial.entity.Horario
 import co.edu.uco.backend.businesslogic.assembler.organizaciondeportiva.entity.OrganizacionDeportivaEntityAssembler;
 import co.edu.uco.backend.businesslogic.assembler.superficie.entity.SuperficieEntityAssembler;
 import co.edu.uco.backend.businesslogic.assembler.tipocancha.entity.TipoCanchaEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.ubicacionprecisa.entity.UbicacionPrecisaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.ubicacionPrecisa.entity.UbicacionPrecisaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.CanchaEntity;

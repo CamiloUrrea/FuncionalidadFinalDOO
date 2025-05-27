@@ -35,7 +35,7 @@ public final class UbicacionPrecisaEntity {
     }
 
     public UbicacionPrecisaEntity(final UUID id, final String direccion, final double latitud, final double longitud,
-                                  final MunicipioEntity municipio, final String informacionAdicional, final CanchaEntity cancha) {
+                                  final MunicipioEntity municipio, final String informacionAdicional) {
         setId(id);
         setDireccion(direccion);
         setLatitud(latitud);
