@@ -6,7 +6,8 @@ import java.util.UUID;
 
 public interface UbicacionPrecisaBusinessLogic {
 
-    void establecerUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDomain ubicacionPrecisa);
+    void registrarNuevaUbicacionPrecisa(UUID canchaId,UbicacionPrecisaDomain ubicacionPrecisa) throws BackEndException;
+    void modificarUbicacionPrecisaExistente(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDomain ubicacionPrecisa) throws BackEndException;
     void eliminarUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId) throws BackEndException;
     UbicacionPrecisaDomain consultarUbicacionPrecisaPorId(UUID canchaId, UUID ubicacionPrecisaId) throws BackEndException;
 

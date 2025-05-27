@@ -16,6 +16,7 @@ public final class UbicacionPrecisaDTO {
     private MunicipioDTO municipio;
     private String informacionAdicional;
 
+
     public UbicacionPrecisaDTO() {
         setId(UtilUUID.obtenerValorDefecto());
         setDireccion(UtilTexto.getInstance().obtenerValorDefecto());
@@ -23,6 +24,7 @@ public final class UbicacionPrecisaDTO {
         setLongitud(UtilDouble.obtenerValorDefecto(0.0));
         setMunicipio(MunicipioDTO.obtenerValorDefecto());
         setInformacionAdicional(UtilTexto.getInstance().obtenerValorDefecto());
+
     }
 
     public UbicacionPrecisaDTO(final UUID id) {
@@ -32,6 +34,7 @@ public final class UbicacionPrecisaDTO {
         setLongitud(UtilDouble.obtenerValorDefecto(0.0));
         setMunicipio(MunicipioDTO.obtenerValorDefecto());
         setInformacionAdicional(UtilTexto.getInstance().obtenerValorDefecto());
+
     }
 
     public UbicacionPrecisaDTO(
@@ -41,6 +44,7 @@ public final class UbicacionPrecisaDTO {
             final double longitud,
             final MunicipioDTO municipio,
             final String informacionAdicional
+
     ) {
         setId(id);
         setDireccion(direccion);
@@ -48,6 +52,7 @@ public final class UbicacionPrecisaDTO {
         setLongitud(longitud);
         setMunicipio(municipio);
         setInformacionAdicional(informacionAdicional);
+
     }
 
     public static UbicacionPrecisaDTO obtenerValorDefecto() {
@@ -111,4 +116,6 @@ public final class UbicacionPrecisaDTO {
         this.informacionAdicional = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(informacionAdicional);
         return this;
     }
+
+
 }

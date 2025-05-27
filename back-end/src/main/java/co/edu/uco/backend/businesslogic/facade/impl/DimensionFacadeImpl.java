@@ -25,12 +25,35 @@ public class DimensionFacadeImpl implements DimensionFacade {
 
 
     @Override
-    public void establecerDimension(UUID canchaId, UUID dimensionId, DimensionDTO dimension) throws BackEndException {
+    public void registrarNuevaDimension(UUID canchaId, DimensionDTO dimension) throws BackEndException {
         try {
             daoFactory.iniciarTransaccion();
 
             DimensionDomain dimensionDomain= null; //TODO: magia de convertir de DTO a Domain
-            dimensionBusinessLogic.establecerDimension(canchaId,dimensionId,dimensionDomain);
+            dimensionBusinessLogic.registrarNuevaDimension(canchaId,dimensionDomain);
+
+            daoFactory.confirmarTransaccion();
+        } catch (BackEndException exception) {
+            daoFactory.cancelarTransaccion();
+            throw exception;
+        } catch (Exception exception) {
+            daoFactory.cancelarTransaccion();
+            var mensajeTecnico = "Se presentó una excepción inesperada de tipo Exception tratando de registrar la informacion de la dimension, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de registrar la informacion de la dimension";
+
+            throw BusinessLogicBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        } finally {
+            daoFactory.cerrarConexion();
+        }
+    }
+
+    @Override
+    public void modificarDimensionExistente(UUID canchaId, UUID dimensionId, DimensionDTO dimension) throws BackEndException {
+        try {
+            daoFactory.iniciarTransaccion();
+
+            DimensionDomain dimensionDomain= null; //TODO: magia de convertir de DTO a Domain
+            dimensionBusinessLogic.modificarDimensionExistente(canchaId,dimensionId,dimensionDomain);
 
             daoFactory.confirmarTransaccion();
         } catch (BackEndException exception) {

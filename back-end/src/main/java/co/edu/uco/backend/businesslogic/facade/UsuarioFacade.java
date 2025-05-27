@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UsuarioFacade {
-    UsuarioDTO iniciarSesion(String username, String rawPassword);
+    UsuarioDTO iniciarSesion(String username, String rawPassword, String ipAdress, String userAgent);
     void cerrarSesion(UUID usuarioId);
     void recuperarContrasena(String username);
     void cambiarContrasena(UUID usuarioId, String rawPasswordActual, String rawPasswordNueva);

@@ -35,7 +35,7 @@ public final class UbicacionPrecisaEntity {
     }
 
     public UbicacionPrecisaEntity(final UUID id, final String direccion, final double latitud, final double longitud,
-                                  final MunicipioEntity municipio, final String informacionAdicional) {
+                                  final MunicipioEntity municipio, final String informacionAdicional, final CanchaEntity cancha) {
         setId(id);
         setDireccion(direccion);
         setLatitud(latitud);
@@ -99,6 +99,7 @@ public final class UbicacionPrecisaEntity {
     public void setInformacionAdicional(final String informacionAdicional) {
         this.informacionAdicional = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(informacionAdicional);
     }
+
 }
 
 

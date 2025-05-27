@@ -29,7 +29,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
         try {
             daoFactory.iniciarTransaccion();
 
-            ClienteDomain clienteDomain = null; //TODO: magia de convertir de DTO a Domain
+            ClienteDomain clienteDomain = null; //ClienteDTOAssembler.getInstance().toDomain(cliente)
             clienteBusinessLogic.registrarNuevoCliente(clienteDomain);
 
             daoFactory.confirmarTransaccion();
@@ -134,7 +134,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public UsuarioDTO iniciarSesion(String username, String rawPassword) {
+    public UsuarioDTO iniciarSesion(String username, String rawPassword, String ipAdress, String agentUser) {
         return null;
     }
 

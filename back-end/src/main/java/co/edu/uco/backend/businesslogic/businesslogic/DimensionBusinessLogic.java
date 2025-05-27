@@ -7,7 +7,8 @@ import java.util.UUID;
 
 public interface DimensionBusinessLogic {
 
-    void establecerDimension(UUID canchaId, UUID dimensionId, DimensionDomain dimension);
+    void registrarNuevaDimension(UUID canchaId,DimensionDomain dimension) throws BackEndException;
+    void modificarDimensionExistente(UUID canchaId, UUID dimensionId, DimensionDomain dimension) throws BackEndException;
     void eliminarDimension(UUID canchaId, UUID dimensionId) throws BackEndException;
     DimensionDomain consultarDimensionPorId(UUID canchaId, UUID dimensionId) throws BackEndException;
 

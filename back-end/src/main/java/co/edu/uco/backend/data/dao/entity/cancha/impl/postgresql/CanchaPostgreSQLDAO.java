@@ -4,7 +4,6 @@ import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.entity.cancha.CanchaDAO;
 import co.edu.uco.backend.entity.CanchaEntity;
-import co.edu.uco.backend.entity.DimensionEntity;
 import co.edu.uco.backend.entity.TipoCanchaEntity;
 
 import java.sql.Connection;
@@ -41,7 +40,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
-
 
 
 

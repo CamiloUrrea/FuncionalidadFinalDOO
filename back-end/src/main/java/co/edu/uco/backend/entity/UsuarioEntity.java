@@ -72,27 +72,27 @@ public abstract class UsuarioEntity {
         return telefono;
     }
 
-    protected void setId(final UUID id) {
+    public void setId(final UUID id) {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
-    protected void setNombre(final String nombre) {
+    public void setNombre(final String nombre) {
         this.nombre = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(nombre);
     }
 
-    protected void setUsername(final String username) {
+    public void setUsername(final String username) {
         this.username = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(username);
     }
 
-    protected void setContrasena(final String contrasena) {
+    public void setContrasena(final String contrasena) {
         this.contrasena = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(contrasena);
     }
 
-    protected void setPrefijoTelefono(final String prefijoTelefono) {
+    public void setPrefijoTelefono(final String prefijoTelefono) {
         this.prefijoTelefono = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(prefijoTelefono);
     }
 
-    protected void setTelefono(final String telefono) {
+    public void setTelefono(final String telefono) {
         this.telefono = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(telefono);
     }
 }

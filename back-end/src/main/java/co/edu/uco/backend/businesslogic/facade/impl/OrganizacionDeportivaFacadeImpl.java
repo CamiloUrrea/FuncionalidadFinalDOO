@@ -145,7 +145,7 @@ public class OrganizacionDeportivaFacadeImpl implements OrganizacionDeportivaFac
     }
 
     @Override
-    public UsuarioDTO iniciarSesion(String username, String rawPassword) {
+    public UsuarioDTO iniciarSesion(String username, String rawPassword, String ipAdress, String userAgent) {
         return null;
     }
 

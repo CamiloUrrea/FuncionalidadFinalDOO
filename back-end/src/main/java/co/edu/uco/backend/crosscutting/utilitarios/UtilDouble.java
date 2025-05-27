@@ -12,15 +12,16 @@ public final class UtilDouble {
         return UtilObjeto.getInstance().obtenerValorDefecto(valor, VALOR_DEFECTO);
     }
 
+    /** Devuelve true si el valor es estrictamente mayor que 0. */
     public static boolean esPositivo(final Double valor) {
         return obtenerValorDefecto(valor) > 0.0;
     }
 
-    public static boolean esNegativo(final Double valor) {
-        return obtenerValorDefecto(valor) < 0.0;
-    }
-
-    public static boolean esCero(final Double valor) {
-        return obtenerValorDefecto(valor) == 0.0;
+    /**
+     * Devuelve true si valor está en [minimo, maximo].
+     */
+    public static boolean estaEnRango(final Double valor, final double minimo, final double maximo) {
+        double v = obtenerValorDefecto(valor);
+        return v >= minimo && v <= maximo;
     }
 }

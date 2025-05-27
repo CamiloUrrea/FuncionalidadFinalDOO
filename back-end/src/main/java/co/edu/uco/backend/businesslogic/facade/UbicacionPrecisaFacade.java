@@ -7,7 +7,8 @@ import java.util.UUID;
 
 public interface UbicacionPrecisaFacade {
 
-    void establecerUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDTO ubicacionPrecisa) throws BackEndException;
+    void registrarNuevaUbicacionPrecisa(UUID canchaId, UbicacionPrecisaDTO ubicacionPrecisa) throws BackEndException;
+    void modificarUbicacionPrecisaExistente(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDTO ubicacionPrecisa) throws BackEndException;
     void eliminarUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId) throws BackEndException;
     UbicacionPrecisaDTO consultarUbicacionPrecisaPorId(UUID canchaId, UUID ubicacionPrecisaId) throws BackEndException;
 

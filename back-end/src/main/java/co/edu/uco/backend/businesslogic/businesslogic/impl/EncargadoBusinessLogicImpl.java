@@ -67,7 +67,7 @@ public class EncargadoBusinessLogicImpl implements EncargadoBusinessLogic {
 
 
     @Override
-    public UsuarioDomain iniciarSesion(String username, String rawPassword) {
+    public UsuarioDomain iniciarSesion(String username, String rawPassword, String ipAdress, String userAgent) {
         return null;
     }
 

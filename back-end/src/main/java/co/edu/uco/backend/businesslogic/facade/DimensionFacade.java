@@ -8,7 +8,8 @@ import java.util.UUID;
 
 public interface DimensionFacade {
 
-    void establecerDimension(UUID canchaId, UUID dimensionId, DimensionDTO dimension) throws BackEndException;
+    void registrarNuevaDimension(UUID canchaId,DimensionDTO dimension) throws BackEndException;
+    void modificarDimensionExistente(UUID canchaId, UUID dimensionId, DimensionDTO dimension) throws BackEndException;
     void eliminarDimension(UUID canchaId, UUID dimensionId) throws BackEndException;
     DimensionDTO consultarDimensionPorId(UUID canchaId, UUID dimensionId) throws BackEndException;
 

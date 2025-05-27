@@ -62,7 +62,7 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
     }
 
     @Override
-    public UsuarioDomain iniciarSesion(String username, String rawPassword) {
+    public UsuarioDomain iniciarSesion(String username, String rawPassword, String ipAdress, String agentUser) {
         return null;
     }
 

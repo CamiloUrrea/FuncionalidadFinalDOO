@@ -1,6 +1,5 @@
 package co.edu.uco.backend.businesslogic.facade.impl;
 
-import co.edu.uco.backend.businesslogic.businesslogic.domain.DimensionDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UbicacionPrecisaDomain;
 import co.edu.uco.backend.businesslogic.businesslogic.impl.UbicacionPrecisaBusinessLogicImpl;
 import co.edu.uco.backend.businesslogic.businesslogic.UbicacionPrecisaBusinessLogic;
@@ -11,7 +10,6 @@ import co.edu.uco.backend.data.dao.factory.DAOFactory;
 import co.edu.uco.backend.data.dao.factory.Factory;
 import co.edu.uco.backend.dto.UbicacionPrecisaDTO;
 
-import java.util.List;
 import java.util.UUID;
 
 public class UbicacionPrecisaFacadeImpl implements UbicacionPrecisaFacade {
@@ -26,12 +24,35 @@ public class UbicacionPrecisaFacadeImpl implements UbicacionPrecisaFacade {
 
 
     @Override
-    public void establecerUbicacionPrecisa(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDTO ubicacionPrecisa) throws BackEndException {
+    public void registrarNuevaUbicacionPrecisa(UUID canchaId, UbicacionPrecisaDTO ubicacionPrecisa) throws BackEndException {
         try {
             daoFactory.iniciarTransaccion();
 
             UbicacionPrecisaDomain ubicacionPrecisaDomain= null; //TODO: magia de convertir de DTO a Domain
-            ubicacionPrecisaBusinessLogic.establecerUbicacionPrecisa(canchaId,ubicacionPrecisaId,ubicacionPrecisaDomain);
+            ubicacionPrecisaBusinessLogic.registrarNuevaUbicacionPrecisa(canchaId,ubicacionPrecisaDomain);
+
+            daoFactory.confirmarTransaccion();
+        } catch (BackEndException exception) {
+            daoFactory.cancelarTransaccion();
+            throw exception;
+        } catch (Exception exception) {
+            daoFactory.cancelarTransaccion();
+            var mensajeTecnico = "Se presentó una excepción inesperada de tipo Exception tratando de registrar la informacion de ubicacion precisa, para más detalles revise el log de errores";
+            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de registrar la informacion de la ubicacion precisa";
+
+            throw BusinessLogicBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        } finally {
+            daoFactory.cerrarConexion();
+        }
+    }
+
+    @Override
+    public void modificarUbicacionPrecisaExistente(UUID canchaId, UUID ubicacionPrecisaId, UbicacionPrecisaDTO ubicacionPrecisa) throws BackEndException {
+        try {
+            daoFactory.iniciarTransaccion();
+
+            UbicacionPrecisaDomain ubicacionPrecisaDomain= null; //TODO: magia de convertir de DTO a Domain
+            ubicacionPrecisaBusinessLogic.modificarUbicacionPrecisaExistente(canchaId,ubicacionPrecisaId,ubicacionPrecisaDomain);
 
             daoFactory.confirmarTransaccion();
         } catch (BackEndException exception) {
