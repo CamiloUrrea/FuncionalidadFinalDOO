@@ -2,12 +2,12 @@ package co.edu.uco.backend.businesslogic.assembler;
 
 import java.util.List;
 
-public interface DTOAssembler <E, D> {
-    E toEntity(D domain);
+public interface DTOAssembler <T, D> {
+    D toDomain(T dto);
 
-    D toDomain(E entity);
+    T toDTO(D domain);
 
-    List<D> toDomains(List<E> entities);
+    List<T> toDTOs(List<D> domainList);
 
-    List<E> toEntities(List<D> domains);
+    List<D> toDomains(List<T> dtoList);
 }

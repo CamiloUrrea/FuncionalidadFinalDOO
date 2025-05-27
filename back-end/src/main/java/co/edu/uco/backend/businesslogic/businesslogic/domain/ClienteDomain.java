@@ -22,7 +22,7 @@ public final class ClienteDomain extends UsuarioDomain {
         return new ClienteDomain();
     }
 
-    static ClienteDomain obtenerValorDefecto(final ClienteDomain domain) {
+    static ClienteDomain obtenerValorDefecto(ClienteDomain domain) {
         return UtilObjeto.getInstance().obtenerValorDefecto(domain, obtenerClienteDefecto());
     }
 }
