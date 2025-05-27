@@ -3,7 +3,7 @@ import co.edu.uco.backend.crosscutting.utilitarios.*;
 
 import java.util.UUID;
 
-public abstract class UsuarioEntity {
+public class UsuarioEntity {
 
     private UUID id;
     private String nombre;
@@ -30,8 +30,8 @@ public abstract class UsuarioEntity {
         setTelefono(UtilTexto.getInstance().obtenerValorDefecto());
     }
 
-    protected UsuarioEntity(final UUID id, final String nombre, final String username, final String contrasena,
-                            final String prefijoTelefono, final String telefono) {
+    public UsuarioEntity(final UUID id, final String nombre, final String username, final String contrasena,
+                         final String prefijoTelefono, final String telefono) {
         setId(id);
         setNombre(nombre);
         setUsername(username);

@@ -111,4 +111,6 @@ public final class OrganizacionDeportivaDomain extends UsuarioDomain {
     private void setEstadoVerificacion(final EstadoVerificacionDomain estadoVerificacion) {
         this.estadoVerificacion = EstadoVerificacionDomain.obtenerValorDefecto(estadoVerificacion);
     }
+
+
 }

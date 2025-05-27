@@ -183,6 +183,7 @@ public final class CanchaEntity {
     public void setHorariosEspeciales(final List<HorarioEspecialEntity> horariosEspeciales) {
         this.horariosEspeciales = UtilObjeto.getInstance().obtenerValorDefecto(horariosEspeciales, List.of());
     }
+
 }
 
 

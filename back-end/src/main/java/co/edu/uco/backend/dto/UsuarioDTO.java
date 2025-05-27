@@ -6,7 +6,7 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 
 import java.util.UUID;
 
-public abstract class UsuarioDTO {
+public class UsuarioDTO {
 
     private UUID id;
     private String nombre;
