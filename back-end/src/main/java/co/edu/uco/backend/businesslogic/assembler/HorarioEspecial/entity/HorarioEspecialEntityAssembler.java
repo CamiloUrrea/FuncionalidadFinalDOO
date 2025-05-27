@@ -1,6 +1,6 @@
-package co.edu.uco.backend.businesslogic.assembler.HorarioEspecial.entity;
+package co.edu.uco.backend.businesslogic.assembler.horarioespecial.entity;
 
-import co.edu.uco.backend.businesslogic.assembler.Cancha.entity.CanchaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.entity.CanchaEntityAssembler;
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.HorarioEspecialDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;

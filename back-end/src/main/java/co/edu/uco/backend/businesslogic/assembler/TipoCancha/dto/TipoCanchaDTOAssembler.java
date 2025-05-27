@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.TipoCancha.dto;
+package co.edu.uco.backend.businesslogic.assembler.tipocancha.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.TipoCanchaDomain;

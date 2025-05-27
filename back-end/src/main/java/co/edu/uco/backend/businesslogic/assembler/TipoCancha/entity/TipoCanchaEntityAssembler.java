@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.TipoCancha.entity;
+package co.edu.uco.backend.businesslogic.assembler.tipocancha.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.TipoCanchaDomain;

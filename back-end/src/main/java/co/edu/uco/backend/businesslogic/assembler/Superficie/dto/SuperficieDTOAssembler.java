@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Superficie.dto;
+package co.edu.uco.backend.businesslogic.assembler.superficie.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.SuperficieDomain;

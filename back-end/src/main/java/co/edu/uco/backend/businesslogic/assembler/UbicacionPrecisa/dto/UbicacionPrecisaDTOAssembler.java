@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.UbicacionPrecisa.dto;
+package co.edu.uco.backend.businesslogic.assembler.ubicacionprecisa.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Municipio.dto.MunicipioDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.municipio.dto.MunicipioDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UbicacionPrecisaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.UbicacionPrecisaDTO;

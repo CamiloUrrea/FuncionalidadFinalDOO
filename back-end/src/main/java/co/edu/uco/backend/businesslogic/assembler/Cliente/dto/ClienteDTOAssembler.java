@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Cliente.dto;
+package co.edu.uco.backend.businesslogic.assembler.cliente.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ClienteDomain;

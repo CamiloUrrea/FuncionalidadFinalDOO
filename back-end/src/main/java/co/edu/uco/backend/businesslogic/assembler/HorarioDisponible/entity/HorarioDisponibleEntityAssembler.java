@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.HorarioDisponible.entity;
+package co.edu.uco.backend.businesslogic.assembler.horariodisponible.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.*;
-import co.edu.uco.backend.businesslogic.assembler.Cancha.entity.CanchaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.entity.CanchaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.HorarioDisponibleDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.HorarioDisponibleEntity;

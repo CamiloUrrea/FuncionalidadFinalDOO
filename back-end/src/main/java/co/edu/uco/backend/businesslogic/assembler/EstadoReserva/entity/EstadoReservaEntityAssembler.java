@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.EstadoReserva.entity;
+package co.edu.uco.backend.businesslogic.assembler.estadoreserva.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.EstadoReservaDomain;

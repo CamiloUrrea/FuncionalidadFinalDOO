@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Resena.entity;
+package co.edu.uco.backend.businesslogic.assembler.resena.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Reserva.entity.ReservaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.reserva.entity.ReservaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ResenaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.ResenaEntity;

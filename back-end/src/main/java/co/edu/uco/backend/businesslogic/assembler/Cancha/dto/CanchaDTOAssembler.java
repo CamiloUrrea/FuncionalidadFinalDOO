@@ -1,6 +1,13 @@
-package co.edu.uco.backend.businesslogic.assembler.Cancha.dto;
+package co.edu.uco.backend.businesslogic.assembler.cancha.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.dimension.dto.DimensionDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.horariodisponible.dto.HorarioDisponibleDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.horarioespecial.dto.HorarioEspecialDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.organizaciondeportiva.dto.OrganizacionDeportivaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.superficie.dto.SuperficieDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.tipocancha.dto.TipoCanchaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.ubicacionprecisa.dto.UbicacionPrecisaDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.CanchaDTO;
@@ -35,8 +42,8 @@ public final class CanchaDTOAssembler implements DTOAssembler<CanchaDTO, CanchaD
                 OrganizacionDeportivaDTOAssembler.getInstance().toDTO(domain.getOrganizacion()),
                 domain.isIluminacion(),
                 domain.isCubierta(),
-                HorarioDisponibleDTOAssembler.getInstance().toDTO(domain.getHorariosDisponibles()),
-                HorarioEspecialDTOAssembler.getInstance().toDTO(domain.getHorariosEspeciales())
+                HorarioDisponibleDTOAssembler.getInstance().toDTOs(domain.getHorariosDisponibles()),
+                HorarioEspecialDTOAssembler.getInstance().toDTOs(domain.getHorariosEspeciales())
         );
     }
 
@@ -54,8 +61,8 @@ public final class CanchaDTOAssembler implements DTOAssembler<CanchaDTO, CanchaD
                 OrganizacionDeportivaDTOAssembler.getInstance().toDomain(dtoAEnsamblar.getOrganizacion()),
                 dtoAEnsamblar.isIluminacion(),
                 dtoAEnsamblar.isCubierta(),
-                HorarioDisponibleDTOAssembler.getInstance().toDomain(dtoAEnsamblar.getHorariosDisponibles()),
-                HorarioEspecialDTOAssembler.getInstance().toDomain(dtoAEnsamblar.getHorariosEspeciales())
+                HorarioDisponibleDTOAssembler.getInstance().toDomains(dtoAEnsamblar.getHorariosDisponibles()),
+                HorarioEspecialDTOAssembler.getInstance().toDomains(dtoAEnsamblar.getHorariosEspeciales())
         );
     }
 

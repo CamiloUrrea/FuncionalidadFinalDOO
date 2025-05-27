@@ -1,10 +1,10 @@
-package co.edu.uco.backend.businesslogic.assembler.UbicacionPrecisa.entity;
+package co.edu.uco.backend.businesslogic.assembler.ubicacionprecisa.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UbicacionPrecisaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.UbicacionPrecisaEntity;
-import co.edu.uco.backend.businesslogic.assembler.Municipio.entity.MunicipioEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.municipio.entity.MunicipioEntityAssembler;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Dimension.dto;
+package co.edu.uco.backend.businesslogic.assembler.dimension.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.DimensionDomain;

@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Encargado.entity;
+package co.edu.uco.backend.businesslogic.assembler.encargado.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.*;
-import co.edu.uco.backend.businesslogic.assembler.OrganizacionDeportiva.entity.OrganizacionDeportivaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.organizaciondeportiva.entity.OrganizacionDeportivaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.EncargadoDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.EncargadoEntity;

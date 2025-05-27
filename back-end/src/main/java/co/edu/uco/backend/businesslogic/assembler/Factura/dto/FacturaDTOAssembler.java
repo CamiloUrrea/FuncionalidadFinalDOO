@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Factura.dto;
+package co.edu.uco.backend.businesslogic.assembler.factura.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Reserva.dto.ReservaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.reserva.dto.ReservaDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.FacturaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.FacturaDTO;

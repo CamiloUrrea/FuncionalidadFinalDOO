@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Factura.entity;
+package co.edu.uco.backend.businesslogic.assembler.factura.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Reserva.entity.ReservaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.reserva.entity.ReservaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.FacturaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.FacturaEntity;

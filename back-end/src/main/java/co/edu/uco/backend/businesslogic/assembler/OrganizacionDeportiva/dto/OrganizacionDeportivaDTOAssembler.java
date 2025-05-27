@@ -1,9 +1,9 @@
-package co.edu.uco.backend.businesslogic.assembler.OrganizacionDeportiva.dto;
+package co.edu.uco.backend.businesslogic.assembler.organizaciondeportiva.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Cancha.dto.CanchaDTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Encargado.dto.EncargadoDTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.EstadoVerificacion.dto.EstadoVerificacionDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.dto.CanchaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.encargado.dto.EncargadoDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.estadoverificacion.dto.EstadoVerificacionDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.OrganizacionDeportivaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.OrganizacionDeportivaDTO;

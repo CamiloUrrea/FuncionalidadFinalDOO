@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Superficie.entity;
+package co.edu.uco.backend.businesslogic.assembler.superficie.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.SuperficieDomain;
