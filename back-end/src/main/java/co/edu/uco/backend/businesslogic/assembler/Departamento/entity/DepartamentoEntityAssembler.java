@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Departamento.entity;
+package co.edu.uco.backend.businesslogic.assembler.departamento.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.DepartamentoDomain;

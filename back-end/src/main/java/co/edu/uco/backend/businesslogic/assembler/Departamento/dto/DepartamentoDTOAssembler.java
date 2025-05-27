@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Departamento.dto;
+package co.edu.uco.backend.businesslogic.assembler.departamento.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.DepartamentoDomain;

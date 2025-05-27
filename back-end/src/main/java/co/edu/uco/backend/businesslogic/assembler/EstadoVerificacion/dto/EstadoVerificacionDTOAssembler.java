@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.EstadoVerificacion.dto;
+package co.edu.uco.backend.businesslogic.assembler.estadoverificacion.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.EstadoVerificacionDomain;

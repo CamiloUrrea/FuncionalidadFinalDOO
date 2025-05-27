@@ -1,9 +1,9 @@
-package co.edu.uco.backend.businesslogic.assembler.OrganizacionDeportiva.entity;
+package co.edu.uco.backend.businesslogic.assembler.organizaciondeportiva.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.*;
-import co.edu.uco.backend.businesslogic.assembler.Cancha.entity.CanchaEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Encargado.entity.EncargadoEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.EstadoVerificacion.entity.EstadoVerificacionEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.entity.CanchaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.encargado.entity.EncargadoEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.estadoverificacion.entity.EstadoVerificacionEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.OrganizacionDeportivaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.OrganizacionDeportivaEntity;

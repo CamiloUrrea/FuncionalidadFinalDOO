@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Municipio.entity;
+package co.edu.uco.backend.businesslogic.assembler.municipio.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.*;
-import co.edu.uco.backend.businesslogic.assembler.Departamento.entity.DepartamentoEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.departamento.entity.DepartamentoEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.MunicipioDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.MunicipioEntity;

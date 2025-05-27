@@ -1,9 +1,9 @@
-package co.edu.uco.backend.businesslogic.assembler.Reserva.entity;
+package co.edu.uco.backend.businesslogic.assembler.reserva.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.*;
-import co.edu.uco.backend.businesslogic.assembler.Cancha.entity.CanchaEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Cliente.entity.ClienteEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.EstadoReserva.entity.EstadoReservaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.entity.CanchaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cliente.entity.ClienteEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.estadoreserva.entity.EstadoReservaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ReservaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.ReservaEntity;

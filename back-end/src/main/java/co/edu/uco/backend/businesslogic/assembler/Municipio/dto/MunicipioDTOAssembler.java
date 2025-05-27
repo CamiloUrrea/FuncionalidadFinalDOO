@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Municipio.dto;
+package co.edu.uco.backend.businesslogic.assembler.municipio.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Departamento.dto.DepartamentoDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.departamento.dto.DepartamentoDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.MunicipioDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.MunicipioDTO;

@@ -1,7 +1,7 @@
-package co.edu.uco.backend.businesslogic.assembler.Resena.dto;
+package co.edu.uco.backend.businesslogic.assembler.resena.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Reserva.dto.ReservaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.reserva.dto.ReservaDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ResenaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.ResenaDTO;

@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Dimension.entity;
+package co.edu.uco.backend.businesslogic.assembler.dimension.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.DimensionDomain;

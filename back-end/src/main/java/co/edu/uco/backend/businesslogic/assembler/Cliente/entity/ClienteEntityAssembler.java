@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Cliente.entity;
+package co.edu.uco.backend.businesslogic.assembler.cliente.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ClienteDomain;

@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.EstadoVerificacion.entity;
+package co.edu.uco.backend.businesslogic.assembler.estadoverificacion.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.EstadoVerificacionDomain;

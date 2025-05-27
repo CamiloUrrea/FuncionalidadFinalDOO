@@ -1,9 +1,9 @@
-package co.edu.uco.backend.businesslogic.assembler.Reserva.dto;
+package co.edu.uco.backend.businesslogic.assembler.reserva.dto;
 
-import co.edu.uco.backend.businesslogic.assembler.Cancha.dto.CanchaDTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Cliente.dto.ClienteDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.dto.CanchaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cliente.dto.ClienteDTOAssembler;
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
-import co.edu.uco.backend.businesslogic.assembler.EstadoReserva.dto.EstadoReservaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.estadoreserva.dto.EstadoReservaDTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.ReservaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.dto.ReservaDTO;

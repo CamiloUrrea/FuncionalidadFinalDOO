@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Usuario.dto;
+package co.edu.uco.backend.businesslogic.assembler.usuario.dto;
 
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;

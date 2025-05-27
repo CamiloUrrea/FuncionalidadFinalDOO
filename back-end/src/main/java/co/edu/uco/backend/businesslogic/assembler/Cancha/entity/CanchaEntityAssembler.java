@@ -1,19 +1,16 @@
-package co.edu.uco.backend.businesslogic.assembler.Cancha.entity;
+package co.edu.uco.backend.businesslogic.assembler.cancha.entity;
 
-import co.edu.uco.backend.businesslogic.assembler.Dimension.entity.DimensionEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.dimension.entity.DimensionEntityAssembler;
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.HorarioDisponible.entity.HorarioDisponibleEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.HorarioEspecial.entity.HorarioEspecialEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.OrganizacionDeportiva.entity.OrganizacionDeportivaEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.Superficie.entity.SuperficieEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.TipoCancha.entity.TipoCanchaEntityAssembler;
-import co.edu.uco.backend.businesslogic.assembler.UbicacionPrecisa.entity.UbicacionPrecisaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.horariodisponible.entity.HorarioDisponibleEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.horarioespecial.entity.HorarioEspecialEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.organizaciondeportiva.entity.OrganizacionDeportivaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.superficie.entity.SuperficieEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.tipocancha.entity.TipoCanchaEntityAssembler;
+import co.edu.uco.backend.businesslogic.assembler.ubicacionprecisa.entity.UbicacionPrecisaEntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.CanchaDomain;
-import co.edu.uco.backend.businesslogic.businesslogic.domain.TipoCanchaDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.entity.CanchaEntity;
-import co.edu.uco.backend.businesslogic.assembler.*;
-import co.edu.uco.backend.entity.TipoCanchaEntity;
 
 import java.util.ArrayList;
 import java.util.List;

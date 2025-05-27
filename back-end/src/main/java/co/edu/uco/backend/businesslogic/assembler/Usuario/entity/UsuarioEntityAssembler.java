@@ -1,4 +1,4 @@
-package co.edu.uco.backend.businesslogic.assembler.Usuario.entity;
+package co.edu.uco.backend.businesslogic.assembler.usuario.entity;
 
 import co.edu.uco.backend.businesslogic.assembler.EntityAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;

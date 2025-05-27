@@ -1,6 +1,6 @@
-package co.edu.uco.backend.businesslogic.assembler.HorarioDisponible.dto;
+package co.edu.uco.backend.businesslogic.assembler.horariodisponible.dto;
 
-import co.edu.uco.backend.businesslogic.assembler.Cancha.dto.CanchaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.dto.CanchaDTOAssembler;
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.HorarioDisponibleDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;

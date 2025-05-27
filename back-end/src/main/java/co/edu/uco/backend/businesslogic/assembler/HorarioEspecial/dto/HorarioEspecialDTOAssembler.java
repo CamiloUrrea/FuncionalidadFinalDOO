@@ -1,6 +1,6 @@
-package co.edu.uco.backend.businesslogic.assembler.HorarioEspecial.dto;
+package co.edu.uco.backend.businesslogic.assembler.horarioespecial.dto;
 
-import co.edu.uco.backend.businesslogic.assembler.Cancha.dto.CanchaDTOAssembler;
+import co.edu.uco.backend.businesslogic.assembler.cancha.dto.CanchaDTOAssembler;
 import co.edu.uco.backend.businesslogic.assembler.DTOAssembler;
 import co.edu.uco.backend.businesslogic.businesslogic.domain.HorarioEspecialDomain;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
