@@ -21,7 +21,7 @@ public class UbicacionPrecisaPostgreSQLDAO implements UbicacionPrecisaDAO {
     @Override
     public void crear(UbicacionPrecisaEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("INSERT INTO ubicacionprecisa(codigoubicacion, direccion, latitud, longitud, codigomunicipio,informacion, codigocancha)" +
+        sentenciaSQL.append("INSERT INTO ubicacionprecisa(codigoubicacion, direccion, latitud, longitud, codigomunicipio,informacion)" +
                 " VALUES (?, ?, ?, ?, ?, ?,?");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,entity.getId());
@@ -30,7 +30,6 @@ public class UbicacionPrecisaPostgreSQLDAO implements UbicacionPrecisaDAO {
             sentenciaPreparada.setDouble(4,entity.getLongitud());
             sentenciaPreparada.setObject(5,entity.getMunicipio());
             sentenciaPreparada.setString(6,entity.getInformacionAdicional());
-            sentenciaPreparada.setObject(7,entity.getCancha());
 
             sentenciaPreparada.executeUpdate();
         } catch (SQLException exception) {
@@ -83,7 +82,7 @@ public class UbicacionPrecisaPostgreSQLDAO implements UbicacionPrecisaDAO {
     @Override
     public void modificar(UUID ubicacionPrecisaId, UbicacionPrecisaEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("UPDATE ubicacionprecisa SET direccion = ?, latitud = ?, longitud = ?, codigomunicipio = ?, informacion = ?, codigocancha = ? WHERE codigoubicacion = ?)");
+        sentenciaSQL.append("UPDATE ubicacionprecisa SET direccion = ?, latitud = ?, longitud = ?, codigomunicipio = ?, informacion = ? WHERE codigoubicacion = ?)");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,ubicacionPrecisaId);
             sentenciaPreparada.setString(2,entity.getDireccion());
@@ -91,7 +90,7 @@ public class UbicacionPrecisaPostgreSQLDAO implements UbicacionPrecisaDAO {
             sentenciaPreparada.setDouble(4,entity.getLongitud());
             sentenciaPreparada.setObject(5,entity.getMunicipio());
             sentenciaPreparada.setString(6,entity.getInformacionAdicional());
-            sentenciaPreparada.setObject(7,entity.getCancha());
+
 
 
             sentenciaPreparada.executeUpdate();
