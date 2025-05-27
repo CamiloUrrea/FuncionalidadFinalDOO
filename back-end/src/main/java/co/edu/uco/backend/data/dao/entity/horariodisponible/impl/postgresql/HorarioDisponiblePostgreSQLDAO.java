@@ -3,7 +3,6 @@ package co.edu.uco.backend.data.dao.entity.horariodisponible.impl.postgresql;
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.entity.horariodisponible.HorarioDisponibleDAO;
-import co.edu.uco.backend.entity.CanchaEntity;
 import co.edu.uco.backend.entity.HorarioDisponibleEntity;
 
 import java.sql.Connection;
