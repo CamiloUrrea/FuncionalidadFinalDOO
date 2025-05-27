@@ -79,5 +79,6 @@ public final class EncargadoEntity extends UsuarioEntity {
     public void setOrganizacion(final OrganizacionDeportivaEntity organizacion) {
         this.organizacion = OrganizacionDeportivaEntity.obtenerValorDefecto(organizacion);
     }
+
 }
 
