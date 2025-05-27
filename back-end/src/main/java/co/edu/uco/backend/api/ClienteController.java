@@ -40,7 +40,7 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody ClienteDTO cliente) throws BackEndException {
         clienteFacade.registrarNuevoCliente(cliente);
-        var mensajeExito = "El cliente " + cliente.getNombre()+ " se ha registrado exitosamente";
+        var mensajeExito = "El  nuevo cliente " + cliente.getNombre()+ " se ha registrado exitosamente";
         return new ResponseEntity<>(mensajeExito, HttpStatus.OK);
     }
 
