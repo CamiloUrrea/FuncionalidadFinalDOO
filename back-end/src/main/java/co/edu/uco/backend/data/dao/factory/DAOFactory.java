@@ -39,11 +39,6 @@ public abstract class DAOFactory{
 
     public abstract void abrirConexion() throws BackEndException;
 
-
-    public void conexionCerrada() throws BackEndException {
-
-    }
-
     public abstract void iniciarTransaccion() throws BackEndException;
 
     public abstract void confirmarTransaccion() throws BackEndException;

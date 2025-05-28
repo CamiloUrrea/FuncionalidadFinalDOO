@@ -72,8 +72,55 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     }
 
     @Override
-    public List<ClienteEntity> consultar(ClienteEntity entity) {
-        return List.of();
+    public List<ClienteEntity> consultar(ClienteEntity entity) throws BackEndException {
+        var listaClientes = new ArrayList<ClienteEntity>();
+        var sentenciaSQL = new StringBuilder();
+        sentenciaSQL.append("SELECT codigocliente, nombre, username, contrasena, prefijotelefono, telefono ");
+        sentenciaSQL.append("FROM doodb.cliente WHERE 1=1");
+
+        var filtrarId = entity != null && entity.getId() != null;
+        var filtrarNombre = entity != null && entity.getNombre() != null && !entity.getNombre().isBlank();
+        var filtrarUsername = entity != null && entity.getUsername() != null && !entity.getUsername().isBlank();
+        var filtrarPrefijo = entity != null && entity.getPrefijoTelefono() != null && !entity.getPrefijoTelefono().isBlank();
+        var filtrarTelefono = entity != null && entity.getTelefono() != null && !entity.getTelefono().isBlank();
+
+        if (filtrarId)        sentenciaSQL.append(" AND codigocliente = ?");
+        if (filtrarNombre)    sentenciaSQL.append(" AND nombre ILIKE ?");
+        if (filtrarUsername)  sentenciaSQL.append(" AND username ILIKE ?");
+        if (filtrarPrefijo)   sentenciaSQL.append(" AND prefijotelefono = ?");
+        if (filtrarTelefono)  sentenciaSQL.append(" AND telefono = ?");
+
+        try (var ps = connection.prepareStatement(sentenciaSQL.toString())) {
+            int idx = 1;
+            if (filtrarId)       ps.setObject(idx++, entity.getId());
+            if (filtrarNombre)   ps.setString(idx++, "%" + entity.getNombre().trim() + "%");
+            if (filtrarUsername) ps.setString(idx++, "%" + entity.getUsername().trim() + "%");
+            if (filtrarPrefijo)  ps.setString(idx++, entity.getPrefijoTelefono().trim());
+            if (filtrarTelefono) ps.setString(idx++, entity.getTelefono().trim());
+
+            try (var rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    var cliente = new ClienteEntity();
+                    cliente.setId(UtilUUID.convertirAUUID(rs.getString("codigocliente")));
+                    cliente.setNombre(rs.getString("nombre"));
+                    cliente.setUsername(rs.getString("username"));
+                    cliente.setContrasena(rs.getString("contrasena"));
+                    cliente.setPrefijoTelefono(rs.getString("prefijotelefono"));
+                    cliente.setTelefono(rs.getString("telefono"));
+                    listaClientes.add(cliente);
+                }
+            }
+        } catch (SQLException exception) {
+            var mensajeUsuario = "Se ha presentado un problema tratando de consultar la información de clientes en la base de datos";
+            var mensajeTecnico = "SQLException al ejecutar SELECT en tabla cliente";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        } catch (Exception exception) {
+            var mensajeUsuario = "Se ha presentado un problema inesperado al consultar la información de clientes";
+            var mensajeTecnico = "Excepción NO CONTROLADA al ejecutar SELECT en tabla cliente";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+
+        return listaClientes;
     }
 
     @Override

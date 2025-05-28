@@ -54,10 +54,7 @@ public class PostgreSQLDAOFactory extends DAOFactory {
     public PostgreSQLDAOFactory() throws BackEndException {
         transaccionEstaIniciada = false;
         connexionEstaAbierta = false;
-        abrirConexion();
     }
-
-
 
     @Override
     public void abrirConexion() throws BackEndException {
@@ -85,6 +82,9 @@ public class PostgreSQLDAOFactory extends DAOFactory {
 
     @Override
     public void iniciarTransaccion() throws BackEndException {
+        if (!connexionEstaAbierta){
+            abrirConexion();
+        }
         try {
             asegurarConexionAbierta();
             conexion.setAutoCommit(false);
@@ -106,8 +106,6 @@ public class PostgreSQLDAOFactory extends DAOFactory {
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
-
-
 
     @Override
     public void confirmarTransaccion() throws BackEndException {
