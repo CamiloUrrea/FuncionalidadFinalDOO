@@ -46,12 +46,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
 
 
 
-
-
-
-
-
-
     @Override
     public List<CanchaEntity> consultar(CanchaEntity filtro) {
         return List.of();

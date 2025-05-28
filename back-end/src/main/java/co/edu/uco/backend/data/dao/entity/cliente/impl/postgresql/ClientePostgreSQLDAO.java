@@ -194,12 +194,12 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
         var sentenciaSQL = new StringBuilder();
         sentenciaSQL.append("UPDATE doodb.cliente SET nombre = ?, username = ?, contrasena = ?,prefijotelefono = ?, telefono = ? WHERE codigocliente = ?");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-            sentenciaPreparada.setObject(1,codigocliente);
-            sentenciaPreparada.setString(2,entity.getNombre());
-            sentenciaPreparada.setString(3,entity.getUsername());
-            sentenciaPreparada.setString(4,entity.getContrasena());
-            sentenciaPreparada.setString(5,entity.getPrefijoTelefono());
-            sentenciaPreparada.setString(6,entity.getTelefono());
+            sentenciaPreparada.setString(1, entity.getNombre());
+            sentenciaPreparada.setString(2, entity.getUsername());
+            sentenciaPreparada.setString(3, entity.getContrasena());
+            sentenciaPreparada.setString(4, entity.getPrefijoTelefono());
+            sentenciaPreparada.setString(5, entity.getTelefono());
+            sentenciaPreparada.setObject(6, codigocliente);
 
             sentenciaPreparada.executeUpdate();
         } catch (SQLException exception) {
