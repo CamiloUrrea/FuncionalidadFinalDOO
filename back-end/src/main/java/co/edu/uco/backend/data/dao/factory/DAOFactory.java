@@ -37,7 +37,12 @@ public abstract class DAOFactory{
         }
     }
 
-    protected abstract void abrirConexion() throws BackEndException;
+    public abstract void abrirConexion() throws BackEndException;
+
+
+    public void conexionCerrada() throws BackEndException {
+
+    }
 
     public abstract void iniciarTransaccion() throws BackEndException;
 

@@ -4,12 +4,13 @@ import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.entity.cliente.ClienteDAO;
 import co.edu.uco.backend.entity.ClienteEntity;
-import jdk.jshell.execution.Util;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 
 public class ClientePostgreSQLDAO implements ClienteDAO {
 
@@ -21,16 +22,17 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
 
     @Override
     public void crear(ClienteEntity entity) throws BackEndException {
+
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("INSERT INTO cliente(codigocliente, nombre, username, contrasena, prefijotelefono, telefono)" +
+        sentenciaSQL.append("INSERT INTO doodb.cliente(codigocliente, nombre, username, contrasena, prefijotelefono, telefono) " +
                 " VALUES (?, ?, ?, ?, ?, ?)");
-        try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-            sentenciaPreparada.setObject(1,entity.getId());
-            sentenciaPreparada.setString(2,entity.getNombre());
-            sentenciaPreparada.setString(3,entity.getUsername());
-            sentenciaPreparada.setString(4,entity.getContrasena());
-            sentenciaPreparada.setString(5,entity.getPrefijoTelefono());
-            sentenciaPreparada.setString(6,entity.getTelefono());
+        try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())) {
+            sentenciaPreparada.setObject(1, entity.getId());
+            sentenciaPreparada.setString(2, entity.getNombre());
+            sentenciaPreparada.setString(3, entity.getUsername());
+            sentenciaPreparada.setString(4, entity.getContrasena());
+            sentenciaPreparada.setString(5, entity.getPrefijoTelefono());
+            sentenciaPreparada.setString(6, entity.getTelefono());
 
             sentenciaPreparada.executeUpdate();
         } catch (SQLException exception) {
@@ -39,7 +41,7 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
 
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de ingresar la nueva infromacion del Cliente en la base de datos, para más detalles revise el log de errores";
             var mensajeUsuario = "Se ha presentado un problema inesperado tratando de ingresar la nueva informacion del Cliente en la base de datos    ";
 
@@ -50,9 +52,9 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     @Override
     public void eliminar(UUID codigocliente) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("DELETE FROM cliente WHERE codigocliente = ?)");
-        try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
-            sentenciaPreparada.setObject(1,codigocliente);
+        sentenciaSQL.append("DELETE FROM doodb.cliente WHERE codigocliente = ?");
+        try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())) {
+            sentenciaPreparada.setObject(1, codigocliente);
 
             sentenciaPreparada.executeUpdate();
         } catch (SQLException exception) {
@@ -61,7 +63,7 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
 
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
 
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             var mensajeTecnico = "Se presentó una excepción NO CONTROLADA tratando de hacer un DELETE en la tabla del cliente en la base de datos, para más detalles revise el log de errores";
             var mensajeUsuario = "Se ha presentado un problema INESPERADO tratando de borrar definitivamente la informacion del cliente en la base de datos    ";
 
@@ -69,29 +71,50 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
         }
     }
 
-
-
-
-
-
-
-
-
     @Override
     public List<ClienteEntity> consultar(ClienteEntity entity) {
         return List.of();
     }
 
     @Override
+    public List<ClienteEntity> listAll() throws BackEndException {
+        var listaClientes = new ArrayList<ClienteEntity>();
+        var sentenciaSQL = new StringBuilder();
+        sentenciaSQL.append("SELECT codigocliente, nombre, username, contrasena, prefijotelefono, telefono FROM doodb.cliente");
+
+        try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString());
+             var cursorResultado = sentenciaPreparada.executeQuery()) {
+            while (cursorResultado.next()) {
+                var cliente = new ClienteEntity();
+                cliente.setId(UtilUUID.convertirAUUID(cursorResultado.getString("codigocliente")));
+                cliente.setNombre(cursorResultado.getString("nombre"));
+                cliente.setUsername(cursorResultado.getString("username"));
+                cliente.setContrasena(cursorResultado.getString("contrasena"));
+                cliente.setPrefijoTelefono(cursorResultado.getString("prefijotelefono"));
+                cliente.setTelefono(cursorResultado.getString("telefono"));
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException exception) {
+            var mensajeTecnico = "Se presentó una SQLException al listar todos los clientes.";
+            var mensajeUsuario = "No se pudo obtener la lista de clientes.";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        } catch (Exception exception) {
+            var mensajeTecnico = "Se presentó una excepción NO CONTROLADA al listar todos los clientes.";
+            var mensajeUsuario = "Ocurrió un error inesperado al listar clientes.";
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
+        }
+        return listaClientes;
+    }
+
+    @Override
     public ClienteEntity consultarPorId(UUID codigocliente) throws BackEndException {
         var ClienteEntityRetorno = new ClienteEntity();
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("SELECT * FROM cliente WHERE codigocliente = ?)");
+        sentenciaSQL.append("SELECT * FROM doodb.cliente WHERE codigocliente = ?");
 
         try(var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
 
             sentenciaPreparada.setObject(1, codigocliente);
-
 
             try (var cursorResultados = sentenciaPreparada.executeQuery()){
 
@@ -119,17 +142,10 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
 
     }
 
-
-
-
-
-
-
-
     @Override
     public void modificar(UUID codigocliente, ClienteEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("UPDATE cliente SET nombre = ?, username = ?, contrasena = ?,prefijotelefono = ?, telefono = ?)");
+        sentenciaSQL.append("UPDATE doodb.cliente SET nombre = ?, username = ?, contrasena = ?,prefijotelefono = ?, telefono = ? WHERE codigocliente = ?");
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setObject(1,codigocliente);
             sentenciaPreparada.setString(2,entity.getNombre());

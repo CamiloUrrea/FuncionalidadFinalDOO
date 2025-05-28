@@ -94,18 +94,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
         return CanchaEntityRetorno;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void crear(CanchaEntity entity) throws BackEndException {
         var sentenciaSQL = new StringBuilder();
@@ -139,7 +127,6 @@ public class CanchaPostgreSQLDAO implements CanchaDAO {
         throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
-
 
     @Override
     public void modificar(UUID codigocancha, CanchaEntity entity) throws BackEndException{

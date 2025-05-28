@@ -60,14 +60,13 @@ public class PostgreSQLDAOFactory extends DAOFactory {
 
 
     @Override
-    protected void abrirConexion() throws BackEndException {
+    public void abrirConexion() throws BackEndException {
         var baseDatos = "DOODB";
         var servidor = "localhost:5432";
 
         try {
-            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos);
+            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos, "postgres", "321325");
             connexionEstaAbierta = true;
-
         } catch (SQLException exception) {
             var mensajeTecnico = "Se presentó una SQLException tratando de obtener la conexión con la base de datos "
                     + baseDatos + " en el servidor " + servidor + ", para más detalles revise el log de errores";
@@ -107,6 +106,8 @@ public class PostgreSQLDAOFactory extends DAOFactory {
             throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
+
+
 
     @Override
     public void confirmarTransaccion() throws BackEndException {
