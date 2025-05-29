@@ -61,7 +61,7 @@ public class PostgreSQLDAOFactory extends DAOFactory {
         var servidor = "localhost:5432";
 
         try {
-            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos, "postgres", "S18.ldserv");
+            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos, "postgres", "3104136215apa");
             connexionEstaAbierta = true;
         } catch (SQLException exception) {
             var mensajeTecnico = "Se presentó una SQLException tratando de obtener la conexión con la base de datos "
