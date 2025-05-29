@@ -1,5 +1,4 @@
 package co.edu.uco.backend.data.dao.factory.postgresql;
-
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
 import co.edu.uco.backend.data.dao.entity.cancha.impl.postgresql.CanchaPostgreSQLDAO;
@@ -62,7 +61,7 @@ public class PostgreSQLDAOFactory extends DAOFactory {
         var servidor = "localhost:5432";
 
         try {
-            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos, "postgres", "321325");
+            conexion=DriverManager.getConnection("jdbc:postgresql://" + servidor + "/" + baseDatos, "postgres", "S18.ldserv");
             connexionEstaAbierta = true;
         } catch (SQLException exception) {
             var mensajeTecnico = "Se presentó una SQLException tratando de obtener la conexión con la base de datos "
@@ -82,9 +81,6 @@ public class PostgreSQLDAOFactory extends DAOFactory {
 
     @Override
     public void iniciarTransaccion() throws BackEndException {
-        if (!connexionEstaAbierta){
-            abrirConexion();
-        }
         try {
             asegurarConexionAbierta();
             conexion.setAutoCommit(false);

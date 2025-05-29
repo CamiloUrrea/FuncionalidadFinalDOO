@@ -27,6 +27,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public void registrarNuevoCliente(ClienteDTO cliente) throws BackEndException {
+        daoFactory.abrirConexion();
         try {
             daoFactory.iniciarTransaccion();
 
@@ -50,10 +51,11 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public void modificarClienteExistente(UUID clienteId, ClienteDTO cliente) throws BackEndException {
+        daoFactory.abrirConexion();
         try {
             daoFactory.iniciarTransaccion();
 
-            ClienteDomain clienteDomain = null; //TODO: magia de convertir de DTO a Domain
+            ClienteDomain clienteDomain = ClienteDTOAssembler.getInstance().toDomain(cliente);
             clienteBusinessLogic.modificarClienteExistente(clienteId, clienteDomain);
 
             daoFactory.confirmarTransaccion();
@@ -73,10 +75,10 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public void darBajaDefinitivamenteClienteExistente(UUID clienteId) throws BackEndException {
+        daoFactory.abrirConexion();
         try {
             daoFactory.iniciarTransaccion();
 
-            ClienteDomain clienteDomain = null; //TODO: magia de convertir de DTO a Domain
             clienteBusinessLogic.darBajaDefinitivamenteClienteExistente(clienteId);
 
             daoFactory.confirmarTransaccion();
@@ -96,10 +98,10 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public ClienteDTO consultarClientePorId(UUID clienteId) throws BackEndException {
+        daoFactory.abrirConexion();
         try {
-            var clienteDomainResultado = clienteBusinessLogic.consultarClientePorId(clienteId);;
-            //TODO: Magia de convertir de domain a DTO de respuesta
-            return null;
+            var clienteDomainResultado = clienteBusinessLogic.consultarClientePorId(clienteId);
+            return ClienteDTOAssembler.getInstance().toDTO(clienteDomainResultado);
         } catch (BackEndException exception) {
             throw exception;
         } catch (Exception exception) {
@@ -114,15 +116,12 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public List<ClienteDTO> consultarClientes(ClienteDTO filtro) throws BackEndException {
+        daoFactory.abrirConexion();
         try {
-            // 1. TODO: convertir DTO(filtro) -> Domain
-            // CanchaDomain filtroDomain = CanchaAssembler.toDomain(filtro);
-            ClienteDomain filtroDomain = null;
-            // 2. Consultar lista global de canchas
+
+            ClienteDomain filtroDomain = ClienteDTOAssembler.getInstance().toDomain(filtro);
             List<ClienteDomain> dominios = clienteBusinessLogic.consultarClientes(filtroDomain);
-            // 3. TODO: convertir cada Domain -> DTO
-            // return dominios.stream().map(CanchaAssembler::toDto).collect(Collectors.toList());
-            return List.of();
+            return ClienteDTOAssembler.getInstance().toDTOs(dominios);
         } catch (BackEndException ex) {
             throw ex;
         } catch (Exception ex) {
@@ -141,17 +140,17 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public void cerrarSesion(UUID usuarioId) {
-
+        //Sin implementar
     }
 
     @Override
     public void recuperarContrasena(String username) {
-
+        //Sin implementar
     }
 
     @Override
     public void cambiarContrasena(UUID usuarioId, String rawPasswordActual, String rawPasswordNueva) {
-
+        //Sin implementar
     }
 
     @Override

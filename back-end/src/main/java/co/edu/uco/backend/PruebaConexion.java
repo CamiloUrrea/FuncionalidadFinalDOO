@@ -8,7 +8,7 @@ public class PruebaConexion {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/DOODB";
         String usuario = "postgres";
-        String clave = "321325";
+        String clave = "S18.ldserv";
 
         try (Connection conexion = DriverManager.getConnection(url, usuario, clave)) {
             System.out.println("✅ Conexión exitosa a la base de datos");
