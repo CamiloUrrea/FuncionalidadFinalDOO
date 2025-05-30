@@ -1,6 +1,7 @@
 package co.edu.uco.backend.data.dao.entity.cliente.impl.postgresql;
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilEncrypt;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.entity.cliente.ClienteDAO;
@@ -31,7 +32,8 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
             sentenciaPreparada.setObject(1, entity.getId());
             sentenciaPreparada.setString(2, entity.getNombre());
             sentenciaPreparada.setString(3, entity.getUsername());
-            sentenciaPreparada.setString(4, entity.getContrasena());
+            String hashed = UtilEncrypt.hash(entity.getContrasena());
+            sentenciaPreparada.setString(4, hashed);
             sentenciaPreparada.setString(5, entity.getPrefijoTelefono());
             sentenciaPreparada.setString(6, entity.getTelefono());
 
