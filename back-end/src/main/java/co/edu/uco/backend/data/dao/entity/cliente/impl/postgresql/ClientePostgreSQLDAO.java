@@ -183,7 +183,7 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
     public ClienteEntity consultarPorId(UUID codigocliente) throws BackEndException {
         var clienteEntityRetorno = new ClienteEntity();
         var sentenciaSQL = new StringBuilder();
-        sentenciaSQL.append("SELECT * FROM doodb.cliente WHERE codigocliente = ?");
+        sentenciaSQL.append("SELECT codigocliente, nombre, username, prefijotelefono, telefono FROM doodb.cliente WHERE codigocliente = ?");
 
         try(var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
 
@@ -195,7 +195,6 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
                     clienteEntityRetorno.setId(UtilUUID.convertirAUUID(cursorResultados.getString("codigocliente")));
                     clienteEntityRetorno.setNombre(cursorResultados.getString("nombre"));
                     clienteEntityRetorno.setUsername(cursorResultados.getString("username"));
-                    clienteEntityRetorno.setContrasena(cursorResultados.getString("contrasena"));
                     clienteEntityRetorno.setPrefijoTelefono(cursorResultados.getString("prefijotelefono"));
                     clienteEntityRetorno.setTelefono(cursorResultados.getString("telefono"));
                 }
@@ -222,7 +221,8 @@ public class ClientePostgreSQLDAO implements ClienteDAO {
         try (var sentenciaPreparada = connection.prepareStatement(sentenciaSQL.toString())){
             sentenciaPreparada.setString(1,entity.getNombre());
             sentenciaPreparada.setString(2,entity.getUsername());
-            sentenciaPreparada.setString(3,entity.getContrasena());
+            String hashed = UtilEncrypt.hash(entity.getContrasena());
+            sentenciaPreparada.setString(3, hashed);
             sentenciaPreparada.setString(4,entity.getPrefijoTelefono());
             sentenciaPreparada.setString(5,entity.getTelefono());
 
