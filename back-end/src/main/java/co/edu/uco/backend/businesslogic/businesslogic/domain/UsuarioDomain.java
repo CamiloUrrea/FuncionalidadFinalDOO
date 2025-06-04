@@ -77,7 +77,7 @@ public abstract class UsuarioDomain {
 
 
     // Setters protegidos para uso desde subclases
-    protected void setId(final UUID id) {
+    public void setId(final UUID id) {
         this.id = UtilUUID.obtenerValorDefecto(id);
     }
 
@@ -90,7 +90,7 @@ public abstract class UsuarioDomain {
     }
 
     protected void setContrasena(final String contrasena) {
-        this.contrasena = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(contrasena);
+        this.contrasena = contrasena;
     }
 
     protected void setPrefijoTelefono(final String prefijoTelefono) {

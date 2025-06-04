@@ -31,9 +31,9 @@ public final class OrganizacionDeportivaEntityAssembler implements EntityAssembl
                 domain.getId(),
                 domain.getNombre(),
                 domain.getUsername(),
-                domain.getTelefono(),
-                domain.getPrefijoTelefono(),
                 domain.getContrasena(),
+                domain.getPrefijoTelefono(),
+                domain.getTelefono(),
                 domain.getDocumentoExistencia(),
                 domain.getCorreoAdministrativo(),
                 domain.getPaginaWeb(),
@@ -50,9 +50,9 @@ public final class OrganizacionDeportivaEntityAssembler implements EntityAssembl
                 organizacionAEnsamblar.getId(),
                 organizacionAEnsamblar.getNombre(),
                 organizacionAEnsamblar.getUsername(),
-                organizacionAEnsamblar.getTelefono(),
-                organizacionAEnsamblar.getPrefijoTelefono(),
                 organizacionAEnsamblar.getContrasena(),
+                organizacionAEnsamblar.getPrefijoTelefono(),
+                organizacionAEnsamblar.getTelefono(),
                 organizacionAEnsamblar.getDocumentoExistencia(),
                 organizacionAEnsamblar.getCorreoAdministrativo(),
                 organizacionAEnsamblar.getPaginaWeb(),
@@ -61,6 +61,7 @@ public final class OrganizacionDeportivaEntityAssembler implements EntityAssembl
                 EstadoVerificacionEntityAssembler.getInstance().toDomain(organizacionAEnsamblar.getEstadoVerificacion())
         );
     }
+
 
     @Override
     public List<OrganizacionDeportivaDomain> toDomain(final List<OrganizacionDeportivaEntity> entityList) {

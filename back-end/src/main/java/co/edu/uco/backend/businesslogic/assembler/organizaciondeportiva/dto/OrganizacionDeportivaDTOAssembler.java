@@ -50,9 +50,9 @@ public final class OrganizacionDeportivaDTOAssembler implements DTOAssembler<Org
                 dtoAEnsamblar.getId(),
                 dtoAEnsamblar.getNombre(),
                 dtoAEnsamblar.getUsername(),
-                dtoAEnsamblar.getTelefono(),
-                dtoAEnsamblar.getPrefijoTelefono(),
                 dtoAEnsamblar.getContrasena(),
+                dtoAEnsamblar.getPrefijoTelefono(),
+                dtoAEnsamblar.getTelefono(),
                 dtoAEnsamblar.getDocumentoExistencia(),
                 dtoAEnsamblar.getCorreoAdministrativo(),
                 dtoAEnsamblar.getPaginaWeb(),
@@ -61,6 +61,7 @@ public final class OrganizacionDeportivaDTOAssembler implements DTOAssembler<Org
                 EstadoVerificacionDTOAssembler.getInstance().toDomain(dtoAEnsamblar.getEstadoVerificacion())
         );
     }
+
 
     @Override
     public List<OrganizacionDeportivaDTO> toDTOs(final List<OrganizacionDeportivaDomain> domainList) {

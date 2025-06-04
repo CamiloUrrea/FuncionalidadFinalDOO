@@ -56,6 +56,9 @@ public final class OrganizacionDeportivaDomain extends UsuarioDomain {
         setEstadoVerificacion(estadoVerificacion);
     }
 
+    public OrganizacionDeportivaDomain(UUID id, String nombre, String username, String contrasena, String prefijoTelefono, String telefono, String documentoExistencia, String correoAdministrativo, String paginaWeb, EstadoVerificacionDomain estadoVerificacionDomain) {
+    }
+
     static OrganizacionDeportivaDomain obtenerOrganizacionDeportivaDefecto() {
         return new OrganizacionDeportivaDomain();
     }
@@ -108,7 +111,7 @@ public final class OrganizacionDeportivaDomain extends UsuarioDomain {
         return estadoVerificacion;
     }
 
-    private void setEstadoVerificacion(final EstadoVerificacionDomain estadoVerificacion) {
+    public void setEstadoVerificacion(final EstadoVerificacionDomain estadoVerificacion) {
         this.estadoVerificacion = EstadoVerificacionDomain.obtenerValorDefecto(estadoVerificacion);
     }
 

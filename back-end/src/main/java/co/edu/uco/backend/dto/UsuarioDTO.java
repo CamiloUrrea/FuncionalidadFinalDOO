@@ -97,7 +97,7 @@ public class UsuarioDTO {
     }
 
     public UsuarioDTO setContrasena(final String contrasena) {
-        this.contrasena = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(contrasena);
+        this.contrasena = contrasena;
         return this;
     }
 

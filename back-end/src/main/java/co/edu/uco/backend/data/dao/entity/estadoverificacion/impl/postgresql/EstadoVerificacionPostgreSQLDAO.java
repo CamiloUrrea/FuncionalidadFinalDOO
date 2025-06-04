@@ -25,7 +25,7 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
     @Override
     public void crear(EstadoVerificacionEntity entity) throws BackEndException {
         var sql = new StringBuilder();
-        sql.append("INSERT INTO doodb.estado_verificacion(id, nombre) VALUES (?, ?)");
+        sql.append("INSERT INTO doodb.estadoverificacion(id, nombre) VALUES (?, ?)");
         try (PreparedStatement pst = connection.prepareStatement(sql.toString())) {
             pst.setObject(1, entity.getId());
             pst.setString(2, entity.getNombre());
@@ -44,7 +44,7 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
     @Override
     public void eliminar(UUID id) throws BackEndException {
         var sql = new StringBuilder();
-        sql.append("DELETE FROM doodb.estado_verificacion WHERE id = ?");
+        sql.append("DELETE FROM doodb.estadoverificacion WHERE id = ?");
         try (PreparedStatement pst = connection.prepareStatement(sql.toString())) {
             pst.setObject(1, id);
             pst.executeUpdate();
@@ -63,7 +63,7 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
     public List<EstadoVerificacionEntity> consultar(EstadoVerificacionEntity filtro) throws BackEndException {
         var lista = new ArrayList<EstadoVerificacionEntity>();
         var sql = new StringBuilder();
-        sql.append("SELECT id, nombre FROM doodb.estado_verificacion WHERE 1=1");
+        sql.append("SELECT id, nombre FROM doodb.estadoverificacion WHERE 1=1");
 
         boolean filtrarId    = filtro != null && filtro.getId() != null;
         boolean filtrarNombre = filtro != null && filtro.getNombre() != null && !filtro.getNombre().isBlank();
@@ -108,7 +108,7 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
     @Override
     public EstadoVerificacionEntity consultarPorId(UUID id) throws BackEndException {
         var sql = new StringBuilder();
-        sql.append("SELECT id, nombre FROM doodb.estado_verificacion WHERE id = ?");
+        sql.append("SELECT id, nombre FROM doodb.estadoverificacion WHERE id = ?");
         try (PreparedStatement pst = connection.prepareStatement(sql.toString())) {
             pst.setObject(1, id);
             try (ResultSet rs = pst.executeQuery()) {
@@ -135,7 +135,7 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
     @Override
     public void modificar(UUID id, EstadoVerificacionEntity entity) throws BackEndException {
         var sql = new StringBuilder();
-        sql.append("UPDATE doodb.estado_verificacion SET nombre = ? WHERE id = ?");
+        sql.append("UPDATE doodb.estadoverificacion SET nombre = ? WHERE id = ?");
         try (PreparedStatement pst = connection.prepareStatement(sql.toString())) {
             pst.setString(1, entity.getNombre());
             pst.setObject(2, id);
@@ -153,9 +153,14 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
 
     @Override
     public Optional<UUID> findIdByNombre(String nombre) throws BackEndException {
-        var sql = "SELECT id FROM doodb.estado_verificacion WHERE nombre = ?";
+        // Opción 1: comparación exacta (asegúrate que 'nombre' exista en la BD)
+        // var sql = "SELECT id FROM doodb.estadoverificacion WHERE nombre = ?";
+        //
+        // Opción 2: comparación insensible a mayúsculas/minúsculas
+        var sql = "SELECT id FROM doodb.estadoverificacion WHERE lower(nombre) = lower(?)";
+
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
-            pst.setString(1, nombre);
+            pst.setString(1, nombre.trim());
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of((UUID) rs.getObject("id"));
@@ -164,7 +169,12 @@ public class EstadoVerificacionPostgreSQLDAO implements EstadoVerificacionDAO {
                 }
             }
         } catch (SQLException exception) {
-            throw new BackEndException("Error al buscar el UUID del estado por nombre.", exception);
+            var mensajeUsuario  = "Error al buscar el UUID del estado por nombre.";
+            var mensajeTecnico  = "SQLException en findIdByNombre: " + exception.getMessage();
+            throw DataBackEndException.reportar(mensajeUsuario, mensajeTecnico, exception);
         }
     }
+
+
+
 }

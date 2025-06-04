@@ -1,6 +1,7 @@
 package co.edu.uco.backend.businesslogic.businesslogic;
 
 import co.edu.uco.backend.businesslogic.businesslogic.domain.OrganizacionDeportivaDomain;
+import co.edu.uco.backend.businesslogic.businesslogic.domain.UsuarioDomain;
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 
 import java.util.List;
@@ -24,6 +25,10 @@ public interface OrganizacionDeportivaBusinessLogic extends UsuarioBusinessLogic
      * @throws BackEndException Si ocurre cualquier error en la capa de persistencia o en la obtención del UUID de estado.
      */
     void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDomain organizacionDeportiva) throws BackEndException;
+
+
+    @Override
+    UsuarioDomain iniciarSesion(String username, String rawPassword, String ipAdress, String userAgent) throws BackEndException;
 
     /**
      * Modifica los datos de una organización deportiva ya existente.

@@ -85,7 +85,7 @@ public class UsuarioEntity {
     }
 
     public void setContrasena(final String contrasena) {
-        this.contrasena = UtilTexto.getInstance().quitarEspaciosEnBlancoInicioFin(contrasena);
+        this.contrasena = contrasena;
     }
 
     public void setPrefijoTelefono(final String prefijoTelefono) {
