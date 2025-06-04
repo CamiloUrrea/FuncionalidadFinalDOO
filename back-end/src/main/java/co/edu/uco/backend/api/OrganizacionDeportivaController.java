@@ -1,6 +1,5 @@
 package co.edu.uco.backend.api;
 
-import co.edu.uco.backend.api.ApiResponse;
 import co.edu.uco.backend.businesslogic.facade.OrganizacionDeportivaFacade;
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.dto.OrganizacionDeportivaDTO;
@@ -14,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/organizaciones")
+
 public class OrganizacionDeportivaController {
 
     private final OrganizacionDeportivaFacade organizacionDeportivaFacade;
@@ -234,8 +234,6 @@ public class OrganizacionDeportivaController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    // ——— MÉTODOS RELACIONADOS A USUARIO ———
 
     @PostMapping("/iniciar-sesion")
     public ResponseEntity<ApiResponse> iniciarSesion(@RequestParam String username,

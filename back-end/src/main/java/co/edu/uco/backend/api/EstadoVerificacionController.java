@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/estado-verificaciones")
+
 public class EstadoVerificacionController {
 
     private final EstadoVerificacionFacade estadoVerificacionFacade;

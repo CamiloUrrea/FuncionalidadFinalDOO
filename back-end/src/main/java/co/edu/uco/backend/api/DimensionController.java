@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/dimensiones")
+
 public class DimensionController {
 
     private final DimensionFacade dimensionFacade;

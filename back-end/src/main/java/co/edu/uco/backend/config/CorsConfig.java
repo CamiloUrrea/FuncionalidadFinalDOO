@@ -13,12 +13,19 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Permite todas las rutas
-                        .allowedOrigins("http://localhost:4200") // Tu frontend
+                registry
+                        // 1) Aplica CORS solo a las rutas que empiecen con /api/v1/
+                        .addMapping("/api/v1/**")
+                        // 2) Usamos allowedOriginPatterns("*") en lugar de allowedOrigins(...)
+                        .allowedOriginPatterns("*")
+                        // 3) Métodos HTTP permitidos
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        // 4) Permitir todas las cabeceras
                         .allowedHeaders("*")
+                        // 5) Dejar allowCredentials(true) para que el navegador pueda enviar cookies/Authorization
                         .allowCredentials(true);
             }
         };
     }
 }
+

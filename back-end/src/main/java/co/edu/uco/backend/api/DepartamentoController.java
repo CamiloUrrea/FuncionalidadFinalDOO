@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/departamentos")
+
 public class DepartamentoController {
 
     private final DepartamentoFacade departamentoFacade;

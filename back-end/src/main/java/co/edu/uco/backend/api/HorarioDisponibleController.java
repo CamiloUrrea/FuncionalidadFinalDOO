@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/horarios-disponibles")
+
 public class HorarioDisponibleController {
 
     private final HorarioDisponibleFacade horarioDisponibleFacade;
