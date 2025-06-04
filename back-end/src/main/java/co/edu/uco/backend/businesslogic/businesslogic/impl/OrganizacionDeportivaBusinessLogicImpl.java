@@ -82,35 +82,116 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
 
 
 
-        if (domain.getContrasena() == null || domain.getContrasena().isEmpty()) {
+        String password = domain.getContrasena();
+        if (password == null || password.isEmpty()) {
+            throw new BackEndException("La contraseña no puede estar vacía.", "RegistroOrganizacionDeportiva: contraseña vacía");
+        }
+        if (password.length() > 100) {
             throw new BackEndException(
-                    "La contraseña no puede estar vacía.",
-                    "registrarNuevaOrganizacionDeportiva: contraseña vacía"
+                    "La contraseña no puede tener mas de 100 carácteres",
+                    "RegistroOrganizacionDeportiva: contraseña demasiado larga"
+            );
+        }
+        if (password.length() < 8) {
+            throw new BackEndException("La contraseña debe tener al menos 8 caracteres.", "RegistroOrganizacionDeportiva contraseña demasiado corta");
+        }
+        long countEspeciales = password.chars()
+                .filter(c -> !Character.isLetterOrDigit(c) && !Character.isWhitespace(c))
+                .count();
+        if (countEspeciales < 3) {
+            throw new BackEndException(
+                    "La contraseña debe contener al menos 3 caracteres especiales.",
+                    "RegistroOrganizacionDeportiva: no hay suficientes caracteres especiales"
             );
         }
 
 
 
         if (UtilTexto.getInstance().estaVacia(domain.getPrefijoTelefono())) {
-            throw new BackEndException(
-                    "El prefijo telefónico no puede estar vacío.",
-                    "registrarNuevaOrganizacionDeportiva: prefijo vacío"
-            );
+            throw new BackEndException("El prefijo telefónico no puede estar vacío.", "RegistroOrganizacionDeportiva: Prefijo Vacío");
         }
-        if (UtilTexto.getInstance().estaVacia(domain.getTelefono())) {
+        if (domain.getPrefijoTelefono().length() > 5) {
             throw new BackEndException(
-                    "El teléfono no puede estar vacío.",
-                    "registrarNuevaOrganizacionDeportiva: teléfono vacío"
-            );
-        }
-        if (UtilTexto.getInstance().estaVacia(domain.getDocumentoExistencia())) {
-            throw new BackEndException(
-                    "El RUT no puede estar vacío.",
-                    "registrarNuevaOrganizacionDeportiva: RUT vacío"
+                    "El prefijo telefónico no puede exceder 5 caracteres.",
+                    "RegistroOrganizacionDeportiva: Prefijo demasiado largo;"
             );
         }
 
-        // 2) Validar que el prefijo pertenezca a Latinoamérica
+
+
+
+        if (UtilTexto.getInstance().estaVacia(domain.getTelefono())) {
+            throw new BackEndException("El teléfono no puede estar vacío.", "ResgistroOrganizacionDeportiva: Teléfono vacío");
+        }
+        if (domain.getTelefono().length() > 10) {
+            throw new BackEndException(
+                    "El número de teléfono no puede exceder 10 dígitos.",
+                    "RegistroOrganizacionDeportiva: Teléfono demasiado largo;"
+            );
+        }
+        if (!domain.getTelefono().matches("\\d{7,10}")) {
+            throw new BackEndException(
+                    "El número de teléfono no es válido. Debe contener entre 7 y 10 dígitos numéricos.",
+                    "RegistroOrganizacionDeportiva: El teléfono no contiene entre 7 y 10 dígitos numéricos"
+            );
+        }
+
+
+        if (UtilTexto.getInstance().estaVacia(domain.getDocumentoExistencia())) {
+            throw new BackEndException("El RUT no puede estar vacío.", "RegistroOrganizacionDeportiva: El Rut está vacío");
+        }
+        if (domain.getDocumentoExistencia().length() > 12) {
+            throw new BackEndException(
+                    "El RUT no puede exceder 12 caracteres.",
+                    "RegistroOrganizacionDeportiva: El Rut es demasiado largo"
+            );
+        }
+        // Ya tenías tu validación de patrón con guión...
+        if (domain.getDocumentoExistencia().length() < 7 ||
+                !domain.getDocumentoExistencia().matches("[0-9]+[-][0-9Kk]"))
+        {
+            throw new BackEndException(
+                    "El formato del RUT no es válido. Ej: 12345678-9.",
+                    "RegistroOrganizacionDeportiva: El Rut ingresado no sumple con el formato indicado"
+            );
+        }
+
+        if (UtilTexto.getInstance().estaVacia(domain.getCorreoAdministrativo())) {
+            throw new BackEndException("El correo administrativo no puede estar vacío.", "RegistroOrganizacionDeportiva: Correo Administrativo Vacío");
+        }
+        if (domain.getCorreoAdministrativo().length() > 100) {
+            throw new BackEndException(
+                    "El correo administrativo no puede exceder 100 caracteres.",
+                    "RegistroOrganizacionDeportiva: Correo Administrativo demasiado largo;"
+            );
+        }
+        String correo = domain.getCorreoAdministrativo();
+        // Regex muy sencillo: “texto@texto.dominio” sin espacios
+        if (!correo.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
+            throw new BackEndException(
+                    "El correo administrativo no tiene un formato válido (ej: usuario@dominio.com).",
+                    "RegsitroOrganizacionDeportiva: El correo no cumple con un formato válido"
+            );
+        }
+
+        if (domain.getPaginaWeb() != null && domain.getPaginaWeb().length() > 200) {
+            throw new BackEndException(
+                    "La URL de la página web no puede exceder 200 caracteres.",
+                    "RegistroOrganizacionDeportiva: PaginaWeb demasiado larga"
+            );
+        }
+
+        String pagina = domain.getPaginaWeb();
+        if (pagina != null && !pagina.isBlank()) {
+            // Debe empezar con http:// o https:// y luego al menos un carácter
+            if (!pagina.matches("^(https?://).+")) {
+                throw new BackEndException(
+                        "La URL de la página web no es válida. Debe iniciar con http:// o https://",
+                        "RegistroOrganizacionDeportiva: La RUL de la pagina web no cumple con el formato indicado"
+                );
+            }
+        }
+
         String prefijo = domain.getPrefijoTelefono().trim();
         if (!PREFIJOS_LATINOAMERICANOS.contains(prefijo)) {
             throw new BackEndException(
@@ -119,16 +200,6 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
             );
         }
 
-        // 3) Validar número de teléfono: solo dígitos, longitud de 7 a 10 caracteres
-        String telefono = domain.getTelefono().trim();
-        if (!telefono.matches("\\d{7,10}")) {
-            throw new BackEndException(
-                    "El número de teléfono no es válido. Debe contener entre 7 y 10 dígitos numéricos.",
-                    "registrarNuevaOrganizacionDeportiva: formato de teléfono inválido"
-            );
-        }
-
-        // 4) Validar unicidad de username y RUT
         OrganizacionDeportivaDAO orgDao = daoFactory.getOrganizacionDeportivaDAO();
         if (orgDao.existsByUsername(domain.getUsername().trim())) {
             throw new BackEndException(
@@ -136,6 +207,7 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
                     "registrarNuevaOrganizacionDeportiva: username duplicado"
             );
         }
+
         if (orgDao.existsByRut(domain.getDocumentoExistencia().trim())) {
             throw new BackEndException(
                     "El RUT ya se encuentra registrado.",
@@ -143,40 +215,11 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
             );
         }
 
-        // 5) Validación mínima de formato de RUT (al menos 7 caracteres y un guión)
-        String rut = domain.getDocumentoExistencia().trim();
-        if (rut.length() < 7 || !rut.matches("[0-9]+[-][0-9Kk]")) {
-            throw new BackEndException(
-                    "El formato del RUT no es válido. Debe seguir el patrón numérico con guión y dígito verificador. Ej: 12345678-9.",
-                    "registrarNuevaOrganizacionDeportiva: formato de RUT inválido"
-            );
-        }
 
-        // 6) Validar contraseña: mínimo 8 caracteres, al menos 3 caracteres especiales
-        String password = domain.getContrasena();
-        if (password.length() < 8) {
-            throw new BackEndException(
-                    "La contraseña debe tener al menos 8 caracteres.",
-                    "registrarNuevaOrganizacionDeportiva: contraseña demasiado corta"
-            );
-        }
-        long countEspeciales = password.chars()
-                .filter(c -> !Character.isLetterOrDigit(c) && !Character.isWhitespace(c))
-                .count();
-        if (countEspeciales < 3) {
-            throw new BackEndException(
-                    "La contraseña debe contener al menos 3 caracteres especiales (por ejemplo: ! @ # $ % & *).",
-                    "registrarNuevaOrganizacionDeportiva: no hay suficientes caracteres especiales"
-            );
-        }
-        // No aplicamos trim() a la contraseña para permitir espacios al inicio/fin
-
-        // 7) Generar UUID si no viene en el domain
         if (UtilUUID.esValorDefecto(domain.getId())) {
             domain.setId(UtilUUID.generarNuevoUUID());
         }
 
-        // 8) Obtener el estado “Pendiente”
         EstadoVerificacionDAO estadoDao = daoFactory.getEstadoVerificacionDAO();
         UUID pendienteId = estadoDao
                 .findIdByNombre("Pendiente")
@@ -186,12 +229,10 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
                 ));
         domain.setEstadoVerificacion(new EstadoVerificacionDomain(pendienteId, null));
 
-        // 9) Convertir Domain → Entity
         OrganizacionDeportivaEntity entity = OrganizacionDeportivaEntityAssembler
                 .getInstance()
                 .toEntity(domain);
 
-        // 10) Persistir con el DAO
         orgDao.crear(entity);
     }
 
