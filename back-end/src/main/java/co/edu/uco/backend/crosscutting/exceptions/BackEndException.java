@@ -3,6 +3,7 @@ import co.edu.uco.backend.crosscutting.utilitarios.UtilObjeto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 
 import java.io.Serial;
+import java.sql.SQLException;
 
 
 public class BackEndException extends Exception{
@@ -12,10 +13,13 @@ public class BackEndException extends Exception{
     private String mensajeUsuario;
     private LayerException capa;
 
-    protected BackEndException(String mensajeUsuario, String mensajeTecnico, Exception excepcionRaiz, LayerException capa) {
+    public BackEndException(String mensajeUsuario, String mensajeTecnico, Exception excepcionRaiz, LayerException capa) {
         super(mensajeTecnico, excepcionRaiz);
         setMensajeUsuario(mensajeUsuario);
         setCapa(capa);
+    }
+
+    public BackEndException(String mensajeUsuario, SQLException exception) {
     }
 
     public String getMensajeUsuario() {
