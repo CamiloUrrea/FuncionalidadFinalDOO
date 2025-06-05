@@ -2,6 +2,7 @@ package co.edu.uco.backend.data.dao.entity.organizaciondeportiva.impl.postgresql
 
 import co.edu.uco.backend.crosscutting.exceptions.BackEndException;
 import co.edu.uco.backend.crosscutting.exceptions.DataBackEndException;
+import co.edu.uco.backend.crosscutting.utilitarios.UtilEncrypt;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilTexto;
 import co.edu.uco.backend.crosscutting.utilitarios.UtilUUID;
 import co.edu.uco.backend.data.dao.entity.organizaciondeportiva.OrganizacionDeportivaDAO;
@@ -37,7 +38,8 @@ public class OrganizacionDeportivaPostgreSQLDAO implements OrganizacionDeportiva
             ps.setObject(1, entity.getId());
             ps.setString(2, entity.getNombre());
             ps.setString(3, entity.getUsername());
-            ps.setString(4, entity.getContrasena());
+            String hashed = UtilEncrypt.hash(entity.getContrasena());
+            ps.setString(4, hashed);
             ps.setString(5, entity.getPrefijoTelefono());
             ps.setString(6, entity.getTelefono());
             ps.setString(7, entity.getDocumentoExistencia());
