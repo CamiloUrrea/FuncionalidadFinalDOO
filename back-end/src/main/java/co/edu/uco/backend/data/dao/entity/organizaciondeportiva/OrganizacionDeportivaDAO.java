@@ -35,5 +35,7 @@ public interface OrganizacionDeportivaDAO extends
      */
     boolean existsByRut(String rut) throws BackEndException;
 
+    boolean existsByCorreo(String correoAdministrativo) throws BackEndException;
+
     Optional<OrganizacionDeportivaEntity> consultarPorUsername(String username) throws BackEndException;
 }

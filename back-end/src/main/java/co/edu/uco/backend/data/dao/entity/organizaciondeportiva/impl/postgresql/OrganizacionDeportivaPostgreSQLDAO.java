@@ -304,6 +304,18 @@ public class OrganizacionDeportivaPostgreSQLDAO implements OrganizacionDeportiva
         }
     }
 
+    public boolean existsByCorreo(String correoAdministrativo) throws BackEndException {
+                var sql = "SELECT 1 FROM doodb.organizaciondeportiva WHERE correoadministrativo = ?";
+                try (var pst = connection.prepareStatement(sql)) {
+                        pst.setString(1, correoAdministrativo.trim());
+                        try (var rs = pst.executeQuery()) {
+                                return rs.next();
+                            }
+                    } catch (SQLException e) {
+                        throw new BackEndException("Error verificando existencia de correo administrativo.", e);
+                    }
+            }
+
     @Override
     public boolean existsByRut(String rut) throws BackEndException {
         var sql = "SELECT 1 FROM doodb.organizaciondeportiva WHERE documentoexistencia = ?";

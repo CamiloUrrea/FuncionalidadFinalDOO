@@ -22,9 +22,6 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
 
     private final DAOFactory daoFactory;
 
-    /**
-     * Prefijos válidos de Latinoamérica (formato E.164).
-     */
     private static final Set<String> PREFIJOS_LATINOAMERICANOS = Set.of(
             "+52",   // México
             "+502",  // Guatemala
@@ -53,7 +50,6 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
 
     @Override
     public void registrarNuevaOrganizacionDeportiva(OrganizacionDeportivaDomain domain) throws BackEndException {
-        // 1) Validar campos obligatorios
         if (UtilTexto.getInstance().estaVacia(domain.getNombre())) {
             throw new BackEndException(
                     "El nombre de la organización no puede estar vacío.",
@@ -152,7 +148,7 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
         {
             throw new BackEndException(
                     "El formato del RUT no es válido. Ej: 12345678-9.",
-                    "RegistroOrganizacionDeportiva: El Rut ingresado no sumple con el formato indicado"
+                    "RegistroOrganizacionDeportiva: El Rut ingresado no cumple con el formato indicado"
             );
         }
 
@@ -174,6 +170,14 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
             );
         }
 
+        OrganizacionDeportivaDAO orgcorreoDao = daoFactory.getOrganizacionDeportivaDAO();
+                if (orgcorreoDao.existsByCorreo(correo.trim())) {
+                        throw new BackEndException(
+                                    "El correo administrativo ya está registrado.",
+                                    "RegistroOrganizacionDeportiva: Correo duplicado"
+                                        );
+                    }
+
         if (domain.getPaginaWeb() != null && domain.getPaginaWeb().length() > 200) {
             throw new BackEndException(
                     "La URL de la página web no puede exceder 200 caracteres.",
@@ -191,6 +195,7 @@ public class OrganizacionDeportivaBusinessLogicImpl implements OrganizacionDepor
                 );
             }
         }
+
 
         String prefijo = domain.getPrefijoTelefono().trim();
         if (!PREFIJOS_LATINOAMERICANOS.contains(prefijo)) {
